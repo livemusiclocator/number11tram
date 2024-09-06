@@ -1,255 +1,254 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
     const gigList = document.getElementById("gig-list");
-
-    // PTV API credentials (use your actual API key and developer ID here)
+  
     const API_KEY = 'f36b2876-d136-485d-8e06-f057c79c0998';
     const DEVELOPER_ID = '3002834';
     const BASE_URL = 'https://timetableapi.ptv.vic.gov.au';
-
-    // Sample gig API URL (always fetch gigs for today)
+    const startStopId = 2174; // Elizabeth St tram stop ID
+  
+    // Always fetch gigs for today
     const apiUrl = `https://api.lml.live/gigs/query?location=melbourne&date_from=${new Date().toISOString().split('T')[0]}&date_to=${new Date().toISOString().split('T')[0]}`;
-
+  
     // Function to generate the signed URL for PTV API
     function getSignedUrl(requestPath) {
-        const request = requestPath + (requestPath.includes('?') ? '&' : '?') + `devid=${DEVELOPER_ID}`;
-        const raw = request;
-
-        // Create HMAC-SHA1 signature
-        const signature = CryptoJS.HmacSHA1(raw, API_KEY).toString(CryptoJS.enc.Hex);
-
-        // Return full signed URL
-        return `${BASE_URL}${raw}&signature=${signature}`;
+      const request = requestPath + (requestPath.includes('?') ? '&' : '?') + `devid=${DEVELOPER_ID}`;
+      const signature = CryptoJS.HmacSHA1(request, API_KEY).toString(CryptoJS.enc.Hex);
+      return `${BASE_URL}${request}&signature=${signature}`;
     }
-
+  
     // Function to calculate the Haversine distance between two points (in meters)
     function haversine(lat1, lon1, lat2, lon2) {
-        const R = 6371000; // Radius of Earth in meters
-        const toRad = (angle) => angle * (Math.PI / 180);
-        const deltaLat = toRad(lat2 - lat1);
-        const deltaLon = toRad(lon2 - lon1);
-        const a = Math.sin(deltaLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(deltaLon / 2) ** 2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
+      const R = 6371000; // Radius of Earth in meters
+      const toRad = (angle) => angle * (Math.PI / 180);
+      const deltaLat = toRad(lat2 - lat1);
+      const deltaLon = toRad(lon2 - lon1);
+      const a = Math.sin(deltaLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(deltaLon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
     }
-
+  
     // Function to find the closest tram stop to the venue (pre-calculate this)
     function findClosestStopToVenue(stops, venueLat, venueLon) {
-        let closestStop = null;
-        let shortestDistance = Infinity;
-
-        stops.forEach((stop) => {
-            const distance = haversine(venueLat, venueLon, stop.stop_latitude, stop.stop_longitude);
-            if (distance < shortestDistance) {
-                shortestDistance = distance;
-                closestStop = stop;
-            }
-        });
-        return { closestStop, shortestDistance };
+      let closestStop = null;
+      let shortestDistance = Infinity;
+  
+      stops.forEach((stop) => {
+        const distance = haversine(venueLat, venueLon, stop.stop_latitude, stop.stop_longitude);
+        if (distance < shortestDistance) {
+          shortestDistance = distance;
+          closestStop = stop;
+        }
+      });
+  
+      return { closestStop, shortestDistance };
     }
-
-    // Function to fetch gigs for today
+  
+    // Fetch gigs for today
     async function fetchGigs() {
-        try {
-            const response = await fetch(apiUrl);
-            const gigs = await response.json();
-            return gigs;
-        } catch (error) {
-            console.error("Error fetching gigs:", error);
-            return [];
-        }
+      try {
+        const response = await fetch(apiUrl);
+        const gigs = await response.json();
+        console.log("Gig data fetched:", gigs);  // Log the entire gig data
+        return gigs;
+      } catch (error) {
+        console.error("Error fetching gigs:", error);
+        return [];
+      }
     }
-
-    // Function to fetch tram stops from the JSON file (as is)
+  
+    // Fetch tram stops
     async function fetchTramStops() {
-        const tramStops = await fetch('outgoing_route_11_stops.json').then(response => response.json());
-        return tramStops;
+      const tramStops = await fetch('/outgoing_route_11_stops.json').then(response => response.json());
+      return tramStops;
     }
-
-   // Function to fetch the next tram from the starting stop (Elizabeth St)
-async function fetchNextTram(startStopId) {
-    const requestPath = `/v3/departures/route_type/1/stop/${startStopId}?max_results=100`;
-    const signedUrl = getSignedUrl(requestPath);
   
-    try {
-      const response = await fetch(signedUrl);
-      if (response.ok) {
-        const data = await response.json();
-        const nextDepartures = data['departures'];
+    // Fetch next tram from the starting stop
+    async function fetchNextTram() {
+      const requestPath = `/v3/departures/route_type/1/stop/${startStopId}?max_results=100`;
+      const signedUrl = getSignedUrl(requestPath);
   
-        if (!nextDepartures || nextDepartures.length === 0) {
-          console.error("No departures found from the API.");
-          return null;
-        }
+      try {
+        const response = await fetch(signedUrl);
+        if (response.ok) {
+          const data = await response.json();
+          const nextDepartures = data['departures'];
   
-        // Find the next valid tram after the current time
-        const currentTime = new Date();
-        for (const departure of nextDepartures) {
-          const estimatedDeparture = new Date(departure['estimated_departure_utc']);
-          if (estimatedDeparture >= currentTime) {
-            return {
-              time: estimatedDeparture.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }),
-              runId: departure['run_id']
-            };
+          const currentTime = new Date();
+          for (const departure of nextDepartures) {
+            const estimatedDeparture = new Date(departure['estimated_departure_utc']);
+            if (estimatedDeparture >= currentTime) {
+              console.log("Next tram found: " + estimatedDeparture.toLocaleTimeString());
+              return {
+                time: estimatedDeparture,
+                runId: departure['run_id'],
+              };
+            }
           }
+        } else {
+          console.error("Error fetching tram time:", response.statusText);
         }
+      } catch (error) {
+        console.error("Error fetching tram data:", error);
+      }
+  
+      return null;
+    }
+  
+    // Fetch travel time between the starting stop and the venue stop
+    async function fetchTravelTime(runId, startStopId, venueStopId) {
+      const requestPath = `/v3/pattern/run/${runId}/route_type/1`;
+      const signedUrl = getSignedUrl(requestPath);
+  
+      try {
+        const response = await fetch(signedUrl);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Travel time API response:", data);  // Log the entire response here
+          const stops = data['departures'];
+  
+          let startTime = null;
+          let venueTime = null;
+  
+          stops.forEach((stop) => {
+            console.log(`Checking stop: ${stop.stop_id}`);
+            if (stop.stop_id === startStopId) {
+              startTime = new Date(stop['scheduled_departure_utc']);
+              console.log("Start time found:", startTime);
+            }
+            if (stop.stop_id === venueStopId) {
+              venueTime = new Date(stop['scheduled_departure_utc']);
+              console.log("Venue time found:", venueTime);
+            }
+          });
+  
+          if (startTime && venueTime) {
+            const travelTime = (venueTime - startTime) / 60000; // Convert ms to minutes
+            console.log(`Travel time calculated: ${travelTime} minutes`);
+            return travelTime;
+          } else {
+            console.error("No valid start or venue time found for run:", runId);
+          }
+        } else {
+          console.error(`Error fetching travel time: ${response.status} - ${response.statusText}`);
+        }
+      } catch (error) {
+        console.error("Error fetching travel time:", error);
+      }
+  
+      return null;
+    }
+  
+    // Utility function to round to nearest 5 minutes
+    function roundToNearest5Minutes(date) {
+      const minutes = date.getMinutes();
+      const remainder = minutes % 5;
+      if (remainder >= 3) {
+        date.setMinutes(minutes + (5 - remainder));
       } else {
-        console.error(`Error fetching tram time: ${response.status} - ${response.statusText}`);
+        date.setMinutes(minutes - remainder);
       }
-    } catch (error) {
-      console.error("Error fetching tram data:", error);
+      return date;
     }
   
-    return null;
-  }
-  
-  // Fetch travel time between start and venue stop
-  async function fetchTravelTime(runId, startStopId, venueStopId) {
-    const requestPath = `/v3/pattern/run/${runId}/route_type/1`;
-    const signedUrl = getSignedUrl(requestPath);
-  
-    try {
-      const response = await fetch(signedUrl);
-      if (response.ok) {
-        const data = await response.json();
-        const stops = data['departures'];
-  
-        let startTime = null;
-        let venueTime = null;
-  
-        for (const stop of stops) {
-          if (stop.stop_id === startStopId) {
-            startTime = new Date(stop['scheduled_departure_utc']);
-          }
-          if (stop.stop_id === venueStopId) {
-            venueTime = new Date(stop['scheduled_departure_utc']);
-            break;
-          }
-        }
-  
-        if (startTime && venueTime) {
-          const travelTime = (venueTime - startTime) / 60000; // Convert ms to minutes
-          return travelTime;
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching travel time:", error);
-    }
-  
-    return null;
-  }
-  
-  // Fetch travel time between start and venue stop
-async function fetchTravelTime(runId, startStopId, venueStopId) {
-    const requestPath = `/v3/pattern/run/${runId}/route_type/1`;
-    const signedUrl = getSignedUrl(requestPath);
-  
-    try {
-      const response = await fetch(signedUrl);
-      if (response.ok) {
-        const data = await response.json();
-        const stops = data['departures'];
-  
-        let startTime = null;
-        let venueTime = null;
-  
-        for (const stop of stops) {
-          if (stop.stop_id === startStopId) {
-            startTime = new Date(stop['scheduled_departure_utc']);
-          }
-          if (stop.stop_id === venueStopId) {
-            venueTime = new Date(stop['scheduled_departure_utc']);
-            break;
-          }
-        }
-  
-        if (startTime && venueTime) {
-          const travelTime = (venueTime - startTime) / 60000; // Convert ms to minutes
-          return travelTime;
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching travel time:", error);
-    }
-  
-    return null;
-  }
+ // Render gigs with tram and walking details
+async function renderGigs(gigs, stops) {
+    const nextTram = await fetchNextTram(); // Fetch next tram once
 
-    // Main function to render gig information with tram and walking details
-    async function renderGigs(gigs, stops) {
-        const startStopId = 2174; // Elizabeth St tram stop ID
-        const maxDistance = 250; // Set the maximum distance to 250 meters
-
-        for (const gig of gigs) {
-            // Find the closest stop to the venue
-            const { closestStop, shortestDistance } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
-
-            // Filter out gigs that are farther than the max distance
-            if (shortestDistance > maxDistance) {
-                continue; // Skip this gig if it's too far
-            }
-
-            const gigDiv = document.createElement("div");
-            gigDiv.classList.add("gig");
-
-            const title = document.createElement("div");
-            title.classList.add("title");
-            title.textContent = gig.name;
-
-            const startTime = document.createElement("div");
-            startTime.classList.add("details");
-            const time = new Date(gig.start_timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-            startTime.textContent = `Starts at: ${time}`;
-
-            const venue = document.createElement("a");
-            venue.classList.add("venue");
-            venue.textContent = gig.venue.name;
-            venue.href = gig.venue.location_url || "#";
-            venue.target = "_blank";
-
-            const genres = gig.genre_tags.length ? `${gig.genre_tags.join(", ")}` : '';
-            const genresDiv = document.createElement("div");
-            genresDiv.textContent = genres;
-
-            // Fetch the next tram from the starting stop
-            const nextTram = await fetchNextTram(startStopId);
-
-            // Calculate the travel time from the starting stop to the venue stop
-            const travelTime = nextTram ? await fetchTravelTime(nextTram.runId, startStopId, closestStop.stop_id) : null;
-
-            const nextTramDiv = document.createElement("div");
-            nextTramDiv.classList.add("details");
-
-            if (nextTram && travelTime !== null) {
-                const arrivalTime = new Date();
-                arrivalTime.setMinutes(arrivalTime.getMinutes() + travelTime + 5); // Add travel time and 5 mins walking
-
-                nextTramDiv.innerHTML = `
-                    <b>How to get there:</b><br>
-                    Next number 11 tram from Elizabeth St (#${startStopId}) is at ${nextTram.time}.<br>
-                    Get off at ${closestStop.stop_name} Stop (#${closestStop.stop_id}).<br>
-                    The walking distance from tram stop to ${gig.venue.name} is ${Math.round(shortestDistance)} metres.
-                    You will arrive by ${arrivalTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}.
-                `;
-            } else {
-                nextTramDiv.textContent = "No valid tram data available.";
-            }
-
-            // Append to gigDiv
-            gigDiv.appendChild(title);
-            gigDiv.appendChild(genresDiv);
-            gigDiv.appendChild(startTime);
-            gigDiv.appendChild(venue);
-            gigDiv.appendChild(nextTramDiv);
-
-            // Add gigDiv to the gig list
-            gigList.appendChild(gigDiv);
-        }
+    if (!nextTram || !nextTram.time) {
+        console.error("No valid tram found.");
+        return;
     }
 
-    // Initialize the app and fetch gigs and stops
-    fetchGigs().then((gigs) => {
-        fetchTramStops().then((stops) => {
-            renderGigs(gigs, stops);
-        });
+    console.log("Next tram found: " + nextTram.time.toLocaleTimeString()); // Ensure the tram is found and logged
+
+    for (const gig of gigs) {
+        console.log(`Processing gig: ${gig.name}`);
+
+        // Check if all necessary gig data exists before processing
+        if (!gig.venue || !gig.venue.latitude || !gig.venue.longitude || !gig.venue.name) {
+            console.error(`Missing data for gig ${gig.name}`);
+            continue;
+        }
+
+        const { closestStop, shortestDistance } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
+        console.log(`Closest stop to venue: ${closestStop.stop_name}, Distance: ${shortestDistance}m`);
+
+        // Skip gigs that are too far from any tram stop
+        if (shortestDistance > 250) {
+            console.log(`Skipping gig ${gig.name} because it's too far from tram stop.`);
+            continue;
+        }
+
+        const travelTime = await fetchTravelTime(nextTram.runId, 2174, closestStop.stop_id); // Get travel time for each gig
+
+        if (travelTime === null) {
+            console.error(`No valid travel time found for gig ${gig.name}`);
+            continue; // Skip this gig if no travel time is found
+        }
+
+        console.log(`Travel time for gig ${gig.name}: ${travelTime} minutes`);
+
+        // Create the gig div
+        const gigDiv = document.createElement("div");
+        gigDiv.classList.add("gig");
+
+        // Create the gig title (gig name)
+        const title = document.createElement("div");
+        title.classList.add("title");
+        title.textContent = gig.name;
+
+        // Create the genre tags
+        const genreTags = gig.genre_tags.join(', ');
+        const genreDiv = document.createElement("div");
+        genreDiv.textContent = `Genres: ${genreTags}`;
+
+        // Create the start time in bold
+        const startTimeDiv = document.createElement("div");
+        startTimeDiv.innerHTML = `<strong>Starts at: ${gig.start_time}</strong>`;
+
+        // Create the venue link (hyperlinked to ticketing URL)
+        const venueLink = document.createElement("a");
+        venueLink.href = gig.venue.ticketing_url || "#";  // Default to "#" if no URL
+        venueLink.target = "_blank";
+        venueLink.textContent = gig.venue.name;
+
+        // Create the next tram and walking details
+        const nextTramDiv = document.createElement("div");
+
+        if (travelTime !== null && nextTram.time) {
+            const arrivalTime = new Date(nextTram.time);
+            arrivalTime.setMinutes(arrivalTime.getMinutes() + travelTime + 5); // Add 5 minutes walking time
+            const roundedArrivalTime = roundToNearest5Minutes(arrivalTime);  // Round to nearest 5 mins
+
+            nextTramDiv.innerHTML = `
+            Next tram from Elizabeth St at ${nextTram.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}.<br>
+            Get off at ${closestStop.stop_name}.<br>
+            The walking distance from tram stop to ${gig.venue.name} is ${Math.round(shortestDistance)} meters. <br>
+            You will arrive around ${roundedArrivalTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}. <br>
+            <a href="${gig.venue.location_url || '#'}" target="_blank">Here is a navigation link to the venue</a>
+        `;
+              } else {
+            console.error(`No valid tram or travel data for gig ${gig.name}`);
+            nextTramDiv.textContent = "No valid tram data available.";
+        }
+
+        // Append all elements to gigDiv
+        gigDiv.appendChild(title);
+        gigDiv.appendChild(genreDiv);
+        gigDiv.appendChild(startTimeDiv);
+        gigDiv.appendChild(venueLink);
+        gigDiv.appendChild(nextTramDiv);
+
+        // Append the gigDiv to the gigList container
+        gigList.appendChild(gigDiv);
+    }
+}
+
+
+  // Initialize app
+  fetchGigs().then(gigs => {
+    fetchTramStops().then(stops => {
+      renderGigs(gigs, stops);
     });
+  });
 });
