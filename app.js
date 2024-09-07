@@ -186,8 +186,6 @@ function formatTimeDifference(minutes) {
     }
     return formattedTime;
 }
-
-// Render gigs with tram and walking details
 async function renderGigs(gigs, stops) {
     const nextTram = await fetchNextTram(); // Fetch next tram once
 
@@ -197,6 +195,11 @@ async function renderGigs(gigs, stops) {
     }
 
     console.log("Next tram found: " + formatToAMPM(nextTram.time)); // Ensure the tram is found and logged
+
+    // Categorize gigs by time horizons
+    const underway = [];
+    const aboutToStart = [];
+    const laterOn = [];
 
     for (const gig of gigs) {
         console.log(`Processing gig: ${gig.name}`);
@@ -225,6 +228,91 @@ async function renderGigs(gigs, stops) {
 
         console.log(`Travel time for gig ${gig.name}: ${travelTime} minutes`);
 
+        // Format gig start time
+        const gigStartTime = new Date(gig.start_timestamp);
+        const formattedGigStartTime = formatToAMPM(gigStartTime);
+
+        // Calculate arrival time
+        const arrivalTime = new Date(nextTram.time);
+        arrivalTime.setMinutes(arrivalTime.getMinutes() + travelTime + 5); // Add 5 minutes walking time
+        const roundedArrivalTime = roundToNearest5Minutes(arrivalTime);  // Round to nearest 5 mins
+
+        // Calculate time differences
+        const timeDiffInMinutes = (roundedArrivalTime - gigStartTime) / 60000;
+
+        // Categorize gigs based on time difference
+        if (timeDiffInMinutes > 0) {
+            underway.push({
+                gig,
+                formattedGigStartTime,
+                roundedArrivalTime,
+                timeDiffInMinutes,
+                closestStop,
+                shortestDistance,
+                nextTram,
+                travelTime
+            });
+        } else if (timeDiffInMinutes >= -30) {
+            aboutToStart.push({
+                gig,
+                formattedGigStartTime,
+                roundedArrivalTime,
+                timeDiffInMinutes,
+                closestStop,
+                shortestDistance,
+                nextTram,
+                travelTime
+            });
+        } else {
+            laterOn.push({
+                gig,
+                formattedGigStartTime,
+                roundedArrivalTime,
+                timeDiffInMinutes,
+                closestStop,
+                shortestDistance,
+                nextTram,
+                travelTime
+            });
+        }
+    }
+
+    // Sort gigs in each category by start time
+    underway.sort((a, b) => new Date(a.gig.start_timestamp) - new Date(b.gig.start_timestamp));
+    aboutToStart.sort((a, b) => new Date(a.gig.start_timestamp) - new Date(b.gig.start_timestamp));
+    laterOn.sort((a, b) => new Date(a.gig.start_timestamp) - new Date(b.gig.start_timestamp));
+
+    // Append gigs to their respective time horizons
+    appendGigList(underway, "Gigs which will probably be underway when you get there", stops);
+    appendGigList(aboutToStart, "Gigs about to Start (when you get there)", stops);
+    appendGigList(laterOn, "Gigs a Bit Later On", stops);
+}
+
+// Function to append categorized gigs to the DOM
+function appendGigList(gigs, category, stops) {
+    if (gigs.length === 0) return;
+
+    const gigList = document.getElementById("gig-list");
+
+    // Create and style category header
+    const header = document.createElement("h2");
+    header.textContent = category;
+
+    // Apply specific formatting based on category
+    if (category === "Gigs a Bit Later On") {
+        const currentTime = new Date();
+        const todayOrTonight = currentTime.getHours() < 18 ? "today" : "tonight";
+        header.textContent = `${category} ${todayOrTonight}`;
+    }
+
+    header.style.borderTop = "1px solid #ddd";
+    header.style.color = "rgb(78, 171, 233)"; // Set custom RGB color
+    gigList.appendChild(header);
+
+    // Append each gig to the list
+    gigs.forEach((item) => {
+        const { gig, formattedGigStartTime, roundedArrivalTime, timeDiffInMinutes, closestStop, shortestDistance, nextTram, travelTime } = item;
+
         // Create the gig div
         const gigDiv = document.createElement("div");
         gigDiv.classList.add("gig");
@@ -240,50 +328,33 @@ async function renderGigs(gigs, stops) {
         venueLink.target = "_blank";
         venueLink.textContent = gig.venue.name;
 
-        // Format gig start time
-        const gigStartTime = new Date(gig.start_timestamp);
-        const formattedGigStartTime = formatToAMPM(gigStartTime);
-
-        // Calculate arrival time
-        const arrivalTime = new Date(nextTram.time);
-        arrivalTime.setMinutes(arrivalTime.getMinutes() + travelTime + 5); // Add 5 minutes walking time
-        const roundedArrivalTime = roundToNearest5Minutes(arrivalTime);  // Round to nearest 5 mins
-
-        // Calculate time differences
-        const timeDiffInMinutes = (roundedArrivalTime - gigStartTime) / 60000;
-
-        // Create the next tram and walking details
-        const nextTramDiv = document.createElement("div");
-
-        if (travelTime !== null && nextTram.time) {
-            let arrivalMessage = '';
-            if (timeDiffInMinutes < 0) {
-                const beforeGigTime = Math.abs(timeDiffInMinutes);
-                const formattedTimeDiff = formatTimeDifference(beforeGigTime);
-                arrivalMessage = `You will arrive around ${formatToAMPM(roundedArrivalTime)}, around ${formattedTimeDiff} before the gig probably starts.`;
-            } else if (timeDiffInMinutes <= 45) {
-                arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} has just started at ${formattedGigStartTime}. You will probably arrive during the first set.`;
-            } else if (timeDiffInMinutes <= 90) {
-                arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} started at ${formattedGigStartTime}. You will probably arrive during the second set.`;
-            } else if (timeDiffInMinutes <= 160) {
-                arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} started at ${formattedGigStartTime}. If you are lucky you might catch a set.`;
-            } else {
-                arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} started at ${formattedGigStartTime}. If you are lucky you might see some music before it finishes.`;
-            }
-
-            nextTramDiv.innerHTML = `
-                Genres: ${gig.genre_tags.join(', ')}<br>
-                <strong>Starts at: ${formattedGigStartTime}</strong><br>
-                Next tram from Elizabeth St at ${formatToAMPM(nextTram.time)}.<br>
-                Get off at ${closestStop.stop_name}.<br>
-                The walking distance from tram stop to ${gig.venue.name} is ${roundToNearest20Meters(shortestDistance)} meters.<br>
-                ${arrivalMessage}<br>
-                <a href="${gig.venue.location_url || '#'}" target="_blank">Here is a navigation link to the venue</a>
-            `;
+        // Generate the arrival message
+        let arrivalMessage = '';
+        if (timeDiffInMinutes < 0) {
+            const beforeGigTime = Math.abs(timeDiffInMinutes);
+            const formattedTimeDiff = formatTimeDifference(beforeGigTime);
+            arrivalMessage = `You will arrive around ${formatToAMPM(roundedArrivalTime)}, around ${formattedTimeDiff} before the gig probably starts.`;
+        } else if (timeDiffInMinutes <= 45) {
+            arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} has just started at ${formattedGigStartTime}. You will probably arrive during the first set.`;
+        } else if (timeDiffInMinutes <= 90) {
+            arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} started at ${formattedGigStartTime}. You will probably arrive during the second set.`;
+        } else if (timeDiffInMinutes <= 160) {
+            arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} started at ${formattedGigStartTime}. If you are lucky you might catch a set.`;
         } else {
-            console.error(`No valid tram or travel data for gig ${gig.name}`);
-            nextTramDiv.textContent = "No valid tram data available.";
+            arrivalMessage = `Gig: ${gig.name} at ${gig.venue.name} started at ${formattedGigStartTime}. If you are lucky you might see some music before it finishes.`;
         }
+
+        // Add gig details to the gig div
+        const nextTramDiv = document.createElement("div");
+        nextTramDiv.innerHTML = `
+            Genres: ${gig.genre_tags.join(', ')}<br>
+            <strong>Starts at: ${formattedGigStartTime}</strong><br>
+            Next tram from Elizabeth St at ${formatToAMPM(nextTram.time)}.<br>
+            Get off at ${closestStop.stop_name}.<br>
+            The walking distance from tram stop to ${gig.venue.name} is ${roundToNearest20Meters(shortestDistance)} meters.<br>
+            ${arrivalMessage}<br>
+            <a href="${gig.venue.location_url || '#'}" target="_blank">Here is a navigation link to the venue</a>
+        `;
 
         // Append all elements to gigDiv
         gigDiv.appendChild(title);
@@ -292,7 +363,7 @@ async function renderGigs(gigs, stops) {
 
         // Append the gigDiv to the gigList container
         gigList.appendChild(gigDiv);
-    }
+    });
 }
 
 
