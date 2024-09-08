@@ -44,7 +44,12 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (underway.length) appendGigList(underway, gigList, "Gigs Underway", stops, nextTramData, venueArrivalTimes); 
     if (aboutToStart.length) appendGigList(aboutToStart, gigList, "Gigs About to Start", stops, nextTramData, venueArrivalTimes); 
     if (laterOn.length) appendGigList(laterOn, gigList, "Gigs a Bit Later On", stops, nextTramData, venueArrivalTimes); 
+    if (timeDiffInMinutes > 130) {
+        console.log(`Excluding gig ${gig.name} because it's more than 130 minutes late.`);
+        return; // Skip to the next gig
+    }
 }
+
 
 // Append gigs to the page
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes) { 
@@ -98,10 +103,10 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             timeDiffDiv.textContent = `You'll arrive just in time!`;
         }
 
-        // Add elements to the gigDiv
+        // Add elements to the gigDiv in the correct order
         gigDiv.appendChild(title);
         gigDiv.appendChild(genreTagsDiv); // Add genre tags
-        gigDiv.appendChild(venueLink);
+        gigDiv.appendChild(venueLink); // Venue name is now a link
         gigDiv.appendChild(arrivalTimeDiv);
         gigDiv.appendChild(timeDiffDiv);
         gigList.appendChild(gigDiv);
