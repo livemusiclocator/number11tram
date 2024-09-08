@@ -1,14 +1,14 @@
-import { fetchTravelTime, fetchNextTram } from './fetchdata.js';
-import { formatToAMPM, haversine } from './helpers.js';
+import { formatToAMPM, haversine, findClosestStopToVenue } from './helpers.js';
 
 // Render gigs
-export async function renderGigs(gigs, stops, gigList) {
-    const nextTram = await fetchNextTram();
+export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData) {  // Accepts nextTramData as an argument
 
     if (!nextTram || !nextTram.time) {
         console.error("No valid tram found.");
         return;
     }
+
+    console.log("Next tram found at:", nextTram.time); // Log the next tram time
 
     const underway = [];
     const aboutToStart = [];
@@ -16,40 +16,40 @@ export async function renderGigs(gigs, stops, gigList) {
 
     gigs.forEach((gig) => {
         const gigStartTime = new Date(gig.start_timestamp);
-        const { closestStop, shortestDistance } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
+        const arrivalTime = venueArrivalTimes[gig.venue.id]; 
 
-        fetchTravelTime(nextTram.runId, closestStop.stop_id).then(travelTime => {
-            if (!travelTime) return;
+        console.log("Gig:", gig.name, "Venue ID:", gig.venue.id); 
+        console.log("Arrival Time:", arrivalTime); 
 
-            const arrivalTime = new Date(nextTram.time);
-            arrivalTime.setMinutes(arrivalTime.getMinutes() + travelTime);
-
+        if (arrivalTime) { 
             const timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
 
-            if (timeDiffInMinutes <= 0) underway.push(gig);
-            else if (timeDiffInMinutes <= 30) aboutToStart.push(gig);
-            else laterOn.push(gig);
+            console.log("Time Difference (minutes):", timeDiffInMinutes); 
 
-            appendGigList(underway, stops, gigList, "Gigs Underway");
-            appendGigList(aboutToStart, stops, gigList, "Gigs about to Start");
-            appendGigList(laterOn, stops, gigList, "Gigs a Bit Later On");
-        }).catch(error => {
-            console.error("Error calculating travel time for gig:", gig.name, error);
-        });
+            if (timeDiffInMinutes <= 0) {
+                underway.push(gig);
+            } else if (timeDiffInMinutes <= 30) {
+                aboutToStart.push(gig);
+            } else {
+                laterOn.push(gig);
+            }
+        } else {
+            console.warn(`No arrival time found for gig: ${gig.name} at venue: ${gig.venue.name}`);
+        }
     });
+
+    if (underway.length) appendGigList(underway, gigList, "Gigs Underway", stops); // Pass 'stops' here
+    if (aboutToStart.length) appendGigList(aboutToStart, gigList, "Gigs About to Start", stops); // Pass 'stops' here
+    if (laterOn.length) appendGigList(laterOn, gigList, "Gigs a Bit Later On", stops); // Pass 'stops' here
 }
-
-// Append gigs to the page
-function appendGigList(gigs, stops, gigList, category) {
-    if (gigs.length === 0) return;
-
+function appendGigList(gigs, gigList, category, stops) { // Add 'stops' here
     const header = document.createElement("h2");
     header.textContent = category;
     header.style.borderTop = "1px solid #ddd";
     gigList.appendChild(header);
 
     gigs.forEach((gig) => {
-        const gigDiv = document.createElement("div");
+       const gigDiv = document.createElement("div");
         gigDiv.classList.add("gig");
 
         const title = document.createElement("div");
@@ -64,5 +64,8 @@ function appendGigList(gigs, stops, gigList, category) {
         gigDiv.appendChild(title);
         gigDiv.appendChild(venueLink);
         gigList.appendChild(gigDiv);
+
+        console.log("Venue Stop ID:", findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude).closestStop.stop_id);
+
     });
 }
