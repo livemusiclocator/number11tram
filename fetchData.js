@@ -69,43 +69,73 @@ export async function fetchNextTram() {
 }
 
 // Calculate travel time for all venues based on the next tram's route
-export async function calculateVenueArrivalTimes(gigs, nextTramData) { 
+export async function calculateVenueArrivalTimes(gigs, nextTramData) {
     if (!nextTramData) {
       console.error("No valid tram found.");
-      return {}; 
+      return {};
     }
-
-    const runId = nextTramData.runId; 
-    const tramRoute = await fetchTramRoute(runId); 
-
+  
+    const runId = nextTramData.runId;
+    const tramRoute = await fetchTramRoute(runId);
+  
+    console.log("Tram Route Data for Run ID", runId, ":", tramRoute);
+  
     const venueArrivalTimes = {};
-
+  
+    // Fetch stops data ONCE, outside the loop
+    const stops = await fetchTramStops(); 
+  
     for (const gig of gigs) {
-        const venueId = gig.venue.id; 
-
-        // Check if we already have the closest stop for this venue
-        if (!venueStopMapping[venueId]) {
-            const stops = await fetchTramStops();
-            const { closestStop } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
-            venueStopMapping[venueId] = closestStop.stop_id;
-        }
-
-        const venueStopId = venueStopMapping[venueId];
-
-        // Find the venue stop in the tram route, ensuring consistent data types
-        const venueStopData = tramRoute.departures.find(stop => String(stop.stop_id) === String(venueStopId)); 
-
-        if (venueStopData) {
-            const arrivalTime = new Date(venueStopData.scheduled_departure_utc);
-            venueArrivalTimes[venueId] = arrivalTime;
+      const venueId = gig.venue.id;
+  
+      // Check if we already have the closest stop for this venue
+      if (!venueStopMapping[venueId]) {
+        const { closestStop } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
+        venueStopMapping[venueId] = closestStop.stop_id;
+      }
+  
+      const venueStopId = venueStopMapping[venueId];
+  
+      let venueStopData = tramRoute.departures.find(stop => String(stop.stop_id) === String(venueStopId));
+  
+      if (!venueStopData) {
+        console.warn(`Venue stop ${venueStopId} not found in tram route for run ID: ${runId}. Finding next closest stop...`);
+  
+        // Find the index of the closest stop in your local stops data
+        const closestStopIndex = stops.findIndex(stop => String(stop.stop_id) === String(venueStopId));
+  
+        if (closestStopIndex !== -1) {
+          // Get the next and previous stops from your local data
+          const nextStop = stops[closestStopIndex + 1];
+          const previousStop = stops[closestStopIndex - 1];
+  
+          // Find matching data in the tramRoute for next/previous stops
+          const nextStopData = tramRoute.departures.find(stop => String(stop.stop_id) === String(nextStop?.stop_id));
+          const previousStopData = tramRoute.departures.find(stop => String(stop.stop_id) === String(previousStop?.stop_id));
+  
+          // Choose the stop data that exists in the tramRoute
+          venueStopData = nextStopData || previousStopData;
+  
+          if (venueStopData) {
+            console.log(`Using next closest stop: ${venueStopData.stop_id}`);
+          } else {
+            console.warn(`Could not find next closest stop in tram route data.`);
+          }
         } else {
-            console.warn(`Venue stop ${venueStopId} not found in tram route for run ID: ${runId}`);
+          console.warn(`Closest stop ${venueStopId} not found in local stops data.`);
         }
+      }
+  
+      if (venueStopData) {
+        const arrivalTime = new Date(venueStopData.scheduled_departure_utc);
+        venueArrivalTimes[venueId] = arrivalTime;
+      }
     }
-
+  
     return venueArrivalTimes;
-}
-
+  }
+  
+  
 // Fetch the full route pattern for a given tram run ID
 async function fetchTramRoute(runId) {
     const requestPath = `/v3/pattern/run/${runId}/route_type/1`;

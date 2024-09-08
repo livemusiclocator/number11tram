@@ -1,5 +1,5 @@
 import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes } from './fetchData.js';
-import { renderGigs } from './render.js';
+import { renderGigs } from './render.js'; 
 import { findClosestStopToVenue } from './helpers.js'; 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 return shortestDistance <= MAX_DISTANCE_METERS;
             });
 
-            calculateVenueArrivalTimes(nearbyGigs, nextTramData)
+            // Call calculateVenueArrivalTimes AFTER fetching stops
+            calculateVenueArrivalTimes(nearbyGigs, nextTramData) 
                 .then(venueArrivalTimes => { 
                     renderGigs(nearbyGigs, stops, gigList, venueArrivalTimes, nextTramData); 
                 });

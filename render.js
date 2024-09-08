@@ -22,7 +22,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         console.log("Arrival Time:", arrivalTime); 
         console.log("Gig Start Time:", gigStartTime); 
 
-        // Declare timeDiffInMinutes here
         let timeDiffInMinutes;
 
         if (arrivalTime) { 
@@ -46,7 +45,33 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (laterOn.length) appendGigList(laterOn, gigList, "Gigs a Bit Later On", stops); 
 }
 
-// appendGigList remains unchanged
+// Append gigs to the page
 function appendGigList(gigs, gigList, category, stops) { 
-    // ... (your existing appendGigList code)
+    if (gigs.length === 0) return;
+
+    const header = document.createElement("h2");
+    header.textContent = category;
+    header.style.borderTop = "1px solid #ddd";
+    gigList.appendChild(header);
+
+    gigs.forEach((gig) => {
+        const gigDiv = document.createElement("div");
+        gigDiv.classList.add("gig");
+
+        const title = document.createElement("div");
+        title.classList.add("title");
+        title.textContent = gig.name;
+
+        const venueLink = document.createElement("a");
+        venueLink.href = gig.venue.ticketing_url || "#";
+        venueLink.target = "_blank";
+        venueLink.textContent = gig.venue.name;
+
+        gigDiv.appendChild(title);
+        gigDiv.appendChild(venueLink);
+        gigList.appendChild(gigDiv);
+
+        // Log the venue stop ID (for debugging)
+        console.log("Venue Stop ID:", findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude).closestStop.stop_id);
+    });
 }
