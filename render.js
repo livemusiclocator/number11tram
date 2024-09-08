@@ -1,14 +1,16 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from './helpers.js';
 
 // Render gigs
-export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData) {  // Accepts nextTramData as an argument
+export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData) {  
 
-    if (!nextTram || !nextTram.time) {
+    if (!nextTramData || !nextTramData.time) { // Use nextTramData
         console.error("No valid tram found.");
         return;
     }
 
-    console.log("Next tram found at:", nextTram.time); // Log the next tram time
+    console.log("Next tram found at:", nextTramData.time); // Use nextTramData
+
+
 
     const underway = [];
     const aboutToStart = [];
@@ -20,6 +22,11 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
 
         console.log("Gig:", gig.name, "Venue ID:", gig.venue.id); 
         console.log("Arrival Time:", arrivalTime); 
+
+      
+        console.log("Gig Start Time:", gigStartTime);
+        console.log("Time Difference (minutes):", timeDiffInMinutes);
+    
 
         if (arrivalTime) { 
             const timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
