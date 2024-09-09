@@ -42,11 +42,11 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
             timeDiffInMinutes = (arrivalTime - currentTime) / 60000;
 
             // Corrected categorization logic
-            if (timeDiffInMinutes > 0) { // Arrival time must be AFTER gig start time for "underway"
+            if (timeDiffInMinutes > 15) { // Underway: tram arrives at least 15 minutes late
                 underway.push(gig);
-            } else if (timeDiffInMinutes <= 30 && timeDiffInMinutes >= 0) { // Arrival time within 30 minutes BEFORE gig start time
+            } else if (timeDiffInMinutes <= 30 && timeDiffInMinutes >= 0) { // About to Start: within 30 minutes before start
                 aboutToStart.push(gig);
-            } else {
+            } else { // Later On: more than 30 minutes before start
                 laterOn.push(gig);
             }
         } else {
@@ -54,7 +54,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         }
     });
 
-    if (underway.length) appendGigList(underway, gigList, "Gigs Underway", stops, nextTramData, venueArrivalTimes); 
+    if (underway.length) appendGigList(underway, gigList, "These gigs will be underway when you get there", stops, nextTramData, venueArrivalTimes); 
     if (aboutToStart.length) appendGigList(aboutToStart, gigList, "Gigs About to Start", stops, nextTramData, venueArrivalTimes); 
     if (laterOn.length) appendGigList(laterOn, gigList, "Gigs a Bit Later On", stops, nextTramData, venueArrivalTimes); 
 }
@@ -114,7 +114,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         if (timeDiffInMinutes > 0) {
             const hoursLate = Math.floor(timeDiffInMinutes / 60);
             const minutesLate = Math.round(timeDiffInMinutes % 60);
-            timeDiffDiv.textContent = `You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} late.`;
+            timeDiffDiv.textContent = `You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
         } else if (timeDiffInMinutes < 0) {
             const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
             const minutesEarly = Math.round(-timeDiffInMinutes % 60);
