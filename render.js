@@ -108,7 +108,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
 
         const arrivalTimeDiv = document.createElement("div");
-        arrivalTimeDiv.textContent = `Next Tram Arrival: ${formatToAMPM(roundedArrivalTime)}`;
+        arrivalTimeDiv.textContent = `Next Tram from this stop will get you to the venue around: ${formatToAMPM(roundedArrivalTime)}`;
 
         const timeDiffDiv = document.createElement("div");
         if (timeDiffInMinutes > 0) {
@@ -130,7 +130,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
 
         // Start time info under venue name
         const startTimeDiv = document.createElement("div");
-        startTimeDiv.textContent = `Starts ${formatToAMPM(gigStartTime).replace(' ', '').toUpperCase()}`; // Shortened phrasing
+        startTimeDiv.textContent = `${formatToAMPM(gigStartTime).replace(' ', '').toUpperCase()}`; // Shortened phrasing
 
         // Add elements to the gigDiv in the correct order
         gigDiv.appendChild(title);
