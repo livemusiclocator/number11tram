@@ -59,6 +59,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (laterOn.length) appendGigList(laterOn, gigList, "Gigs a Bit Later On", stops, nextTramData, venueArrivalTimes); 
 }
 
+
 // Append gigs to the page
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes) {
     if (gigs.length === 0) return;
