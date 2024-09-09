@@ -42,9 +42,9 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
             timeDiffInMinutes = (arrivalTime - currentTime) / 60000;
 
             // Corrected categorization logic
-            if (timeDiffInMinutes > 15) { // Underway: tram arrives at least 15 minutes late
+            if (arrivalTime > currentTime && gigStartTime < currentTime) { // Underway: tram arrives after gig has started
                 underway.push(gig);
-            } else if (timeDiffInMinutes <= 30 && timeDiffInMinutes >= 0) { // About to Start: within 30 minutes before start
+            } else if (arrivalTime <= currentTime && arrivalTime >= currentTime - 30 * 60 * 1000) { // About to Start: tram arrives within 30 minutes before the CURRENT TIME
                 aboutToStart.push(gig);
             } else { // Later On: more than 30 minutes before start
                 laterOn.push(gig);
@@ -54,7 +54,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         }
     });
 
-    if (underway.length) appendGigList(underway, gigList, "These gigs will be underway when you get there", stops, nextTramData, venueArrivalTimes); 
+    if (underway.length) appendGigList(underway, gigList, "These gigs will probably be underway when you get there", stops, nextTramData, venueArrivalTimes); 
     if (aboutToStart.length) appendGigList(aboutToStart, gigList, "Gigs About to Start", stops, nextTramData, venueArrivalTimes); 
     if (laterOn.length) appendGigList(laterOn, gigList, "Gigs a Bit Later On", stops, nextTramData, venueArrivalTimes); 
 }
