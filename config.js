@@ -6,5 +6,5 @@ export const apiUrl = `https://api.lml.live/gigs/query?location=melbourne&date_f
 // Time configuration
 export const timeConfig = {
     useTestTime: false, // Set to true to use test time, false for actual time
-    testTime: new Date().setHours(20, 40, 0, 0) // Set a test time (e.g., 9 PM)
+    testTime: new Date().setHours(18, 58, 0, 0) // Set a test time (e.g., 9 PM)
 };

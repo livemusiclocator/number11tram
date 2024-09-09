@@ -43,8 +43,13 @@ export async function fetchNextTram() {
         if (timeConfig.useTestTime) {
           const testTime = new Date(timeConfig.testTime);
           outbound11Departures = outbound11Departures.filter(
-            (departure) => new Date(departure.scheduled_departure_utc) > testTime
+            (departure) => new Date(departure.scheduled_departure_utc) >= testTime
           );
+  
+          if (outbound11Departures.length === 0) {
+            console.error("No outbound number 11 tram departures found after test time:", testTime);
+            return null;
+          }
         }
   
         // Sort the filtered departures by scheduled departure time
@@ -52,11 +57,6 @@ export async function fetchNextTram() {
   
         // Select the first (earliest) departure
         const nextDeparture = outbound11Departures[0];
-  
-        if (!nextDeparture) {
-          console.error("No outbound number 11 tram departures found after test time:", testTime);
-          return null;
-        }
   
         // Access the 'run' object from the 'runs' property using the 'run_id'
         const run = data.runs[nextDeparture.run_id];
@@ -143,9 +143,7 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
         let arrivalTime = new Date(venueStopData.scheduled_departure_utc);
 
         // Apply test time from config.js
-        if (timeConfig.useTestTime) {
-            arrivalTime = new Date(timeConfig.testTime);
-        }
+      
 
         venueArrivalTimes[venueId] = arrivalTime;
       }
