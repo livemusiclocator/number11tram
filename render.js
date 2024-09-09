@@ -1,4 +1,5 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from './helpers.js';
+import { timeConfig } from './config.js'; // Import timeConfig
 
 // Render gigs
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData) {  
@@ -33,6 +34,12 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
                 console.log(`Excluding gig ${gig.name} because it's more than 130 minutes late.`);
                 return; // Skip to the next gig
             }
+
+            // Use actual or test time based on config
+            const currentTime = timeConfig.useTestTime ? new Date(timeConfig.testTime) : new Date();
+
+            // Calculate time difference based on currentTime
+            timeDiffInMinutes = (arrivalTime - currentTime) / 60000;
 
             // Corrected categorization logic
             if (timeDiffInMinutes > 0) { // Arrival time must be AFTER gig start time for "underway"

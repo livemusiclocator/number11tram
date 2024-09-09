@@ -1,5 +1,5 @@
 import { getSignedUrl } from './helpers.js';
-import { API_KEY, DEVELOPER_ID, BASE_URL, startStopId, apiUrl } from './config.js';
+import { API_KEY, DEVELOPER_ID, BASE_URL, startStopId, apiUrl, timeConfig } from './config.js'; // Import timeConfig
 import { getTramStops, findClosestStopToVenue } from './helpers.js'; 
 
 let nextTramCache = null; 
@@ -127,7 +127,13 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
       }
   
       if (venueStopData) {
-        const arrivalTime = new Date(venueStopData.scheduled_departure_utc);
+        let arrivalTime = new Date(venueStopData.scheduled_departure_utc);
+
+        // Apply test time from config.js
+        if (timeConfig.useTestTime) {
+            arrivalTime = new Date(timeConfig.testTime);
+        }
+
         venueArrivalTimes[venueId] = arrivalTime;
       }
     }
