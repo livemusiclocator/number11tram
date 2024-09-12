@@ -48,7 +48,9 @@
 
                     stopDiv.innerHTML = `
                         <h2>Stop ${stopId} - ${stopName}</h2>
-                        <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
+                        <a href="${stopUrl}" target="_blank">
+                            <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
+                        </a>
                         <p><a href="${stopUrl}" target="_blank">View Stop Details</a></p>
                     `;
 
