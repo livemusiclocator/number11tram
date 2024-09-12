@@ -5,7 +5,7 @@
         "route_type": 1,
         "stop_latitude": -37.80939,
         "stop_longitude": 144.975739,
-        "stop_sequence": 12,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -28,7 +28,7 @@
         "route_type": 1,
         "stop_latitude": -37.79293,
         "stop_longitude": 144.979462,
-        "stop_sequence": 19,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -51,7 +51,7 @@
         "route_type": 1,
         "stop_latitude": -37.79363,
         "stop_longitude": 144.979187,
-        "stop_sequence": 19,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -74,7 +74,7 @@
         "route_type": 1,
         "stop_latitude": -37.7854271,
         "stop_longitude": 144.9819,
-        "stop_sequence": 22,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -97,7 +97,7 @@
         "route_type": 1,
         "stop_latitude": -37.7685547,
         "stop_longitude": 144.991241,
-        "stop_sequence": 30,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -120,7 +120,7 @@
         "route_type": 1,
         "stop_latitude": -37.80044,
         "stop_longitude": 144.978043,
-        "stop_sequence": 16,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -143,7 +143,7 @@
         "route_type": 1,
         "stop_latitude": -37.74408,
         "stop_longitude": 144.989029,
-        "stop_sequence": 40,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -166,7 +166,7 @@
         "route_type": 1,
         "stop_latitude": -37.76241,
         "stop_longitude": 144.9925,
-        "stop_sequence": 32,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -189,7 +189,7 @@
         "route_type": 1,
         "stop_latitude": -37.751442,
         "stop_longitude": 144.991318,
-        "stop_sequence": 36,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -212,7 +212,7 @@
         "route_type": 1,
         "stop_latitude": -37.74131,
         "stop_longitude": 144.9895,
-        "stop_sequence": 41,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -235,7 +235,7 @@
         "route_type": 1,
         "stop_latitude": -37.77593,
         "stop_longitude": 144.989761,
-        "stop_sequence": 27,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -258,7 +258,7 @@
         "route_type": 1,
         "stop_latitude": -37.73454,
         "stop_longitude": 144.990585,
-        "stop_sequence": 44,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -281,7 +281,7 @@
         "route_type": 1,
         "stop_latitude": -37.7390976,
         "stop_longitude": 144.989838,
-        "stop_sequence": 42,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -304,7 +304,7 @@
         "route_type": 1,
         "stop_latitude": -37.8196869,
         "stop_longitude": 144.952209,
-        "stop_sequence": 4,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -327,7 +327,7 @@
         "route_type": 1,
         "stop_latitude": -37.8202629,
         "stop_longitude": 144.950134,
-        "stop_sequence": 3,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -350,7 +350,7 @@
         "route_type": 1,
         "stop_latitude": -37.820797,
         "stop_longitude": 144.948029,
-        "stop_sequence": 2,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -373,7 +373,7 @@
         "route_type": 1,
         "stop_latitude": -37.82153,
         "stop_longitude": 144.945419,
-        "stop_sequence": 1,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -419,7 +419,7 @@
         "route_type": 1,
         "stop_latitude": -37.7512665,
         "stop_longitude": 144.990952,
-        "stop_sequence": 38,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -442,7 +442,7 @@
         "route_type": 1,
         "stop_latitude": -37.81642,
         "stop_longitude": 144.963409,
-        "stop_sequence": 7,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -465,7 +465,7 @@
         "route_type": 1,
         "stop_latitude": -37.8142166,
         "stop_longitude": 144.970718,
-        "stop_sequence": 9,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -488,7 +488,7 @@
         "route_type": 1,
         "stop_latitude": -37.7883,
         "stop_longitude": 144.980087,
-        "stop_sequence": 21,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -511,7 +511,7 @@
         "route_type": 1,
         "stop_latitude": -37.76264,
         "stop_longitude": 144.992691,
-        "stop_sequence": 32,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -534,7 +534,7 @@
         "route_type": 1,
         "stop_latitude": -37.80585,
         "stop_longitude": 144.977112,
-        "stop_sequence": 14,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -557,7 +557,7 @@
         "route_type": 1,
         "stop_latitude": -37.7652931,
         "stop_longitude": 144.991959,
-        "stop_sequence": 31,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -580,7 +580,7 @@
         "route_type": 1,
         "stop_latitude": -37.8028374,
         "stop_longitude": 144.977615,
-        "stop_sequence": 15,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -603,7 +603,7 @@
         "route_type": 1,
         "stop_latitude": -37.7800674,
         "stop_longitude": 144.986511,
-        "stop_sequence": 25,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -626,7 +626,7 @@
         "route_type": 1,
         "stop_latitude": -37.75541,
         "stop_longitude": 144.993927,
-        "stop_sequence": 34,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -649,7 +649,7 @@
         "route_type": 1,
         "stop_latitude": -37.73299,
         "stop_longitude": 144.990845,
-        "stop_sequence": 45,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -672,7 +672,7 @@
         "route_type": 1,
         "stop_latitude": -37.7985268,
         "stop_longitude": 144.978363,
-        "stop_sequence": 17,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -695,7 +695,7 @@
         "route_type": 1,
         "stop_latitude": -37.8027039,
         "stop_longitude": 144.9778,
-        "stop_sequence": 14,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -718,7 +718,7 @@
         "route_type": 1,
         "stop_latitude": -37.745636,
         "stop_longitude": 144.9888,
-        "stop_sequence": 39,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -741,7 +741,7 @@
         "route_type": 1,
         "stop_latitude": -37.7956276,
         "stop_longitude": 144.978851,
-        "stop_sequence": 18,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -764,7 +764,7 @@
         "route_type": 1,
         "stop_latitude": -37.7300529,
         "stop_longitude": 144.991364,
-        "stop_sequence": 46,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -787,7 +787,7 @@
         "route_type": 1,
         "stop_latitude": -37.8156776,
         "stop_longitude": 144.965958,
-        "stop_sequence": 8,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -810,7 +810,7 @@
         "route_type": 1,
         "stop_latitude": -37.7503166,
         "stop_longitude": 144.988037,
-        "stop_sequence": 37,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -833,7 +833,7 @@
         "route_type": 1,
         "stop_latitude": -37.7780151,
         "stop_longitude": 144.9883,
-        "stop_sequence": 26,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -856,7 +856,7 @@
         "route_type": 1,
         "stop_latitude": -37.7520332,
         "stop_longitude": 144.994888,
-        "stop_sequence": 35,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -879,7 +879,7 @@
         "route_type": 1,
         "stop_latitude": -37.7367172,
         "stop_longitude": 144.990219,
-        "stop_sequence": 43,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -902,7 +902,7 @@
         "route_type": 1,
         "stop_latitude": -37.790802,
         "stop_longitude": 144.97966,
-        "stop_sequence": 20,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -925,7 +925,7 @@
         "route_type": 1,
         "stop_latitude": -37.75895,
         "stop_longitude": 144.993256,
-        "stop_sequence": 33,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -948,7 +948,7 @@
         "route_type": 1,
         "stop_latitude": -37.7480774,
         "stop_longitude": 144.988373,
-        "stop_sequence": 38,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -971,7 +971,7 @@
         "route_type": 1,
         "stop_latitude": -37.7815056,
         "stop_longitude": 144.985275,
-        "stop_sequence": 24,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -994,7 +994,7 @@
         "route_type": 1,
         "stop_latitude": -37.81238,
         "stop_longitude": 144.974487,
-        "stop_sequence": 11,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1017,7 +1017,7 @@
         "route_type": 1,
         "stop_latitude": -37.7834129,
         "stop_longitude": 144.983643,
-        "stop_sequence": 23,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1040,7 +1040,7 @@
         "route_type": 1,
         "stop_latitude": -37.8188477,
         "stop_longitude": 144.955063,
-        "stop_sequence": 5,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1063,7 +1063,7 @@
         "route_type": 1,
         "stop_latitude": -37.8135567,
         "stop_longitude": 144.973282,
-        "stop_sequence": 10,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1086,7 +1086,7 @@
         "route_type": 1,
         "stop_latitude": -37.80054,
         "stop_longitude": 144.97818,
-        "stop_sequence": 15,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1109,7 +1109,7 @@
         "route_type": 1,
         "stop_latitude": -37.7516441,
         "stop_longitude": 144.9948,
-        "stop_sequence": 37,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1132,7 +1132,7 @@
         "route_type": 1,
         "stop_latitude": -37.80823,
         "stop_longitude": 144.976456,
-        "stop_sequence": 13,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1155,7 +1155,7 @@
         "route_type": 1,
         "stop_latitude": -37.8082771,
         "stop_longitude": 144.976135,
-        "stop_sequence": 13,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1178,7 +1178,7 @@
         "route_type": 1,
         "stop_latitude": -37.77157,
         "stop_longitude": 144.990631,
-        "stop_sequence": 29,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1201,7 +1201,7 @@
         "route_type": 1,
         "stop_latitude": -37.7291832,
         "stop_longitude": 144.9916,
-        "stop_sequence": 47,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1224,7 +1224,7 @@
         "route_type": 1,
         "stop_latitude": -37.77382,
         "stop_longitude": 144.990158,
-        "stop_sequence": 28,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
@@ -1247,7 +1247,7 @@
         "route_type": 1,
         "stop_latitude": -37.8176079,
         "stop_longitude": 144.959427,
-        "stop_sequence": 6,
+        "stop_sequence": 0,
         "stop_ticket": {
             "ticket_type": "",
             "zone": "Zone 1",
