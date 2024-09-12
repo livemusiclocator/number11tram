@@ -2,6 +2,7 @@ import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes } 
 import { renderGigs } from './render.js'; 
 import { findClosestStopToVenue } from './helpers.js'; 
 
+
 document.addEventListener("DOMContentLoaded", () => {
     const gigList = document.getElementById("gig-list");
     const MAX_DISTANCE_METERS = 400; 
