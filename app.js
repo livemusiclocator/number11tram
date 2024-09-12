@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error(`No tram stop found with stopId ${stopId}`);
                 return;
             }
-
+  
             console.log(`Current Stop: ${currentStop.stop_name}`);
 
             // Filter nearby gigs to those within MAX_DISTANCE_METERS
