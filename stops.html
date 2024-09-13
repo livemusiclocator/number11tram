@@ -43,7 +43,7 @@
                     const stopLandmark = stop.stop_landmark || 'No Landmark';
 
                     // Update URL for each stop
-                    const stopUrl = `http://127.0.0.1:5500/index.html?stopId=${stopId}`;
+                    const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}`;
                     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
 
                     stopDiv.innerHTML = `
