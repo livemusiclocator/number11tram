@@ -18,6 +18,7 @@ export async function fetchGigs() {
     }
 }
 
+
 // Fetch the next predicted tram arrival
 export async function fetchNextTram(stopId) {
     const requestPath = `/v3/departures/route_type/1/stop/${stopId}?max_results=1&expand=run&expand=route`;
