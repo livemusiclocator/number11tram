@@ -51,7 +51,7 @@ export function getTramStops() {
     }
 
     // Fetch stops only if not cached
-    return fetch('/outgoing_route_11_stops.json')
+    return fetch('/number11tram/outgoing_route_11_stops.json')
         .then(response => response.json())
         .then(tramStops => {
             cachedStops = tramStops;

@@ -152,7 +152,7 @@ async function fetchTramRoute(runId) {
 
 export async function fetchTramStops() {
     try {
-        const response = await fetch('/outgoing_route_11_stops.json');
+        const response = await fetch('/number11tram/outgoing_route_11_stops.json');
         if (!response.ok) {
             throw new Error(`Error fetching tram stops: ${response.status} ${response.statusText}`);
         }
