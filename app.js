@@ -4,6 +4,7 @@ import { findClosestStopToVenue } from './helpers.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     const gigList = document.getElementById("gig-list");
+    const stopNamePlaceholder = document.getElementById("stop-name-placeholder");
     const MAX_DISTANCE_METERS = 400; 
 
     // Get stop ID from the URL query parameters (for QR code functionality)
@@ -28,13 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
             console.log(`Current Stop: ${currentStop.stop_name}`);
 
-            // Add stop name above the logo (before the header)
-            const stopNameElement = document.createElement('h2');
-            stopNameElement.classList.add('stop-name');
-            stopNameElement.textContent = `Stop: ${currentStop.stop_name}`;
-            
-            const container = document.querySelector('.container');
-            container.insertBefore(stopNameElement, container.firstChild);  // Insert stop name above the logo
+            // Replace the placeholder text with the actual stop name
+            stopNamePlaceholder.innerText = `Stop: ${currentStop.stop_name}`;
 
             // Filter nearby gigs to those within MAX_DISTANCE_METERS
             const nearbyGigs = gigs.filter(gig => {
@@ -56,3 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error fetching data:", error);
         });
 });
+
