@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Fetch gigs, tram stops, and next tram data concurrently
-    Promise.all([fetchGigs(), fetchTramStops(), fetchNextTram()])
+    Promise.all([fetchGigs(), fetchTramStops(), fetchNextTram(stopId)]) // Pass stopId to fetchNextTram
         .then(([gigs, stops, nextTramData]) => {
             // Find the specific stop that matches the stopId from the URL
             const currentStop = stops.find(stop => stop.stop_id === parseInt(stopId, 10));
@@ -28,6 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
   
             console.log(`Current Stop: ${currentStop.stop_name}`);
+
+            // Add stop name below the header (based on your request)
+            const stopHeader = document.createElement('div');
+            stopHeader.innerHTML = `<h2>Stop: ${currentStop.stop_name}</h2>`;
+            gigList.prepend(stopHeader);
 
             // Filter nearby gigs to those within MAX_DISTANCE_METERS
             const nearbyGigs = gigs.filter(gig => {

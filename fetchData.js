@@ -1,5 +1,5 @@
 import { getSignedUrl } from './helpers.js';
-import { API_KEY, DEVELOPER_ID, BASE_URL, startStopId, apiUrl, timeConfig } from './config.js';
+import { API_KEY, DEVELOPER_ID, BASE_URL, apiUrl, timeConfig } from './config.js';
 import { findClosestStopToVenue } from './helpers.js';
 
 let nextTramCache = null;
@@ -18,8 +18,8 @@ export async function fetchGigs() {
 }
 
 // Fetch the next predicted tram arrival
-export async function fetchNextTram() {
-    const requestPath = `/v3/departures/route_type/1/stop/${startStopId}?max_results=1&expand=run&expand=route`;
+export async function fetchNextTram(stopId) {
+    const requestPath = `/v3/departures/route_type/1/stop/${stopId}?max_results=1&expand=run&expand=route`;
     const signedUrl = getSignedUrl(requestPath);
     console.log("Signed URL:", signedUrl);
   
@@ -73,6 +73,7 @@ export async function fetchNextTram() {
     }
     return null;
 }
+
 
 // Calculate travel time for all venues based on the next tram's route
 export async function calculateVenueArrivalTimes(gigs, nextTramData) {
