@@ -8,70 +8,77 @@
     <title>Route 11 OutBound Gigs</title>
 
     <style>
-      h1 {
-    text-align: center;
-    font-size: 125%; /* Reduce by 15% */
-}
+        h1 {
+            text-align: center;
+            font-size: 125%;
+        }
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-    .stop-name {
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #4EABE9;
-  margin-bottom: 10px; /* Adds a little space between the stop name and the logo */
-}
-
-    .gig {
-        padding: 15px;
-        margin: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
- 
-    h2 {
-        color: rgb(78, 171, 233); /* Adjust to match your blue */
-        font-size: 1.5em;
-        margin-bottom: 0.5em;
-    }
-
-    a {
-        color: #337ab7;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    @media screen and (max-width: 600px) {
         body {
-            font-size: 1.2em;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .stop-name {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4EABE9;
+            margin-bottom: 10px; /* Adds a little space between the stop name and the logo */
         }
 
         .gig {
-            margin: 5px;
-            padding: 10px;
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
         h2 {
-            font-size: 1.2em;
+            color: rgb(78, 171, 233);
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
         }
-    }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                font-size: 1.2em;
+            }
+
+            .gig {
+                margin: 5px;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+        }
     </style>
 
 </head>
 <body>
   <div class="container">
+    <!-- Placeholder for the stop name -->
+    <div id="stop-name-placeholder" class="stop-name">Loading Stop Name...</div>
+    
+    <!-- Logo goes below the stop name -->
     <a href="https://lml.live" target="_blank">
         <div style="text-align: center;">
             <img src="LML_Logo.png" alt="Live Music Locator Logo" style="width: 200px;" />
         </div>
     </a>
-    <h1><centre>Why Not Catch Some Live Music on the Number 11 Tram line?</centre></h1>
+
+    <h1>Why Not Catch Some Live Music on the Number 11 Tram line?</h1>
+
     <div id="gig-list">
       <!-- Gigs will be dynamically loaded here -->
     </div>

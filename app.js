@@ -2,7 +2,6 @@ import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes } 
 import { renderGigs } from './render.js'; 
 import { findClosestStopToVenue } from './helpers.js'; 
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const gigList = document.getElementById("gig-list");
     const MAX_DISTANCE_METERS = 400; 
@@ -29,10 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   
             console.log(`Current Stop: ${currentStop.stop_name}`);
 
-            // Add stop name below the header (based on your request)
-            const stopHeader = document.createElement('div');
-            stopHeader.innerHTML = `<h2>Stop: ${currentStop.stop_name}</h2>`;
-            gigList.prepend(stopHeader);
+            // Add stop name above the logo (before the header)
+            const stopNameElement = document.createElement('h2');
+            stopNameElement.classList.add('stop-name');
+            stopNameElement.textContent = `Stop: ${currentStop.stop_name}`;
+            
+            const container = document.querySelector('.container');
+            container.insertBefore(stopNameElement, container.firstChild);  // Insert stop name above the logo
 
             // Filter nearby gigs to those within MAX_DISTANCE_METERS
             const nearbyGigs = gigs.filter(gig => {
