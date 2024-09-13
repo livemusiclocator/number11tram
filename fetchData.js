@@ -5,6 +5,7 @@ import { findClosestStopToVenue } from './helpers.js';
 let nextTramCache = null;
 let venueStopMapping = {};
 
+
 // Fetch gigs for today
 export async function fetchGigs() {
     try {
