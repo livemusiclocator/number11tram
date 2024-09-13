@@ -1,4 +1,4 @@
-import { API_KEY, DEVELOPER_ID, BASE_URL } from './config.js';
+import { API_KEY, DEVELOPER_ID, BASE_URL } from '/number11tram/config.js';
 
 let cachedStops = {}; // Cache for tram stops
 let cachedTravelTimes = {}; // Cache for travel times

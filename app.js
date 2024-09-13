@@ -1,6 +1,6 @@
-import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes } from './fetchdata.js';
-import { renderGigs } from './render.js'; 
-import { findClosestStopToVenue } from './helpers.js'; 
+import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
+import { renderGigs } from '/number11tram/render.js'; 
+import { findClosestStopToVenue } from '/number11tram/helpers.js'; 
 
 document.addEventListener("DOMContentLoaded", () => {
     const gigList = document.getElementById("gig-list");

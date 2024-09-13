@@ -1,6 +1,6 @@
-import { getSignedUrl } from './helpers.js';
-import { API_KEY, DEVELOPER_ID, BASE_URL, apiUrl, timeConfig } from './config.js';
-import { findClosestStopToVenue } from './helpers.js';
+import { getSignedUrl } from '/number11tram/helpers.js';
+import { API_KEY, DEVELOPER_ID, BASE_URL, apiUrl, timeConfig } from '/number11tram/config.js';
+import { findClosestStopToVenue } from '/number11tram/helpers.js';
 
 let nextTramCache = null;
 let venueStopMapping = {};
