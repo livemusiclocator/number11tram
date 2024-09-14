@@ -84,7 +84,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             if (timeDiffInMinutes > 0) {
                 const hoursLate = Math.floor(timeDiffInMinutes / 60);
                 const minutesLate = Math.round(timeDiffInMinutes % 60);
-                directionsText = `If you get on the next tram, you'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
+                directionsText = `You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
             } else if (timeDiffInMinutes < 0) {
                 const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
                 const minutesEarly = Math.round(-timeDiffInMinutes % 60);
