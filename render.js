@@ -1,7 +1,6 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
 import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
-// Render gigs
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
     if (!nextTramData || !nextTramData.time) { 
         console.error("No valid tram found.");
@@ -29,10 +28,16 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
             genreTagsDiv.innerHTML = `<i>${gig.genre_tags.join(', ')}</i>`;
         }
 
+        // Format the gig start time without leading zeroes
+        const gigStartTime = new Date(gig.start_timestamp);
+        const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+        const formattedStartTime = gigStartTime.toLocaleString('en-US', options).toLowerCase(); // No leading zeroes
+
+        // Venue link to location URL with start time
         const venueLink = document.createElement("a");
         venueLink.href = gig.venue.location_url || "#";
         venueLink.target = "_blank";
-        venueLink.textContent = gig.venue.name;
+        venueLink.textContent = `${gig.venue.name}, ${formattedStartTime}`;
 
         const venueStopId = venueStopMapping[gig.venue.id];  // Use the passed venueStopMapping
         const urlParams = new URLSearchParams(window.location.search);
@@ -47,8 +52,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
             directionsText = `You can walk from here in 5 minutes or so. Click on "Venue Directions". Enjoy Live Music!`;
         } else {
             const arrivalTime = venueArrivalTimes[gig.venue.id];
-            const gigStartTime = new Date(gig.start_timestamp);
-
             arrivalTime.setMinutes(arrivalTime.getMinutes() + 5);
 
             let timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
@@ -66,6 +69,24 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
                 directionsText = `You'll arrive just in time!`;
             }
         }
+
+        gigDiv.appendChild(title);
+        gigDiv.appendChild(genreTagsDiv);
+        gigDiv.appendChild(venueLink);
+
+        const directionsDiv = document.createElement("div");
+        directionsDiv.textContent = directionsText;
+        gigDiv.appendChild(directionsDiv);
+
+        const directionsLink = document.createElement("a");
+        directionsLink.href = gig.venue.location_url || "#";
+        directionsLink.target = "_blank";
+        directionsLink.textContent = "Venue Directions"; 
+        gigDiv.appendChild(directionsLink);
+
+        gigList.appendChild(gigDiv);
+    });
+}
 
         gigDiv.appendChild(title);
         gigDiv.appendChild(genreTagsDiv);
