@@ -1,7 +1,8 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
 import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
-export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {
+// Debugging function to render gigs based on stop sequence
+export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
     if (!nextTramData || !nextTramData.time) { 
         console.error("No valid tram found.");
         return;
@@ -20,7 +21,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         return;
     }
     const currentStopSequence = currentStop.stop_sequence;
-    console.log(`Current Stop Sequence: ${currentStopSequence}`);
+    console.log(`Current Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
 
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
@@ -30,28 +31,43 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     }, 0);
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
-    // If the current stop is beyond all venue stops, show a special message
+    // Check if the current stop is beyond all venue stops
     if (currentStopSequence > highestVenueStopSequence) {
-        gigList.innerHTML = `<h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and head that way.</h2>`;
+        gigList.innerHTML = `
+            <div style="text-align: center; margin-top: 20px;">
+                <h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and head that way.</h2>
+            </div>`;
         return;
     }
 
-    // Categorize gigs by time horizon, filtering by stop sequence
+    // Categorize gigs by time horizon and stop sequence
     const underway = gigs.filter(gig => {
         const venueStopId = venueStopMapping[gig.venue.id];
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+
+        // Log the details for each venue stop
+        console.log(`Gig: ${gig.name}, Venue Stop ID: ${venueStopId}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${venueStop?.stop_sequence >= currentStopSequence}`);
+
         return venueStop && venueStop.stop_sequence >= currentStopSequence && new Date(gig.start_timestamp) <= currentTime;
     });
 
     const soon = gigs.filter(gig => {
         const venueStopId = venueStopMapping[gig.venue.id];
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+
+        // Log the details for each venue stop
+        console.log(`Gig: ${gig.name}, Venue Stop ID: ${venueStopId}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${venueStop?.stop_sequence >= currentStopSequence}`);
+
         return venueStop && venueStop.stop_sequence >= currentStopSequence && new Date(gig.start_timestamp) > currentTime && new Date(gig.start_timestamp) <= new Date(currentTime.getTime() + 60 * 60 * 1000); // within an hour
     });
 
     const later = gigs.filter(gig => {
         const venueStopId = venueStopMapping[gig.venue.id];
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+
+        // Log the details for each venue stop
+        console.log(`Gig: ${gig.name}, Venue Stop ID: ${venueStopId}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${venueStop?.stop_sequence >= currentStopSequence}`);
+
         return venueStop && venueStop.stop_sequence >= currentStopSequence && new Date(gig.start_timestamp) > new Date(currentTime.getTime() + 60 * 60 * 1000);
     });
 
@@ -60,7 +76,12 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
+<<<<<<< HEAD
+
+
+=======
  
+>>>>>>> 1ba054d (resetting to what worked)
 // Append gigs to the page
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {
     if (gigs.length === 0) return;
@@ -70,13 +91,14 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     header.style.borderTop = "1px solid #ddd";
     gigList.appendChild(header);
 
+    
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
         gigDiv.classList.add("gig");
 
         const title = document.createElement("div");
         title.classList.add("title");
-
+ 
         const titleLink = document.createElement("a");
         titleLink.href = gig.ticketing_url || "#";
         titleLink.target = "_blank";
