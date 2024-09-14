@@ -1,4 +1,4 @@
-import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
+import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes, venueStopMapping } from '/number11tram/fetchdata.js';
 import { renderGigs } from '/number11tram/render.js'; 
 import { findClosestStopToVenue } from '/number11tram/helpers.js'; 
 
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Calculate arrival times for the gigs based on the next tram data
             calculateVenueArrivalTimes(nearbyGigs, nextTramData)
                 .then(venueArrivalTimes => {
-                    // Render the gigs to the UI
-                    renderGigs(nearbyGigs, stops, gigList, venueArrivalTimes, nextTramData);
+                    // Pass the venueStopMapping to the renderGigs function
+                    renderGigs(nearbyGigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping);
                 })
                 .catch(error => {
                     console.error("Error calculating venue arrival times:", error);
@@ -52,4 +52,3 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error fetching data:", error);
         });
 });
-
