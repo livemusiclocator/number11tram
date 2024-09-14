@@ -56,7 +56,8 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
 
             let timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
             const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
-
+ 
+            
             if (timeDiffInMinutes > 0) {
                 const hoursLate = Math.floor(timeDiffInMinutes / 60);
                 const minutesLate = Math.round(timeDiffInMinutes % 60);
