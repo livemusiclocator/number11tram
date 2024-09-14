@@ -34,8 +34,6 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
 
-    console.log("Current Stop ID from URL:", currentStopId); // Log the current stop ID for debugging
-
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
         gigDiv.classList.add("gig");
@@ -68,7 +66,8 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         venueLink.textContent = `${gig.venue.name}, ${formattedStartTime}`;
 
         const venueStopId = venueStopMapping[gig.venue.id];  // Use the passed venueStopMapping
-        console.log("Venue Stop ID for Venue", gig.venue.id, ":", venueStopId); // Log the venue stop ID for debugging
+        console.log(`Venue Stop ID for Venue ${gig.venue.id}: ${venueStopId}, Current Stop ID: ${currentStopId}`); // Log venue stop ID and current stop ID together
+
         let directionsText;
 
         if (venueStopId && venueStopId == currentStopId) {
