@@ -163,3 +163,4 @@ export async function fetchTramStops() {
         return []; // Return an empty array to avoid further errors
     }
 }
+export { venueStopMapping };
