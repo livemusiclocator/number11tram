@@ -22,7 +22,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
 
-// Append gigs to the page with time categories
+// Append gigs to the page with time categories and walking functionality
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {
     if (gigs.length === 0) return;
 
@@ -33,6 +33,8 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
 
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
+
+    console.log("Current Stop ID from URL:", currentStopId); // Log the current stop ID for debugging
 
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
@@ -66,9 +68,11 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         venueLink.textContent = `${gig.venue.name}, ${formattedStartTime}`;
 
         const venueStopId = venueStopMapping[gig.venue.id];  // Use the passed venueStopMapping
+        console.log("Venue Stop ID for Venue", gig.venue.id, ":", venueStopId); // Log the venue stop ID for debugging
         let directionsText;
 
         if (venueStopId && venueStopId == currentStopId) {
+            // Walking directions if venue stop matches the current stop
             directionsText = `You can walk from here in 5 minutes or so. Click on "Venue Directions". Enjoy Live Music!`;
         } else {
             const arrivalTime = venueArrivalTimes[gig.venue.id];
