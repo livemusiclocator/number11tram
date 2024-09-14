@@ -76,12 +76,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
-<<<<<<< HEAD
-
-
-=======
- 
->>>>>>> 1ba054d (resetting to what worked)
 // Append gigs to the page
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {
     if (gigs.length === 0) return;
@@ -91,7 +85,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     header.style.borderTop = "1px solid #ddd";
     gigList.appendChild(header);
 
-    
+
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
         gigDiv.classList.add("gig");
