@@ -107,7 +107,8 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         directionsLink.href = gig.venue.location_url || "#";
         directionsLink.target = "_blank";
         directionsLink.textContent = "Venue Directions"; 
-        gigDiv.appendChild(directionsLink);
+        gigDiv.appendChild(directionsLink); 
+
 
         gigList.appendChild(gigDiv);
     });
