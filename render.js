@@ -88,23 +88,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     });
 }
 
-        gigDiv.appendChild(title);
-        gigDiv.appendChild(genreTagsDiv);
-        gigDiv.appendChild(venueLink);
 
-        const directionsDiv = document.createElement("div");
-        directionsDiv.textContent = directionsText;
-        gigDiv.appendChild(directionsDiv);
-
-        const directionsLink = document.createElement("a");
-        directionsLink.href = gig.venue.location_url || "#";
-        directionsLink.target = "_blank";
-        directionsLink.textContent = "Venue Directions"; 
-        gigDiv.appendChild(directionsLink);
-
-        gigList.appendChild(gigDiv);
-    });
-}
 
 
 // Append gigs to the page
