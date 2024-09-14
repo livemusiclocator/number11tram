@@ -18,7 +18,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
 
     // Render categorized gigs
     appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping);
-    appendGigList(soon, gigList, "A little later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
+    appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
 
