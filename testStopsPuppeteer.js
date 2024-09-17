@@ -12,9 +12,10 @@ async function getStopUrls() {
 
     // Extract the href attributes from the a tags inside each .stop div
     const stopUrls = await page.evaluate(() => {
-        const stopElements = document.querySelectorAll('.stop a');  // Target the anchor tags inside div.stop
-        const stopUrlsArray = Array.from(stopElements).map(a => a.href);  // Get the href attributes
-        return stopUrlsArray;
+        const stopElements = document.querySelectorAll('.stop a');
+        const stopUrlsArray = Array.from(stopElements).map(a => a.href);
+        const uniqueStopUrls = [...new Set(stopUrlsArray)];
+        return uniqueStopUrls;
     });
 
     console.log(`Found stop URLs:`, stopUrls);
@@ -40,21 +41,40 @@ async function testStops() {
         try {
             await page.goto(stopUrl, { waitUntil: 'networkidle0' });
 
-            // Wait for either the 'gig' div or a message indicating no gigs
-            const gigSelector = '.gig';
-            const noGigSelector = 'h2:contains("No gigs available")';
+            // Log the current state of the page after loading
+            const pageContent = await page.content();
+            console.log(`Page content for ${stopUrl}:`, pageContent);
 
-            await page.waitForSelector(`${gigSelector}, ${noGigSelector}`, { timeout: 5000 });
+            // Wait for the gigs or time horizon to be dynamically loaded
+            await page.waitForFunction(() => {
+                const h2Element = document.querySelector('#gig-list > h2');
+                const gigs = document.querySelectorAll('.gig');
+                return h2Element || gigs.length > 0;
+            }, { timeout: 8000 });
+
+            // Extract the stop name
+            const stopName = await page.evaluate(() => {
+                const stopNameElement = document.querySelector('.stop-name');
+                return stopNameElement ? stopNameElement.textContent.trim() : 'Stop name not found';
+            });
+
+            // Extract the time horizon if present
+            const timeHorizon = await page.evaluate(() => {
+                const timeHorizonElement = document.querySelector('#gig-list > h2');
+                return timeHorizonElement ? timeHorizonElement.textContent.trim() : 'No time horizon found';
+            });
 
             // Check if gigs are present
-            const gigElements = await page.$$(gigSelector); // Find all elements with class 'gig'
-            const gigCount = gigElements.length;
+            const gigCount = await page.evaluate(() => {
+                return document.querySelectorAll('.gig').length;
+            });
 
             if (gigCount > 0) {
-                console.log(`Stop URL ${stopUrl}: SUCCESS - ${gigCount} Gigs Found`);
+                console.log(`Stop Name: ${stopName}, Time Horizon: ${timeHorizon}, Stop URL: ${stopUrl}: SUCCESS - ${gigCount} Gigs Found`);
             } else {
-                console.log(`Stop URL ${stopUrl}: WARNING - No Gigs Found`);
+                console.log(`Stop Name: ${stopName}, Time Horizon: ${timeHorizon}, Stop URL: ${stopUrl}: WARNING - No Gigs Found`);
             }
+
         } catch (error) {
             console.log(`Stop URL ${stopUrl}: ERROR - ${error.message}`);
         }
