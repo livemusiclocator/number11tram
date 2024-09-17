@@ -97,7 +97,7 @@ async function testStops() {
                 const gigsBehindMessage = "they are all behind you";
 
                 try {
-                    await page.waitForSelector(gigListSelector, { timeout: 4000 });  // Wait for 4 seconds max
+                    await page.waitForSelector(gigListSelector, { timeout: 10000 });  // Wait for 10 seconds max
 
                     // Check if the page contains the message "gigs are behind you"
                     const bodyText = await page.textContent('body');

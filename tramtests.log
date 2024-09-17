@@ -1,0 +1,923 @@
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Alexandra Pde/Brunswick St #18
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2966: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2966?max_results=1&expand=run&expand=route&devid=3002834&signature=cc7fb0d14d3c7fe1919f5c961f6d1270d84955dd
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Alexandra Pde/Brunswick St #18
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2966: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2966?max_results=1&expand=run&expand=route&devid=3002834&signature=cc7fb0d14d3c7fe1919f5c961f6d1270d84955dd
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Alexandra Pde/Brunswick St #18
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2966: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2543
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2543?max_results=1&expand=run&expand=route&devid=3002834&signature=2cfbe0b217c56d129b183cff7c4977cdb2a98f3f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Newry St/Brunswick St #19
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:11:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Newry St/Brunswick St #19, Sequence: 20
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2543: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2543?max_results=1&expand=run&expand=route&devid=3002834&signature=2cfbe0b217c56d129b183cff7c4977cdb2a98f3f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Newry St/Brunswick St #19
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:11:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Newry St/Brunswick St #19, Sequence: 20
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2543: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2543?max_results=1&expand=run&expand=route&devid=3002834&signature=2cfbe0b217c56d129b183cff7c4977cdb2a98f3f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Newry St/Brunswick St #19
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:11:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Newry St/Brunswick St #19, Sequence: 20
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2543: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2541
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2541?max_results=1&expand=run&expand=route&devid=3002834&signature=2a1d005d9be2c7b8463aea6ef8e13a9032cd7a53
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Fitzroy Bowls Club/Brunswick St #20
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:11:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Fitzroy Bowls Club/Brunswick St #20, Sequence: 21
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2541: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2541?max_results=1&expand=run&expand=route&devid=3002834&signature=2a1d005d9be2c7b8463aea6ef8e13a9032cd7a53
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Fitzroy Bowls Club/Brunswick St #20
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:11:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Fitzroy Bowls Club/Brunswick St #20, Sequence: 21
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2541: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2541?max_results=1&expand=run&expand=route&devid=3002834&signature=2a1d005d9be2c7b8463aea6ef8e13a9032cd7a53
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Fitzroy Bowls Club/Brunswick St #20
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7849 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:19:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Fitzroy Bowls Club/Brunswick St #20, Sequence: 21
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2541: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2539
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2539?max_results=1&expand=run&expand=route&devid=3002834&signature=107548aafd3f7e2c8c2af6cb60bd35289296a849
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Alfred Cres/St Georges Rd #21
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:13:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Alfred Cres/St Georges Rd #21, Sequence: 22
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2539: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2539?max_results=1&expand=run&expand=route&devid=3002834&signature=107548aafd3f7e2c8c2af6cb60bd35289296a849
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Alfred Cres/St Georges Rd #21
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:13:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Alfred Cres/St Georges Rd #21, Sequence: 22
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2539: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2539?max_results=1&expand=run&expand=route&devid=3002834&signature=107548aafd3f7e2c8c2af6cb60bd35289296a849
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Alfred Cres/St Georges Rd #21
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:13:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Alfred Cres/St Georges Rd #21, Sequence: 22
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2539: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2538
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2538?max_results=1&expand=run&expand=route&devid=3002834&signature=48fe3682468936a960cc486e793d0bdf5561380f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Scotchmer St/St Georges Rd #22
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:13:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Scotchmer St/St Georges Rd #22, Sequence: 23
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2538: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2538?max_results=1&expand=run&expand=route&devid=3002834&signature=48fe3682468936a960cc486e793d0bdf5561380f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Scotchmer St/St Georges Rd #22
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:13:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Scotchmer St/St Georges Rd #22, Sequence: 23
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2538: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2538?max_results=1&expand=run&expand=route&devid=3002834&signature=48fe3682468936a960cc486e793d0bdf5561380f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Scotchmer St/St Georges Rd #22
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:13:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Scotchmer St/St Georges Rd #22, Sequence: 23
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2538: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2536
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2536?max_results=1&expand=run&expand=route&devid=3002834&signature=bc2682822bf35c179e9448d740091d48e026b267
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Park St/St Georges Rd #23
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:14:06 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Park St/St Georges Rd #23, Sequence: 24
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2536: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2536?max_results=1&expand=run&expand=route&devid=3002834&signature=bc2682822bf35c179e9448d740091d48e026b267
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Park St/St Georges Rd #23
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:14:06 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Park St/St Georges Rd #23, Sequence: 24
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2536: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2536?max_results=1&expand=run&expand=route&devid=3002834&signature=bc2682822bf35c179e9448d740091d48e026b267
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Park St/St Georges Rd #23
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:14:06 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Park St/St Georges Rd #23, Sequence: 24
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2536: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2535
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2535?max_results=1&expand=run&expand=route&devid=3002834&signature=2004e313770833599ab0d8517b79d7fbe8344fe9
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Holden St/St Georges Rd #24
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:15:36 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Holden St/St Georges Rd #24, Sequence: 25
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2535: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2535?max_results=1&expand=run&expand=route&devid=3002834&signature=2004e313770833599ab0d8517b79d7fbe8344fe9
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Holden St/St Georges Rd #24
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:15:36 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Holden St/St Georges Rd #24, Sequence: 25
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2535: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2535?max_results=1&expand=run&expand=route&devid=3002834&signature=2004e313770833599ab0d8517b79d7fbe8344fe9
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Holden St/St Georges Rd #24
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:15:36 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Holden St/St Georges Rd #24, Sequence: 25
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2535: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2534
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2534?max_results=1&expand=run&expand=route&devid=3002834&signature=287b4f397f3ee4152b2ab125762a18c3e3986433
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/St Georges Rd #25
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:16:36 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/St Georges Rd #25, Sequence: 26
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2534: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2534?max_results=1&expand=run&expand=route&devid=3002834&signature=287b4f397f3ee4152b2ab125762a18c3e3986433
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/St Georges Rd #25
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:16:36 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/St Georges Rd #25, Sequence: 26
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2534: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2534?max_results=1&expand=run&expand=route&devid=3002834&signature=287b4f397f3ee4152b2ab125762a18c3e3986433
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/St Georges Rd #25
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:16:36 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/St Georges Rd #25, Sequence: 26
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2534: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2533
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2533?max_results=1&expand=run&expand=route&devid=3002834&signature=84a5c6a13d92483dba3ca9590be68e83d38c9f0e
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Clarke St/St Georges Rd #26
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:16:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Clarke St/St Georges Rd #26, Sequence: 27
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2533: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2533?max_results=1&expand=run&expand=route&devid=3002834&signature=84a5c6a13d92483dba3ca9590be68e83d38c9f0e
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Clarke St/St Georges Rd #26
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:16:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Clarke St/St Georges Rd #26, Sequence: 27
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2533: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2533?max_results=1&expand=run&expand=route&devid=3002834&signature=84a5c6a13d92483dba3ca9590be68e83d38c9f0e
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Clarke St/St Georges Rd #26
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:16:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Clarke St/St Georges Rd #26, Sequence: 27
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2533: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2532
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2532?max_results=1&expand=run&expand=route&devid=3002834&signature=d977d50fcd2bd99415d5ad8e4fb4e5ef0d904694
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Westbourne Gr/St Georges Rd #27
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:17:18 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Westbourne Gr/St Georges Rd #27, Sequence: 28
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2532: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2532?max_results=1&expand=run&expand=route&devid=3002834&signature=d977d50fcd2bd99415d5ad8e4fb4e5ef0d904694
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Westbourne Gr/St Georges Rd #27
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:17:18 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Westbourne Gr/St Georges Rd #27, Sequence: 28
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2532: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2532?max_results=1&expand=run&expand=route&devid=3002834&signature=d977d50fcd2bd99415d5ad8e4fb4e5ef0d904694
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Westbourne Gr/St Georges Rd #27
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:17:18 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Westbourne Gr/St Georges Rd #27, Sequence: 28
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2532: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2531
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2531?max_results=1&expand=run&expand=route&devid=3002834&signature=b46c4941a896aab055aded02fc0355371d418f5a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Sumner Ave/St Georges Rd #28
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:18:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Sumner Ave/St Georges Rd #28, Sequence: 29
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2531: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2531?max_results=1&expand=run&expand=route&devid=3002834&signature=b46c4941a896aab055aded02fc0355371d418f5a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Sumner Ave/St Georges Rd #28
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:18:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Sumner Ave/St Georges Rd #28, Sequence: 29
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2531: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2531?max_results=1&expand=run&expand=route&devid=3002834&signature=b46c4941a896aab055aded02fc0355371d418f5a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Sumner Ave/St Georges Rd #28
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:18:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Sumner Ave/St Georges Rd #28, Sequence: 29
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2531: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2530
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2530?max_results=1&expand=run&expand=route&devid=3002834&signature=8cc9eb3ae1e990116f64243e080796ca1854a5d0
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Arthurton Rd/St Georges Rd #29
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:19:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Arthurton Rd/St Georges Rd #29, Sequence: 30
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2530: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2530?max_results=1&expand=run&expand=route&devid=3002834&signature=8cc9eb3ae1e990116f64243e080796ca1854a5d0
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Arthurton Rd/St Georges Rd #29
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:19:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Arthurton Rd/St Georges Rd #29, Sequence: 30
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2530: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2530?max_results=1&expand=run&expand=route&devid=3002834&signature=8cc9eb3ae1e990116f64243e080796ca1854a5d0
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Arthurton Rd/St Georges Rd #29
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:19:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Arthurton Rd/St Georges Rd #29, Sequence: 30
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2530: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2529
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2529?max_results=1&expand=run&expand=route&devid=3002834&signature=d7dfcb24ad5971485b537fa390a028a3f48044c0
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Gladstone Ave/St Georges Rd #30
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:20:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Gladstone Ave/St Georges Rd #30, Sequence: 31
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2529: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2529?max_results=1&expand=run&expand=route&devid=3002834&signature=d7dfcb24ad5971485b537fa390a028a3f48044c0
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Gladstone Ave/St Georges Rd #30
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:20:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Gladstone Ave/St Georges Rd #30, Sequence: 31
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2529: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2529?max_results=1&expand=run&expand=route&devid=3002834&signature=d7dfcb24ad5971485b537fa390a028a3f48044c0
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Gladstone Ave/St Georges Rd #30
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:20:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Gladstone Ave/St Georges Rd #30, Sequence: 31
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2529: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2528
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2528?max_results=1&expand=run&expand=route&devid=3002834&signature=b64a74d47f9127873a85ce425e820449455a18a9
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bird Ave/St Georges Rd #31
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:21:18 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bird Ave/St Georges Rd #31, Sequence: 32
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2528: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2528?max_results=1&expand=run&expand=route&devid=3002834&signature=b64a74d47f9127873a85ce425e820449455a18a9
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bird Ave/St Georges Rd #31
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:21:18 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bird Ave/St Georges Rd #31, Sequence: 32
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2528: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2528?max_results=1&expand=run&expand=route&devid=3002834&signature=b64a74d47f9127873a85ce425e820449455a18a9
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bird Ave/St Georges Rd #31
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:21:18 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bird Ave/St Georges Rd #31, Sequence: 32
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2528: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2527
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2527?max_results=1&expand=run&expand=route&devid=3002834&signature=89adfbaab8001987e442afac44ce8bae1ccc0b0c
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Gadd St/St Georges Rd #31
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2527: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2527?max_results=1&expand=run&expand=route&devid=3002834&signature=89adfbaab8001987e442afac44ce8bae1ccc0b0c
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Gadd St/St Georges Rd #31
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2527: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2527?max_results=1&expand=run&expand=route&devid=3002834&signature=89adfbaab8001987e442afac44ce8bae1ccc0b0c
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Gadd St/St Georges Rd #31
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2527: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2526
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2526?max_results=1&expand=run&expand=route&devid=3002834&signature=c8205212778be52b64228c7e86a7a59673d14706
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Normanby Ave/St Georges Rd #32
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:21:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Normanby Ave/St Georges Rd #32, Sequence: 33
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2526: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2526?max_results=1&expand=run&expand=route&devid=3002834&signature=c8205212778be52b64228c7e86a7a59673d14706
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Normanby Ave/St Georges Rd #32
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:21:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Normanby Ave/St Georges Rd #32, Sequence: 33
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2526: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2526?max_results=1&expand=run&expand=route&devid=3002834&signature=c8205212778be52b64228c7e86a7a59673d14706
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Normanby Ave/St Georges Rd #32
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:21:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Normanby Ave/St Georges Rd #32, Sequence: 33
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2526: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2525
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2525?max_results=1&expand=run&expand=route&devid=3002834&signature=9dd85e388caa44635e99b9b6139fe1b329f85e2d
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Hutton St/St Georges Rd #33
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:23:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Hutton St/St Georges Rd #33, Sequence: 34
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2525: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2525?max_results=1&expand=run&expand=route&devid=3002834&signature=9dd85e388caa44635e99b9b6139fe1b329f85e2d
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Hutton St/St Georges Rd #33
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:23:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Hutton St/St Georges Rd #33, Sequence: 34
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2525: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2525?max_results=1&expand=run&expand=route&devid=3002834&signature=9dd85e388caa44635e99b9b6139fe1b329f85e2d
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Hutton St/St Georges Rd #33
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:23:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Hutton St/St Georges Rd #33, Sequence: 34
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2525: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2524
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2524?max_results=1&expand=run&expand=route&devid=3002834&signature=b681a69a0c4d3dba3f1b34505822a14cfaa90c77
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/St Georges Rd #34
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:24:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/St Georges Rd #34, Sequence: 35
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2524: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2524?max_results=1&expand=run&expand=route&devid=3002834&signature=b681a69a0c4d3dba3f1b34505822a14cfaa90c77
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/St Georges Rd #34
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:24:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/St Georges Rd #34, Sequence: 35
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2524: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2524?max_results=1&expand=run&expand=route&devid=3002834&signature=b681a69a0c4d3dba3f1b34505822a14cfaa90c77
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/St Georges Rd #34
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:24:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/St Georges Rd #34, Sequence: 35
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2524: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2523
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2523?max_results=1&expand=run&expand=route&devid=3002834&signature=127819b98fbcd4feefc0e8edd9098fec042e543a
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bracken Ave/Miller St #36
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:25:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bracken Ave/Miller St #36, Sequence: 36
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2523: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2523?max_results=1&expand=run&expand=route&devid=3002834&signature=127819b98fbcd4feefc0e8edd9098fec042e543a
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bracken Ave/Miller St #36
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:25:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bracken Ave/Miller St #36, Sequence: 36
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2523: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2523?max_results=1&expand=run&expand=route&devid=3002834&signature=127819b98fbcd4feefc0e8edd9098fec042e543a
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bracken Ave/Miller St #36
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:25:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bracken Ave/Miller St #36, Sequence: 36
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2523: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2521
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2521?max_results=1&expand=run&expand=route&devid=3002834&signature=44e4aa69dfbe2df3aa65469ee5521cb0cc0e4228
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/Gilbert Rd #37
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:26:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/Gilbert Rd #37, Sequence: 37
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2521: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2521?max_results=1&expand=run&expand=route&devid=3002834&signature=44e4aa69dfbe2df3aa65469ee5521cb0cc0e4228
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/Gilbert Rd #37
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:26:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/Gilbert Rd #37, Sequence: 37
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2521: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2521?max_results=1&expand=run&expand=route&devid=3002834&signature=44e4aa69dfbe2df3aa65469ee5521cb0cc0e4228
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Miller St/Gilbert Rd #37
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:26:24 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Miller St/Gilbert Rd #37, Sequence: 37
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2521: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=3343
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/3343?max_results=1&expand=run&expand=route&devid=3002834&signature=67a33558208f1a1e916c28e9598665b9b076912f
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: St Georges Rd/Miller St #35
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=3343: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/3343?max_results=1&expand=run&expand=route&devid=3002834&signature=67a33558208f1a1e916c28e9598665b9b076912f
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: St Georges Rd/Miller St #35
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=3343: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/3343?max_results=1&expand=run&expand=route&devid=3002834&signature=67a33558208f1a1e916c28e9598665b9b076912f
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: St Georges Rd/Miller St #35
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=3343: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2522
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2522?max_results=1&expand=run&expand=route&devid=3002834&signature=fc2f84a893dfa86a0228215bbd5156941d1f4dc4
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Devon St/Miller St #36
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2522: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2522?max_results=1&expand=run&expand=route&devid=3002834&signature=fc2f84a893dfa86a0228215bbd5156941d1f4dc4
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Devon St/Miller St #36
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2522: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2522?max_results=1&expand=run&expand=route&devid=3002834&signature=fc2f84a893dfa86a0228215bbd5156941d1f4dc4
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: Devon St/Miller St #36
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2522: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2520
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2520?max_results=1&expand=run&expand=route&devid=3002834&signature=717c6bc419beeffa1a5f53b3f7ab3f4b590a6fa5
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Oakover Rd/Gilbert Rd #38
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:26:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Oakover Rd/Gilbert Rd #38, Sequence: 38
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2520: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2520?max_results=1&expand=run&expand=route&devid=3002834&signature=717c6bc419beeffa1a5f53b3f7ab3f4b590a6fa5
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Oakover Rd/Gilbert Rd #38
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:26:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Oakover Rd/Gilbert Rd #38, Sequence: 38
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2520: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2520?max_results=1&expand=run&expand=route&devid=3002834&signature=717c6bc419beeffa1a5f53b3f7ab3f4b590a6fa5
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Oakover Rd/Gilbert Rd #38
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:26:54 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Oakover Rd/Gilbert Rd #38, Sequence: 38
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2520: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2519
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2519?max_results=1&expand=run&expand=route&devid=3002834&signature=df9fa9694489e0ef8ace3520819c2b5dd526bd7f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Latona Ave/Gilbert Rd #39
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:27:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Latona Ave/Gilbert Rd #39, Sequence: 39
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2519: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2519?max_results=1&expand=run&expand=route&devid=3002834&signature=df9fa9694489e0ef8ace3520819c2b5dd526bd7f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Latona Ave/Gilbert Rd #39
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:27:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Latona Ave/Gilbert Rd #39, Sequence: 39
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2519: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2519?max_results=1&expand=run&expand=route&devid=3002834&signature=df9fa9694489e0ef8ace3520819c2b5dd526bd7f
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Latona Ave/Gilbert Rd #39
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:27:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Latona Ave/Gilbert Rd #39, Sequence: 39
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2519: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2518
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2518?max_results=1&expand=run&expand=route&devid=3002834&signature=e4bc2a7c6b4830e62cd1ab47e59490f6bb765d7a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bell St/Gilbert Rd #40
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:28:00 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bell St/Gilbert Rd #40, Sequence: 40
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2518: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2518?max_results=1&expand=run&expand=route&devid=3002834&signature=e4bc2a7c6b4830e62cd1ab47e59490f6bb765d7a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bell St/Gilbert Rd #40
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:28:00 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bell St/Gilbert Rd #40, Sequence: 40
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2518: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2518?max_results=1&expand=run&expand=route&devid=3002834&signature=e4bc2a7c6b4830e62cd1ab47e59490f6bb765d7a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bell St/Gilbert Rd #40
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:28:00 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bell St/Gilbert Rd #40, Sequence: 40
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2518: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2517
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2517?max_results=1&expand=run&expand=route&devid=3002834&signature=3eacd6fdb8633183722792296388a9c36eb81c2a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bruce St/Gilbert Rd #41
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:29:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bruce St/Gilbert Rd #41, Sequence: 41
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2517: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2517?max_results=1&expand=run&expand=route&devid=3002834&signature=3eacd6fdb8633183722792296388a9c36eb81c2a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bruce St/Gilbert Rd #41
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:29:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bruce St/Gilbert Rd #41, Sequence: 41
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2517: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2517?max_results=1&expand=run&expand=route&devid=3002834&signature=3eacd6fdb8633183722792296388a9c36eb81c2a
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Bruce St/Gilbert Rd #41
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:29:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Bruce St/Gilbert Rd #41, Sequence: 41
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2517: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2516
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2516?max_results=1&expand=run&expand=route&devid=3002834&signature=71d668853228e87ba872ed99ad05d4118aa094e1
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Cramer St/Gilbert Rd #42
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:30:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Cramer St/Gilbert Rd #42, Sequence: 42
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2516: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2516?max_results=1&expand=run&expand=route&devid=3002834&signature=71d668853228e87ba872ed99ad05d4118aa094e1
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Cramer St/Gilbert Rd #42
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:30:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Cramer St/Gilbert Rd #42, Sequence: 42
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2516: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2516?max_results=1&expand=run&expand=route&devid=3002834&signature=71d668853228e87ba872ed99ad05d4118aa094e1
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Cramer St/Gilbert Rd #42
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:30:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Cramer St/Gilbert Rd #42, Sequence: 42
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2516: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2515
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2515?max_results=1&expand=run&expand=route&devid=3002834&signature=09749f269dadef094771d2457842450d234677b4
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Murray Rd/Gilbert Rd #43
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:31:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Murray Rd/Gilbert Rd #43, Sequence: 43
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2515: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2515?max_results=1&expand=run&expand=route&devid=3002834&signature=09749f269dadef094771d2457842450d234677b4
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Murray Rd/Gilbert Rd #43
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:31:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Murray Rd/Gilbert Rd #43, Sequence: 43
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2515: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2515?max_results=1&expand=run&expand=route&devid=3002834&signature=09749f269dadef094771d2457842450d234677b4
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Murray Rd/Gilbert Rd #43
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:31:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Murray Rd/Gilbert Rd #43, Sequence: 43
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2515: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2514
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2514?max_results=1&expand=run&expand=route&devid=3002834&signature=5d0370f85ec96572a02ec268e9d8850fad7d0f41
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Cooper St/Gilbert Rd #44
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:33:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Cooper St/Gilbert Rd #44, Sequence: 44
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2514: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2514?max_results=1&expand=run&expand=route&devid=3002834&signature=5d0370f85ec96572a02ec268e9d8850fad7d0f41
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Cooper St/Gilbert Rd #44
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:33:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Cooper St/Gilbert Rd #44, Sequence: 44
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2514: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2514?max_results=1&expand=run&expand=route&devid=3002834&signature=5d0370f85ec96572a02ec268e9d8850fad7d0f41
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Cooper St/Gilbert Rd #44
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:33:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Cooper St/Gilbert Rd #44, Sequence: 44
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2514: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2512
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2512?max_results=1&expand=run&expand=route&devid=3002834&signature=7d312fee43a2180bf17f2081882088aee8dc4116
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Jacka St/Gilbert Rd #45
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:33:48 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Jacka St/Gilbert Rd #45, Sequence: 45
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2512: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2512?max_results=1&expand=run&expand=route&devid=3002834&signature=7d312fee43a2180bf17f2081882088aee8dc4116
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Jacka St/Gilbert Rd #45
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:33:48 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Jacka St/Gilbert Rd #45, Sequence: 45
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2512: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2512?max_results=1&expand=run&expand=route&devid=3002834&signature=7d312fee43a2180bf17f2081882088aee8dc4116
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Jacka St/Gilbert Rd #45
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:33:48 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Jacka St/Gilbert Rd #45, Sequence: 45
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2512: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2513
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2513?max_results=1&expand=run&expand=route&devid=3002834&signature=f51baf574f2e1abf715af0d3e09ae5ff98dbffee
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: McNamara St/Gilbert Rd #46
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7847 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:27:49 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: McNamara St/Gilbert Rd #46, Sequence: 46
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2513: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2513?max_results=1&expand=run&expand=route&devid=3002834&signature=f51baf574f2e1abf715af0d3e09ae5ff98dbffee
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: McNamara St/Gilbert Rd #46
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:35:06 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: McNamara St/Gilbert Rd #46, Sequence: 46
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2513: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2513?max_results=1&expand=run&expand=route&devid=3002834&signature=f51baf574f2e1abf715af0d3e09ae5ff98dbffee
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: McNamara St/Gilbert Rd #46
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7848 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 08:35:06 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: McNamara St/Gilbert Rd #46, Sequence: 46
+PAGE LOG: Highest Venue Stop Sequence: 17
+Stop URL https://lml.live/number11tram/index.html?stopId=2513: ERROR - No gigs loaded within 10 seconds. Retrying...
+Testing stop: https://lml.live/number11tram/index.html?stopId=2511
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2511?max_results=1&expand=run&expand=route&devid=3002834&signature=0c4c5a4c9ce07186f72e5e92bf71e9546b50a333
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: West Preston/Gilbert Rd #47
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2511: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2511?max_results=1&expand=run&expand=route&devid=3002834&signature=0c4c5a4c9ce07186f72e5e92bf71e9546b50a333
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: West Preston/Gilbert Rd #47
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2511: ERROR - No gigs loaded within 10 seconds. Retrying...
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2511?max_results=1&expand=run&expand=route&devid=3002834&signature=0c4c5a4c9ce07186f72e5e92bf71e9546b50a333
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: West Preston/Gilbert Rd #47
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2511: ERROR - No gigs loaded within 10 seconds. Retrying...
+--- Summary ---
+Total Stops Processed: 53
+Successful Stops (with gigs): 18
+Skipped Stops (gigs behind you): 0
+Failed Stops (errors or no gigs): 35
+--- Detailed Summary (in sequence order) ---
+Stop: D18-Bourke St/Collins St, Sequence: 0, Result: Pass, Reason: Gigs found
+Stop: D17-Merchant St/Collins St, Sequence: 1, Result: Pass, Reason: Gigs found
+Stop: D16-Harbour Esp/Collins St, Sequence: 2, Result: Pass, Reason: Gigs found
+Stop: D15-Batman's Hill/Collins St, Sequence: 3, Result: Pass, Reason: Gigs found
+Stop: D14-Southern Cross Station/Collins St, Sequence: 4, Result: Pass, Reason: Gigs found
+Stop: Spencer St/Collins St #1, Sequence: 5, Result: Pass, Reason: Gigs found
+Stop: William St/Collins St #3, Sequence: 6, Result: Pass, Reason: Gigs found
+Stop: Elizabeth St/Collins St #5, Sequence: 7, Result: Pass, Reason: Gigs found
+Stop: Melbourne Town Hall/Collins St #6, Sequence: 8, Result: Pass, Reason: Gigs found
+Stop: Exhibition St/Collins St #7, Sequence: 9, Result: Pass, Reason: Gigs found
+Stop: Spring St/Collins St #8, Sequence: 10, Result: Pass, Reason: Gigs found
+Stop: Parliament Railway Station/Macarthur St #10, Sequence: 11, Result: Pass, Reason: Gigs found
+Stop: Albert St/Gisborne St #11, Sequence: 12, Result: Pass, Reason: Gigs found
+Stop: St Vincents Plaza/Victoria Pde #12, Sequence: 13, Result: Pass, Reason: Gigs found
+Stop: Gertrude St/Brunswick St #13, Sequence: 14, Result: Pass, Reason: Gigs found
+Stop: King William St/Brunswick St #14, Sequence: 14, Result: Fail, Reason: Timeout
+Stop: Hanover St/Brunswick St #14, Sequence: 15, Result: Pass, Reason: Gigs found
+Stop: St David St/Brunswick St #15, Sequence: 15, Result: Fail, Reason: Timeout
+Stop: Bell St/Brunswick St #15, Sequence: 16, Result: Pass, Reason: Gigs found
+Stop: Johnston St/Brunswick St #16, Sequence: 17, Result: Pass, Reason: Gigs found
+Stop: Leicester St/Brunswick St #17, Sequence: 18, Result: Fail, Reason: Timeout
+Stop: Alexandra Pde/Brunswick St #18, Sequence: 19, Result: Fail, Reason: Timeout
+Stop: Newry St/Brunswick St #19, Sequence: 20, Result: Fail, Reason: Timeout
+Stop: Fitzroy Bowls Club/Brunswick St #20, Sequence: 21, Result: Fail, Reason: Timeout
+Stop: Alfred Cres/St Georges Rd #21, Sequence: 22, Result: Fail, Reason: Timeout
+Stop: Scotchmer St/St Georges Rd #22, Sequence: 23, Result: Fail, Reason: Timeout
+Stop: Park St/St Georges Rd #23, Sequence: 24, Result: Fail, Reason: Timeout
+Stop: Holden St/St Georges Rd #24, Sequence: 25, Result: Fail, Reason: Timeout
+Stop: Miller St/St Georges Rd #25, Sequence: 26, Result: Fail, Reason: Timeout
+Stop: Clarke St/St Georges Rd #26, Sequence: 27, Result: Fail, Reason: Timeout
+Stop: Westbourne Gr/St Georges Rd #27, Sequence: 28, Result: Fail, Reason: Timeout
+Stop: Sumner Ave/St Georges Rd #28, Sequence: 29, Result: Fail, Reason: Timeout
+Stop: Arthurton Rd/St Georges Rd #29, Sequence: 30, Result: Fail, Reason: Timeout
+Stop: Gladstone Ave/St Georges Rd #30, Sequence: 31, Result: Fail, Reason: Timeout
+Stop: Bird Ave/St Georges Rd #31, Sequence: 32, Result: Fail, Reason: Timeout
+Stop: Gadd St/St Georges Rd #31, Sequence: 32, Result: Fail, Reason: Timeout
+Stop: Normanby Ave/St Georges Rd #32, Sequence: 33, Result: Fail, Reason: Timeout
+Stop: Hutton St/St Georges Rd #33, Sequence: 34, Result: Fail, Reason: Timeout
+Stop: Miller St/St Georges Rd #34, Sequence: 35, Result: Fail, Reason: Timeout
+Stop: Bracken Ave/Miller St #36, Sequence: 36, Result: Fail, Reason: Timeout
+Stop: Miller St/Gilbert Rd #37, Sequence: 37, Result: Fail, Reason: Timeout
+Stop: St Georges Rd/Miller St #35, Sequence: 37, Result: Fail, Reason: Timeout
+Stop: Devon St/Miller St #36, Sequence: 38, Result: Fail, Reason: Timeout
+Stop: Oakover Rd/Gilbert Rd #38, Sequence: 38, Result: Fail, Reason: Timeout
+Stop: Latona Ave/Gilbert Rd #39, Sequence: 39, Result: Fail, Reason: Timeout
+Stop: Bell St/Gilbert Rd #40, Sequence: 40, Result: Fail, Reason: Timeout
+Stop: Bruce St/Gilbert Rd #41, Sequence: 41, Result: Fail, Reason: Timeout
+Stop: Cramer St/Gilbert Rd #42, Sequence: 42, Result: Fail, Reason: Timeout
+Stop: Murray Rd/Gilbert Rd #43, Sequence: 43, Result: Fail, Reason: Timeout
+Stop: Cooper St/Gilbert Rd #44, Sequence: 44, Result: Fail, Reason: Timeout
+Stop: Jacka St/Gilbert Rd #45, Sequence: 45, Result: Fail, Reason: Timeout
+Stop: McNamara St/Gilbert Rd #46, Sequence: 46, Result: Fail, Reason: Timeout
+Stop: West Preston/Gilbert Rd #47, Sequence: 47, Result: Fail, Reason: Timeout
