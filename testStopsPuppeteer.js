@@ -40,11 +40,14 @@ async function testStops() {
         try {
             await page.goto(stopUrl, { waitUntil: 'networkidle0' });
 
-            // (4) Wait for the gigs to load
-            await page.waitForSelector('.gig', { timeout: 30000 }); // This waits for gigs to be rendered
+            // Wait for either the 'gig' div or a message indicating no gigs
+            const gigSelector = '.gig';
+            const noGigSelector = 'h2:contains("No gigs available")';
+
+            await page.waitForSelector(`${gigSelector}, ${noGigSelector}`, { timeout: 5000 });
 
             // Check if gigs are present
-            const gigElements = await page.$$('.gig'); // Find all elements with class 'gig'
+            const gigElements = await page.$$(gigSelector); // Find all elements with class 'gig'
             const gigCount = gigElements.length;
 
             if (gigCount > 0) {
