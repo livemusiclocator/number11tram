@@ -74,6 +74,10 @@ export async function fetchNextTram(stopId) {
         console.error("Error fetching tram data:", error);
     }
     return null;
+    console.log("Stop ID:", stopId);
+console.log("API Response (Departures):", data);
+console.log("Filtered Outbound Departures:", outbound11Departures);
+
 }
 
 
