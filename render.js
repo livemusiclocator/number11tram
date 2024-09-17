@@ -40,8 +40,8 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         return;
     }
 
-    // Categorize gigs by time horizon and stop sequence
-    const categorizeGigs = (gigList, category, timeLimit) => {
+    // Function to categorize gigs and render them
+    const categorizeAndRenderGigs = (category, timeLimit) => {
         const filteredGigs = gigs.filter(gig => {
             const venueStopId = venueStopMapping[gig.venue.id];
             const venueStop = stops.find(stop => stop.stop_id == venueStopId);
@@ -51,12 +51,14 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
             console.log(`Gig: ${gig.name}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${withinSequence}`);
             return venueStop && withinSequence && withinTime;
         });
+
         appendGigList(filteredGigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping);
     };
 
-    categorizeGigs(gigList, "Underway", currentTime);
-    categorizeGigs(gigList, "Soon", new Date(currentTime.getTime() + 60 * 60 * 1000));
-    categorizeGigs(gigList, "Later on", new Date(currentTime.getTime() + 24 * 60 * 60 * 1000));
+    // Categorize gigs into "Underway", "Soon", and "Later"
+    categorizeAndRenderGigs("Underway", currentTime);
+    categorizeAndRenderGigs("Soon", new Date(currentTime.getTime() + 60 * 60 * 1000)); // within an hour
+    categorizeAndRenderGigs("Later on", new Date(currentTime.getTime() + 24 * 60 * 60 * 1000));
 }
 
 // Append gigs to the page
@@ -80,6 +82,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
         const venueStopSequence = venueStop?.stop_sequence;
 
+        // Only render gig if it's within sequence
         if (venueStopSequence && currentStopSequence && currentStopSequence <= venueStopSequence) {
             console.log(`Rendering gig: ${gig.name}, Within Sequence`);
 
