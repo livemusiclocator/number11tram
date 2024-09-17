@@ -41,40 +41,22 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     }
 
     // Categorize gigs by time horizon and stop sequence
-    const underway = gigs.filter(gig => {
-        const venueStopId = venueStopMapping[gig.venue.id];
-        const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+    const categorizeGigs = (gigList, category, timeLimit) => {
+        const filteredGigs = gigs.filter(gig => {
+            const venueStopId = venueStopMapping[gig.venue.id];
+            const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+            const withinSequence = venueStop?.stop_sequence >= currentStopSequence;
+            const withinTime = new Date(gig.start_timestamp) <= timeLimit;
 
-        // Log the details for each venue stop
-        console.log(`Gig: ${gig.name}, Venue Stop ID: ${venueStopId}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${venueStop?.stop_sequence >= currentStopSequence}`);
+            console.log(`Gig: ${gig.name}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${withinSequence}`);
+            return venueStop && withinSequence && withinTime;
+        });
+        appendGigList(filteredGigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping);
+    };
 
-        return venueStop && venueStop.stop_sequence >= currentStopSequence && new Date(gig.start_timestamp) <= currentTime;
-    });
-
-    const soon = gigs.filter(gig => {
-        const venueStopId = venueStopMapping[gig.venue.id];
-        const venueStop = stops.find(stop => stop.stop_id == venueStopId);
-
-        // Log the details for each venue stop
-        console.log(`Gig: ${gig.name}, Venue Stop ID: ${venueStopId}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${venueStop?.stop_sequence >= currentStopSequence}`);
-
-        return venueStop && venueStop.stop_sequence >= currentStopSequence && new Date(gig.start_timestamp) > currentTime && new Date(gig.start_timestamp) <= new Date(currentTime.getTime() + 60 * 60 * 1000); // within an hour
-    });
-
-    const later = gigs.filter(gig => {
-        const venueStopId = venueStopMapping[gig.venue.id];
-        const venueStop = stops.find(stop => stop.stop_id == venueStopId);
-
-        // Log the details for each venue stop
-        console.log(`Gig: ${gig.name}, Venue Stop ID: ${venueStopId}, Venue Stop Sequence: ${venueStop?.stop_sequence}, Within Sequence: ${venueStop?.stop_sequence >= currentStopSequence}`);
-
-        return venueStop && venueStop.stop_sequence >= currentStopSequence && new Date(gig.start_timestamp) > new Date(currentTime.getTime() + 60 * 60 * 1000);
-    });
-
-    // Render categorized gigs
-    appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping);
-    appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
-    appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
+    categorizeGigs(gigList, "Underway", currentTime);
+    categorizeGigs(gigList, "Soon", new Date(currentTime.getTime() + 60 * 60 * 1000));
+    categorizeGigs(gigList, "Later on", new Date(currentTime.getTime() + 24 * 60 * 60 * 1000));
 }
 
 // Append gigs to the page
@@ -98,10 +80,8 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
         const venueStopSequence = venueStop?.stop_sequence;
 
-        console.log(`Checking if current stop sequence (${currentStopSequence}) is less than or equal to venue stop sequence (${venueStopSequence}) for venue: ${gig.venue.name}`);
-
         if (venueStopSequence && currentStopSequence && currentStopSequence <= venueStopSequence) {
-            console.log(`Within Sequence: TRUE - Gig ${gig.name} is valid.`);
+            console.log(`Rendering gig: ${gig.name}, Within Sequence`);
 
             const title = document.createElement("div");
             title.classList.add("title");
@@ -143,7 +123,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
 
             gigList.appendChild(gigDiv);
         } else {
-            console.log(`Within Sequence: FALSE - Skipping Gig ${gig.name}.`);
+            console.log(`Skipping gig: ${gig.name}, Outside Sequence`);
         }
     });
 }

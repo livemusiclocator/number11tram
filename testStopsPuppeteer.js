@@ -1,30 +1,34 @@
 const puppeteer = require('puppeteer');
 
-const stopsPageUrl = 'https://lml.live/number11tram/stops.html';
-
 (async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
 
-  // Fetch the stops.html page
-  await page.goto(stopsPageUrl, { waitUntil: 'networkidle2' });
+    const stops = [
+        // List of stop URLs
+        'https://lml.live/number11tram/index.html?stopId=2890',
+        'https://lml.live/number11tram/index.html?stopId=2551',
+        // Add more stop URLs here
+    ];
 
-  // Extract all stop URLs and remove duplicates
-  const stops = await page.$$eval('a[href*="stopId"]', links => {
-    const hrefs = links.map(link => link.href);
-    return [...new Set(hrefs)]; // Remove duplicate URLs by converting to Set and back to Array
-  });
+    for (const stopUrl of stops) {
+        console.log(`Testing stop: ${stopUrl}`);
+        
+        // Go to the stop page
+        await page.goto(stopUrl, { waitUntil: 'networkidle2' });
 
-  console.log(`Found ${stops.length} unique stops. Testing each one...`);
+        // (4) Wait for the gigs to load
+        await page.waitForSelector('.gig'); // This waits for gigs to be rendered
 
-  for (const stopUrl of stops) {
-    try {
-      await page.goto(stopUrl, { waitUntil: 'networkidle2' });
-      console.log(`Stop URL ${stopUrl}: SUCCESS`);
-    } catch (error) {
-      console.log(`Stop URL ${stopUrl}: ERROR - ${error.message}`);
+        // Check if gigs are present
+        const gigElements = await page.$$('.gig'); // Find all elements with class 'gig'
+
+        if (gigElements.length > 0) {
+            console.log(`Stop URL ${stopUrl}: SUCCESS - ${gigElements.length} Gigs Found`);
+        } else {
+            console.log(`Stop URL ${stopUrl}: WARNING - No Gigs Found`);
+        }
     }
-  }
 
-  await browser.close();
+    await browser.close();
 })();
