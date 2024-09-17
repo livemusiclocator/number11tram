@@ -35,7 +35,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (currentStopSequence > highestVenueStopSequence) {
         gigList.innerHTML = `
             <div style="text-align: center; margin-top: 20px;">
-                <h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and head that way.</h2>
+                <h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and walk or tram back that way.</h2>
             </div>`;
         return;
     }

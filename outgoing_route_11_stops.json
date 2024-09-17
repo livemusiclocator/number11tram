@@ -45,29 +45,7 @@
         "stop_name": "Alexandra Pde/Brunswick St #18",
         "stop_landmark": ""
     },
-    {
-        "disruption_ids": [],
-        "stop_suburb": "Fitzroy",
-        "route_type": 1,
-        "stop_latitude": -37.79363,
-        "stop_longitude": 144.979187,
-        "stop_sequence": 19,
-        "stop_ticket": {
-            "ticket_type": "",
-            "zone": "Zone 1",
-            "is_free_fare_zone": false,
-            "ticket_machine": false,
-            "ticket_checks": false,
-            "vline_reservation": false,
-            "ticket_zones": [
-                1
-            ]
-        },
-        "interchange": [],
-        "stop_id": 2544,
-        "stop_name": "Alexandra Pde/Brunswick St #18",
-        "stop_landmark": ""
-    },
+   
     {
         "disruption_ids": [],
         "stop_suburb": "Fitzroy North",
