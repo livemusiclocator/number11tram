@@ -19,12 +19,20 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Helper function to log to both console and file
+function logToFileAndConsole(message) {
+    console.log(message);
+    fs.appendFileSync('tramtests.log', message + '\n', (err) => {
+        if (err) throw err;
+    });
+}
+
 async function getStopUrls() {
     const browser = await chromium.launch({ headless: false });  // Set headless: false for debugging
     const page = await browser.newPage();
     await page.setViewportSize({ width: 1280, height: 720 });  // Force the viewport size
 
-    console.log("Navigating to stops page...");
+    logToFileAndConsole("Navigating to stops page...");
     // Load the stops.html page
     await page.goto('https://lml.live/number11tram/stops.html', { waitUntil: 'domcontentloaded' });
 
@@ -33,7 +41,7 @@ async function getStopUrls() {
 
     // Debugging: Take a screenshot to see if the page loaded correctly
     await page.screenshot({ path: 'stops_page_debug.png' });
-    console.log("Screenshot of stops page saved as 'stops_page_debug.png'.");
+    logToFileAndConsole("Screenshot of stops page saved as 'stops_page_debug.png'.");
 
     // Extract the href attributes from the a tags inside each .stop div and remove duplicates
     const stopUrls = await page.evaluate(() => {
@@ -43,7 +51,7 @@ async function getStopUrls() {
         return [...new Set(stopUrls)];  // Remove duplicates by using a Set
     });
 
-    console.log(`Found stop URLs:`, stopUrls);
+    logToFileAndConsole(`Found stop URLs: ${stopUrls}`);
 
     await browser.close();
     return stopUrls;
@@ -53,7 +61,7 @@ async function testStops() {
     const stopUrls = await getStopUrls();
 
     if (stopUrls.length === 0) {
-        console.log('No stops found! Please verify if the stops page is correctly loading.');
+        logToFileAndConsole('No stops found! Please verify if the stops page is correctly loading.');
         return;
     }
 
@@ -61,7 +69,7 @@ async function testStops() {
     const page = await browser.newPage();
     await page.setViewportSize({ width: 1280, height: 720 });  // Force the viewport size
 
-    page.on('console', msg => console.log('PAGE LOG:', msg.text()));  // Log browser console output
+    page.on('console', msg => logToFileAndConsole('PAGE LOG: ' + msg.text()));  // Log browser console output
 
     let summary = {
         totalStops: 0,
@@ -81,7 +89,7 @@ async function testStops() {
         }
         processedStops.add(stopUrl);
 
-        console.log(`Testing stop: ${stopUrl}`);
+        logToFileAndConsole(`Testing stop: ${stopUrl}`);
         summary.totalStops++;
 
         let retries = 0;
@@ -102,7 +110,7 @@ async function testStops() {
                     // Check if the page contains the message "gigs are behind you"
                     const bodyText = await page.textContent('body');
                     if (bodyText.includes(gigsBehindMessage)) {
-                        console.log(`Stop URL: ${stopUrl}: PASS - Gigs are behind you`);
+                        logToFileAndConsole(`Stop URL: ${stopUrl}: PASS - Gigs are behind you`);
                         summary.skippedStops++;
                         detailedSummary.push({ stopUrl, result: 'Pass', reason: 'Gigs are behind' });
                         success = true;  // Mark this request as successful
@@ -114,20 +122,20 @@ async function testStops() {
                     if (gigCount > 0) {
                         const stopName = await page.textContent('.stop-name');
                         const timeHorizon = await page.$eval('#gig-list > h2', el => el.textContent);
-                        console.log(`Stop Name: ${stopName}, Time Horizon: ${timeHorizon}, Stop URL: ${stopUrl}: SUCCESS - ${gigCount} Gigs Found`);
+                        logToFileAndConsole(`Stop Name: ${stopName}, Time Horizon: ${timeHorizon}, Stop URL: ${stopUrl}: SUCCESS - ${gigCount} Gigs Found`);
                         summary.successfulStops++;
                         detailedSummary.push({ stopUrl, result: 'Pass', reason: 'Gigs found' });
                         success = true;  // Mark this request as successful
                         break;  // Exit retry loop
                     } else {
-                        console.log(`Stop URL: ${stopUrl}: ERROR - No gigs found`);
+                        logToFileAndConsole(`Stop URL: ${stopUrl}: ERROR - No gigs found`);
                         summary.failedStops++;
                         detailedSummary.push({ stopUrl, result: 'Fail', reason: 'No gigs found' });
                         success = true;  // Mark as processed to avoid retrying
                         break;
                     }
                 } catch (timeoutError) {
-                    console.log(`Stop URL ${stopUrl}: ERROR - No gigs loaded within 10 seconds. Retrying...`);
+                    logToFileAndConsole(`Stop URL ${stopUrl}: ERROR - No gigs loaded within 10 seconds. Retrying...`);
                     retries++;
                     if (retries >= maxRetries) {
                         summary.failedStops++;
@@ -137,7 +145,7 @@ async function testStops() {
                 }
 
             } catch (error) {
-                console.log(`Stop URL ${stopUrl}: ERROR - ${error.message}. Retrying...`);
+                logToFileAndConsole(`Stop URL ${stopUrl}: ERROR - ${error.message}. Retrying...`);
                 retries++;
                 if (retries >= maxRetries) {
                     summary.failedStops++;
@@ -153,21 +161,21 @@ async function testStops() {
 
     await browser.close();
 
-    // Print overall summary
-    console.log("--- Summary ---");
-    console.log(`Total Stops Processed: ${summary.totalStops}`);
-    console.log(`Successful Stops (with gigs): ${summary.successfulStops}`);
-    console.log(`Skipped Stops (gigs behind you): ${summary.skippedStops}`);
-    console.log(`Failed Stops (errors or no gigs): ${summary.failedStops}`);
+    // Log overall summary
+    logToFileAndConsole("--- Summary ---");
+    logToFileAndConsole(`Total Stops Processed: ${summary.totalStops}`);
+    logToFileAndConsole(`Successful Stops (with gigs): ${summary.successfulStops}`);
+    logToFileAndConsole(`Skipped Stops (gigs behind you): ${summary.skippedStops}`);
+    logToFileAndConsole(`Failed Stops (errors or no gigs): ${summary.failedStops}`);
 
     // Generate a detailed summary based on stop_sequence from the JSON data and sort it by sequence order
-    console.log('--- Detailed Summary (in sequence order) ---');
+    logToFileAndConsole('--- Detailed Summary (in sequence order) ---');
     uniqueStopsData.sort((a, b) => a.stop_sequence - b.stop_sequence).forEach(stop => {
         const matchingStop = detailedSummary.find(item => item.stopUrl.includes(stop.stop_id));
         if (matchingStop) {
-            console.log(`Stop: ${stop.stop_name}, Sequence: ${stop.stop_sequence}, Result: ${matchingStop.result}, Reason: ${matchingStop.reason}`);
+            logToFileAndConsole(`Stop: ${stop.stop_name}, Sequence: ${stop.stop_sequence}, Result: ${matchingStop.result}, Reason: ${matchingStop.reason}`);
         } else {
-            console.log(`Stop: ${stop.stop_name}, Sequence: ${stop.stop_sequence}, Result: No data`);
+            logToFileAndConsole(`Stop: ${stop.stop_name}, Sequence: ${stop.stop_sequence}, Result: No data`);
         }
     });
 }

@@ -921,3 +921,194 @@ Stop: Cooper St/Gilbert Rd #44, Sequence: 44, Result: Fail, Reason: Timeout
 Stop: Jacka St/Gilbert Rd #45, Sequence: 45, Result: Fail, Reason: Timeout
 Stop: McNamara St/Gilbert Rd #46, Sequence: 46, Result: Fail, Reason: Timeout
 Stop: West Preston/Gilbert Rd #47, Sequence: 47, Result: Fail, Reason: Timeout
+Navigating to stops page...
+Screenshot of stops page saved as 'stops_page_debug.png'.
+Found stop URLs: https://lml.live/number11tram/index.html?stopId=2890,https://lml.live/number11tram/index.html?stopId=2490,https://lml.live/number11tram/index.html?stopId=2696,https://lml.live/number11tram/index.html?stopId=2489,https://lml.live/number11tram/index.html?stopId=2479,https://lml.live/number11tram/index.html?stopId=2496,https://lml.live/number11tram/index.html?stopId=2494,https://lml.live/number11tram/index.html?stopId=2492,https://lml.live/number11tram/index.html?stopId=2491,https://lml.live/number11tram/index.html?stopId=2174,https://lml.live/number11tram/index.html?stopId=2488,https://lml.live/number11tram/index.html?stopId=2487,https://lml.live/number11tram/index.html?stopId=2485,https://lml.live/number11tram/index.html?stopId=2484,https://lml.live/number11tram/index.html?stopId=2551,https://lml.live/number11tram/index.html?stopId=2549,https://lml.live/number11tram/index.html?stopId=2550,https://lml.live/number11tram/index.html?stopId=2547,https://lml.live/number11tram/index.html?stopId=2548,https://lml.live/number11tram/index.html?stopId=2546,https://lml.live/number11tram/index.html?stopId=2545,https://lml.live/number11tram/index.html?stopId=2966,https://lml.live/number11tram/index.html?stopId=2543,https://lml.live/number11tram/index.html?stopId=2541,https://lml.live/number11tram/index.html?stopId=2539,https://lml.live/number11tram/index.html?stopId=2538,https://lml.live/number11tram/index.html?stopId=2536,https://lml.live/number11tram/index.html?stopId=2535,https://lml.live/number11tram/index.html?stopId=2534,https://lml.live/number11tram/index.html?stopId=2533,https://lml.live/number11tram/index.html?stopId=2532,https://lml.live/number11tram/index.html?stopId=2531,https://lml.live/number11tram/index.html?stopId=2530,https://lml.live/number11tram/index.html?stopId=2529,https://lml.live/number11tram/index.html?stopId=2528,https://lml.live/number11tram/index.html?stopId=2527,https://lml.live/number11tram/index.html?stopId=2526,https://lml.live/number11tram/index.html?stopId=2525,https://lml.live/number11tram/index.html?stopId=2524,https://lml.live/number11tram/index.html?stopId=2523,https://lml.live/number11tram/index.html?stopId=2521,https://lml.live/number11tram/index.html?stopId=3343,https://lml.live/number11tram/index.html?stopId=2522,https://lml.live/number11tram/index.html?stopId=2520,https://lml.live/number11tram/index.html?stopId=2519,https://lml.live/number11tram/index.html?stopId=2518,https://lml.live/number11tram/index.html?stopId=2517,https://lml.live/number11tram/index.html?stopId=2516,https://lml.live/number11tram/index.html?stopId=2515,https://lml.live/number11tram/index.html?stopId=2514,https://lml.live/number11tram/index.html?stopId=2512,https://lml.live/number11tram/index.html?stopId=2513,https://lml.live/number11tram/index.html?stopId=2511
+Testing stop: https://lml.live/number11tram/index.html?stopId=2890
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2890?max_results=1&expand=run&expand=route&devid=3002834&signature=3408c111383e24447f4662f4b2115f6d178d8ea7
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: D18-Bourke St/Collins St
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7862 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:16:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: D18-Bourke St/Collins St, Sequence: 0
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: D18-Bourke St/Collins St, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2890: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2490
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2490?max_results=1&expand=run&expand=route&devid=3002834&signature=504ffe6f7ad7a958cf2cc6c89bd28671e8022b0c
+PAGE LOG: API Response (Departures): {departures: Array(4), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: D17-Merchant St/Collins St
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7861 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:11:49 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: D17-Merchant St/Collins St, Sequence: 1
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: D17-Merchant St/Collins St, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2490: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2696
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2696?max_results=1&expand=run&expand=route&devid=3002834&signature=43a8d3a4fa1792ef60a29a8b2d93151d47417040
+PAGE LOG: API Response (Departures): {departures: Array(4), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: D16-Harbour Esp/Collins St
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7861 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:13:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: D16-Harbour Esp/Collins St, Sequence: 2
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: D16-Harbour Esp/Collins St, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2696: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2489
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2489?max_results=1&expand=run&expand=route&devid=3002834&signature=fe54982aa3151076573df0514617357e630602b3
+PAGE LOG: API Response (Departures): {departures: Array(4), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: D15-Batman's Hill/Collins St
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7861 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:13:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: D15-Batman's Hill/Collins St, Sequence: 3
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: D15-Batman's Hill/Collins St, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2489: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2479
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2479?max_results=1&expand=run&expand=route&devid=3002834&signature=15b474dd2521306a0dca213ebe7640256034a607
+PAGE LOG: API Response (Departures): {departures: Array(4), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: D14-Southern Cross Station/Collins St
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7861 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:14:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: D14-Southern Cross Station/Collins St, Sequence: 4
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: D14-Southern Cross Station/Collins St, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2479: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2496
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2496?max_results=1&expand=run&expand=route&devid=3002834&signature=bd94099c9300e78a41b22e57bc4c028c64c39a2e
+PAGE LOG: API Response (Departures): {departures: Array(8), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Spencer St/Collins St #1
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7860 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:11:52 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Spencer St/Collins St #1, Sequence: 5
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Spencer St/Collins St #1, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2496: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2494
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2494?max_results=1&expand=run&expand=route&devid=3002834&signature=6ef212ece3eef17caae033e13dbe294331938e28
+PAGE LOG: API Response (Departures): {departures: Array(8), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: William St/Collins St #3
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7860 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:13:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: William St/Collins St #3, Sequence: 6
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: William St/Collins St #3, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2494: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2492
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2492?max_results=1&expand=run&expand=route&devid=3002834&signature=bd5770b0a7151a1205f3fba737c43987f32b26fb
+PAGE LOG: API Response (Departures): {departures: Array(8), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Elizabeth St/Collins St #5
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7860 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:16:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Elizabeth St/Collins St #5, Sequence: 7
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Elizabeth St/Collins St #5, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2492: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2491
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2491?max_results=1&expand=run&expand=route&devid=3002834&signature=b635bd12893390b5da04e91c7bd49ed6fa41f9c7
+PAGE LOG: API Response (Departures): {departures: Array(8), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Melbourne Town Hall/Collins St #6
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7860 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:17:30 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Melbourne Town Hall/Collins St #6, Sequence: 8
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Melbourne Town Hall/Collins St #6, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2491: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2174
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2174?max_results=1&expand=run&expand=route&devid=3002834&signature=878e07a1f0c58df75e941a50911b34ce19a96f04
+PAGE LOG: API Response (Departures): {departures: Array(8), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Exhibition St/Collins St #7
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7859 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:13:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Exhibition St/Collins St #7, Sequence: 9
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Exhibition St/Collins St #7, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2174: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2488
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2488?max_results=1&expand=run&expand=route&devid=3002834&signature=df87be5f8bf297b2820837ab2235731cd18a223e
+PAGE LOG: API Response (Departures): {departures: Array(8), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Spring St/Collins St #8
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7859 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:15:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Spring St/Collins St #8, Sequence: 10
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Spring St/Collins St #8, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2488: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2487
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2487?max_results=1&expand=run&expand=route&devid=3002834&signature=17408f53f59bcc3c2efd6b63c3c6b7adc976f0fa
+PAGE LOG: API Response (Departures): {departures: Array(6), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Parliament Railway Station/Macarthur St #10
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7859 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:16:12 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Parliament Railway Station/Macarthur St #10, Sequence: 11
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Parliament Railway Station/Macarthur St #10, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2487: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2485
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2485?max_results=1&expand=run&expand=route&devid=3002834&signature=841d858f12c480ad200fcfd98b35447f2c2bb60b
+PAGE LOG: API Response (Departures): {departures: Array(6), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Albert St/Gisborne St #11
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7858 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:11:57 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Albert St/Gisborne St #11, Sequence: 12
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Albert St/Gisborne St #11, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2485: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2484
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2484?max_results=1&expand=run&expand=route&devid=3002834&signature=1c7d4b571a8d378cebeeb055b52d6602bd65948a
+PAGE LOG: API Response (Departures): {departures: Array(3), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: St Vincents Plaza/Victoria Pde #12
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7859 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:17:00 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: St Vincents Plaza/Victoria Pde #12, Sequence: 13
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: St Vincents Plaza/Victoria Pde #12, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2484: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2551
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2551?max_results=1&expand=run&expand=route&devid=3002834&signature=ace8996ee2d92e9ce8c15a1d27a83f26df3eca70
+PAGE LOG: API Response (Departures): {departures: Array(2), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: Current Stop: Gertrude St/Brunswick St #13
+PAGE LOG: API Response (tramRoute): {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Tram Route Data for Run ID 7858 : {disruptions: Array(0), departures: Array(48), stops: Object, routes: Object, runs: Object}
+PAGE LOG: Next tram found at: Wed Sep 18 2024 09:12:42 GMT+1000 (Australian Eastern Standard Time)
+PAGE LOG: Current Stop: Gertrude St/Brunswick St #13, Sequence: 14
+PAGE LOG: Highest Venue Stop Sequence: 17
+PAGE LOG: Gig: Make It Up Club, Venue Stop Sequence: 17, Within Sequence: true
+PAGE LOG: Gig: Mukul Jiwnani, Venue Stop Sequence: 17, Within Sequence: true
+Stop Name: Stop: Gertrude St/Brunswick St #13, Time Horizon: Underway, Stop URL: https://lml.live/number11tram/index.html?stopId=2551: SUCCESS - 2 Gigs Found
+Testing stop: https://lml.live/number11tram/index.html?stopId=2549
+PAGE LOG: Signed URL: https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/1/stop/2549?max_results=1&expand=run&expand=route&devid=3002834&signature=bc2ec3f37bd6a35259a13222c7888d1dde05a7b6
+PAGE LOG: API Response (Departures): {departures: Array(1), stops: Object, routes: Object, runs: Object, directions: Object}
+PAGE LOG: No outbound number 11 tram departures found in departures: [Object]
+PAGE LOG: Current Stop: King William St/Brunswick St #14
+PAGE LOG: No valid tram found.
+PAGE LOG: No valid tram found.
+Stop URL https://lml.live/number11tram/index.html?stopId=2549: ERROR - No gigs loaded within 10 seconds. Retrying...
