@@ -1,9 +1,20 @@
 export const DEVELOPER_ID = '3002834';
 export const API_KEY = 'f36b2876-d136-485d-8e06-f057c79c0998';
 export const BASE_URL = 'https://timetableapi.ptv.vic.gov.au';
-export const apiUrl = `https://api.lml.live/gigs/query?location=melbourne&date_from=${new Date().toISOString().split('T')[0]}&date_to=${new Date().toISOString().split('T')[0]}`;
+
+// Function to get local date in 'YYYY-MM-DD' format
+function getLocalDate() {
+    const today = new Date();
+    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    return today.toISOString().split('T')[0];
+}
+
+export const apiUrl = `https://api.lml.live/gigs/query?location=melbourne&date_from=${getLocalDate()}&date_to=${getLocalDate()}`;
 
 console.log('API URL in config.js:', apiUrl);  // Add this log
+const currentDate = new Date();
+console.log("Current Date: ", currentDate);
+
 
 
 // Time configuration
