@@ -8,7 +8,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         return;
     }
 
-    
+
     console.log("Next tram found at:", nextTramData.time);
 
     const currentTime = new Date();
@@ -35,7 +35,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     // Check if the current stop is beyond all venue stops
     if (currentStopSequence > highestVenueStopSequence) {
         const stopName = encodeURIComponent(currentStop.stop_name);  // Encode stop name for URL
-        window.location.href = `/path/to/stoptoofar.html?stopName=${stopName}`;
+        window.location.href = `stoptoofar.html?stopName=${stopName}`;
         return;
     }
 
