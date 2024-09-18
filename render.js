@@ -8,6 +8,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         return;
     }
 
+    
     console.log("Next tram found at:", nextTramData.time);
 
     const currentTime = new Date();
