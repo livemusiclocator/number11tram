@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Too Far along the line - No More Gigs this Way</title>
+    <title>Too Far - No More Gigs</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #fff; /* Match background color to index.html */
         }
         h1 {
             color: #0078D4;
@@ -22,37 +22,33 @@
         .content {
             margin-top: 50px;
         }
-        .logo {
+        img {
+            width: 200px;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Add the logo -->
-    <div class="logo">
-        <img src="/path/to/LML_Logo.png" alt="Live Music Locator" style="max-width: 200px;">
-    </div>
-    
+    <img src="LML_Logo.png" alt="Live Music Locator Logo"> <!-- Add your logo here -->
     <h1 id="stop-name">Stop Name</h1>
-
     <div class="content">
         <h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and walk or tram back that way.</h2>
     </div>
 
     <script>
-        // Dynamically update stop name based on URL parameters (using stopId)
-        const params = new URLSearchParams(window.location.search);
-        const stopId = params.get('stopId');
+        // Fetch stop details from the JSON file based on stopId from URL
+        fetch('outgoing_route_11_stops.json')
+            .then(response => response.json())
+            .then(stops => {
+                const params = new URLSearchParams(window.location.search);
+                const stopId = params.get('stopId');  // Get stopId from the URL
+                const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
+                const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
 
-        // Use the stopId to fetch stop name dynamically from your stops data
-        const stopsData = { 
-            '2890': 'D18-Bourke St/Collins St', 
-            '2545': 'Leicester St/Brunswick St',
-            // Add your stop IDs and names here
-        };
-
-        const stopName = stopsData[stopId] || "Unknown Stop";
-        document.getElementById('stop-name').textContent = stopName;
+                // Update the stop name in the HTML
+                document.getElementById('stop-name').textContent = stopName;
+            })
+            .catch(error => console.error("Error fetching stop data:", error));
     </script>
 </body>
 </html>
