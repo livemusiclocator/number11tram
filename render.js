@@ -2,10 +2,6 @@ import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/h
 import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
 // Render gigs based on stop sequence
-import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
-
-// Render gigs based on stop sequence
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
     if (!nextTramData || !nextTramData.time) { 
         console.error("No valid tram found.");
@@ -65,6 +61,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
             </div>`;
         return;
     }
+
 
     // Categorize and render gigs
     const underway = validGigs.filter(gig => new Date(gig.start_timestamp) <= currentTime);
