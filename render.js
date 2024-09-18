@@ -8,7 +8,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         return;
     }
 
-
     console.log("Next tram found at:", nextTramData.time);
 
     const currentTime = new Date();
@@ -24,6 +23,14 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     const currentStopSequence = currentStop.stop_sequence;
     console.log(`Current Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
 
+    // Check if the current stop is a venue stop
+    const isVenueStop = Object.values(venueStopMapping).includes(currentStopId);
+    if (isVenueStop) {
+        console.log(`The current stop (${currentStop.stop_name}) is a venue stop.`);
+    } else {
+        console.log(`The current stop (${currentStop.stop_name}) is NOT a venue stop.`);
+    }
+
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
@@ -33,11 +40,11 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
     // Check if the current stop is beyond all venue stops
-if (currentStopSequence > highestVenueStopSequence) {
-    const stopId = currentStop.stop_id;  // Use stop_id for URL
-    window.location.href = `stoptoofar.html?stopId=${stopId}`;
-    return;
-}
+    if (currentStopSequence > highestVenueStopSequence) {
+        const stopId = currentStop.stop_id;  // Use stop_id for URL
+        window.location.href = `stoptoofar.html?stopId=${stopId}`;
+        return;
+    }
 
     // Filter gigs based on time horizon and stop sequence
     const validGigs = gigs.filter(gig => {
@@ -62,7 +69,6 @@ if (currentStopSequence > highestVenueStopSequence) {
             </div>`;
         return;
     }
-
 
     // Categorize and render gigs
     const underway = validGigs.filter(gig => new Date(gig.start_timestamp) <= currentTime);
