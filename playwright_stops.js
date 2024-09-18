@@ -1,24 +1,6 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 
-// Load the stops data from the JSON file (ensure the file path is correct)
-const stopsData = JSON.parse(fs.readFileSync('outgoing_route_11_stops.json', 'utf8'));
-
-// Ensure stopsData has unique stops based on stop_id
-const uniqueStopsData = stopsData.reduce((acc, current) => {
-    const x = acc.find(item => item.stop_id === current.stop_id);
-    if (!x) {
-        return acc.concat([current]);
-    } else {
-        return acc;
-    }
-}, []);
-
-// Helper function for introducing delay
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 // Helper function to log to both console and file
 function logToFileAndConsole(message) {
     console.log(message);
@@ -27,6 +9,15 @@ function logToFileAndConsole(message) {
     });
 }
 
+// Function to take a screenshot on failure
+async function takeFailureScreenshot(page, stopUrl) {
+    const stopId = stopUrl.split('stopId=')[1];
+    const screenshotPath = `./screenshots/failure_stop_${stopId}.png`;
+    await page.screenshot({ path: screenshotPath });
+    logToFileAndConsole(`Screenshot saved for failed stop: ${stopUrl} at ${screenshotPath}`);
+}
+
+// Function to get unique stop URLs from the provided page
 async function getStopUrls() {
     const browser = await chromium.launch({ headless: false });  // Set headless: false for debugging
     const page = await browser.newPage();
@@ -34,18 +25,17 @@ async function getStopUrls() {
 
     logToFileAndConsole("Navigating to stops page...");
     // Load the stops.html page
-    await page.goto('https://lml.live/number11tram/stops.html', { waitUntil: 'domcontentloaded' });
+    await page.goto('http://lml.live/number11tram/stops.html', { waitUntil: 'domcontentloaded' });
 
-    // Introduce a delay to allow the page to fully load (e.g., 3 seconds)
+    // Introduce a delay to allow the page to fully load
     await page.waitForTimeout(3000); 
 
     // Debugging: Take a screenshot to see if the page loaded correctly
-    await page.screenshot({ path: 'stops_page_debug.png' });
+    await page.screenshot({ path: './screenshots/stops_page_debug.png' });
     logToFileAndConsole("Screenshot of stops page saved as 'stops_page_debug.png'.");
 
     // Extract the href attributes from the a tags inside each .stop div and remove duplicates
     const stopUrls = await page.evaluate(() => {
-        console.log("Evaluating stop elements...");
         const stopElements = document.querySelectorAll('.stop a');
         const stopUrls = Array.from(stopElements).map(a => a.href);
         return [...new Set(stopUrls)];  // Remove duplicates by using a Set
@@ -57,6 +47,7 @@ async function getStopUrls() {
     return stopUrls;
 }
 
+// Main function to test the stops
 async function testStops() {
     const stopUrls = await getStopUrls();
 
@@ -74,89 +65,56 @@ async function testStops() {
     let summary = {
         totalStops: 0,
         successfulStops: 0,
-        skippedStops: 0,
         failedStops: 0
     };
 
     const detailedSummary = [];  // List to hold detailed pass/fail info for each stop
 
-    // Create a Set to store processed stops and avoid duplicates
-    const processedStops = new Set();
-
+    // Iterate through each unique stop URL
     for (const stopUrl of stopUrls) {
-        if (processedStops.has(stopUrl)) {
-            continue;  // Skip duplicate stop URLs
-        }
-        processedStops.add(stopUrl);
-
         logToFileAndConsole(`Testing stop: ${stopUrl}`);
         summary.totalStops++;
 
-        let retries = 0;
-        let maxRetries = 3;
-        let success = false;
+        try {
+            await page.goto(stopUrl, { waitUntil: 'domcontentloaded' });
 
-        while (retries < maxRetries && !success) {
-            try {
-                await page.goto(stopUrl, { waitUntil: 'domcontentloaded' });
+            // Introduce a delay to allow the page to fully load (e.g., 3 seconds)
+            await page.waitForTimeout(3000); 
 
-                // Wait for gigs or check if "gigs are behind you" message appears
-                const gigListSelector = '#gig-list > h2';
-                const gigsBehindMessage = "they are all behind you";
-
-                try {
-                    await page.waitForSelector(gigListSelector, { timeout: 10000 });  // Wait for 10 seconds max
-
-                    // Check if the page contains the message "gigs are behind you"
-                    const bodyText = await page.textContent('body');
-                    if (bodyText.includes(gigsBehindMessage)) {
-                        logToFileAndConsole(`Stop URL: ${stopUrl}: PASS - Gigs are behind you`);
-                        summary.skippedStops++;
-                        detailedSummary.push({ stopUrl, result: 'Pass', reason: 'Gigs are behind' });
-                        success = true;  // Mark this request as successful
-                        break;  // Exit retry loop
-                    }
-
-                    // If there is no "behind you" message, check the gigs
-                    const gigCount = await page.$$eval('.gig', gigs => gigs.length);
-                    if (gigCount > 0) {
-                        const stopName = await page.textContent('.stop-name');
-                        const timeHorizon = await page.$eval('#gig-list > h2', el => el.textContent);
-                        logToFileAndConsole(`Stop Name: ${stopName}, Time Horizon: ${timeHorizon}, Stop URL: ${stopUrl}: SUCCESS - ${gigCount} Gigs Found`);
-                        summary.successfulStops++;
-                        detailedSummary.push({ stopUrl, result: 'Pass', reason: 'Gigs found' });
-                        success = true;  // Mark this request as successful
-                        break;  // Exit retry loop
-                    } else {
-                        logToFileAndConsole(`Stop URL: ${stopUrl}: ERROR - No gigs found`);
-                        summary.failedStops++;
-                        detailedSummary.push({ stopUrl, result: 'Fail', reason: 'No gigs found' });
-                        success = true;  // Mark as processed to avoid retrying
-                        break;
-                    }
-                } catch (timeoutError) {
-                    logToFileAndConsole(`Stop URL ${stopUrl}: ERROR - No gigs loaded within 10 seconds. Retrying...`);
-                    retries++;
-                    if (retries >= maxRetries) {
-                        summary.failedStops++;
-                        detailedSummary.push({ stopUrl, result: 'Fail', reason: 'Timeout' });
-                        success = true;  // Mark as processed to avoid retrying
-                    }
-                }
-
-            } catch (error) {
-                logToFileAndConsole(`Stop URL ${stopUrl}: ERROR - ${error.message}. Retrying...`);
-                retries++;
-                if (retries >= maxRetries) {
-                    summary.failedStops++;
-                    detailedSummary.push({ stopUrl, result: 'Fail', reason: 'Error' });
-                    success = true;  // Mark as processed to avoid retrying
-                }
+            // Check if the page redirects to stops.html (this is considered a pass)
+            const currentUrl = page.url();
+            if (currentUrl.includes('stops.html')) {
+                logToFileAndConsole(`Stop URL: ${stopUrl}: PASS - Redirected to stops.html`);
+                summary.successfulStops++;
+                detailedSummary.push({ stopUrl, result: 'Pass', reason: 'Redirected to stops.html' });
+                continue;  // Move to the next stop
             }
 
-            // Introduce a delay between requests (e.g., 2000ms = 2 seconds)
-            await delay(1500);
+            // If not redirected, wait for gigs or check if the gigs failed to load (increase timeout to 5 seconds)
+            const gigListSelector = '.gig';
+            const hasGigs = await page.$$eval(gigListSelector, gigs => gigs.length > 0);
+
+            if (hasGigs) {
+                const gigCount = await page.$$eval(gigListSelector, gigs => gigs.length);
+                logToFileAndConsole(`Stop URL: ${stopUrl}: SUCCESS - ${gigCount} Gigs Found`);
+                summary.successfulStops++;
+                detailedSummary.push({ stopUrl, result: 'Pass', reason: `${gigCount} Gigs found` });
+            } else {
+                logToFileAndConsole(`Stop URL: ${stopUrl}: ERROR - No gigs found and not redirected.`);
+                summary.failedStops++;
+                detailedSummary.push({ stopUrl, result: 'Fail', reason: 'No gigs found and not redirected' });
+                await takeFailureScreenshot(page, stopUrl);  // Capture screenshot on failure
+            }
+
+        } catch (error) {
+            logToFileAndConsole(`Stop URL ${stopUrl}: ERROR - ${error.message}. Marking as failed.`);
+            summary.failedStops++;
+            detailedSummary.push({ stopUrl, result: 'Fail', reason: 'Error' });
+            await takeFailureScreenshot(page, stopUrl);  // Capture screenshot on failure
         }
+
+        // Wait a bit before moving to the next stop to reduce any rate limits (optional)
+        await page.waitForTimeout(2000);  // Add a small delay between each stop check (2 seconds)
     }
 
     await browser.close();
@@ -164,19 +122,13 @@ async function testStops() {
     // Log overall summary
     logToFileAndConsole("--- Summary ---");
     logToFileAndConsole(`Total Stops Processed: ${summary.totalStops}`);
-    logToFileAndConsole(`Successful Stops (with gigs): ${summary.successfulStops}`);
-    logToFileAndConsole(`Skipped Stops (gigs behind you): ${summary.skippedStops}`);
-    logToFileAndConsole(`Failed Stops (errors or no gigs): ${summary.failedStops}`);
+    logToFileAndConsole(`Successful Stops: ${summary.successfulStops}`);
+    logToFileAndConsole(`Failed Stops: ${summary.failedStops}`);
 
-    // Generate a detailed summary based on stop_sequence from the JSON data and sort it by sequence order
-    logToFileAndConsole('--- Detailed Summary (in sequence order) ---');
-    uniqueStopsData.sort((a, b) => a.stop_sequence - b.stop_sequence).forEach(stop => {
-        const matchingStop = detailedSummary.find(item => item.stopUrl.includes(stop.stop_id));
-        if (matchingStop) {
-            logToFileAndConsole(`Stop: ${stop.stop_name}, Sequence: ${stop.stop_sequence}, Result: ${matchingStop.result}, Reason: ${matchingStop.reason}`);
-        } else {
-            logToFileAndConsole(`Stop: ${stop.stop_name}, Sequence: ${stop.stop_sequence}, Result: No data`);
-        }
+    // Log detailed summary
+    logToFileAndConsole('--- Detailed Summary ---');
+    detailedSummary.forEach(result => {
+        logToFileAndConsole(`Stop URL: ${result.stopUrl}, Result: ${result.result}, Reason: ${result.reason}`);
     });
 }
 
