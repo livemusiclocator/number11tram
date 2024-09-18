@@ -2,6 +2,10 @@ import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/h
 import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
 // Render gigs based on stop sequence
+import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
+import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
+
+// Render gigs based on stop sequence
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
     if (!nextTramData || !nextTramData.time) { 
         console.error("No valid tram found.");
@@ -33,10 +37,8 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
 
     // Check if the current stop is beyond all venue stops
     if (currentStopSequence > highestVenueStopSequence) {
-        gigList.innerHTML = `
-            <div style="text-align: center; margin-top: 20px;">
-                <h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and walk or tram back that way.</h2>
-            </div>`;
+        const stopName = encodeURIComponent(currentStop.stop_name);  // Encode stop name for URL
+        window.location.href = `/path/to/stoptoofar.html?stopName=${stopName}`;
         return;
     }
 
@@ -73,6 +75,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
+
 
 // Append gigs to the page
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {

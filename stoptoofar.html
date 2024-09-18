@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Too Far - No More Gigs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #0078D4;
+        }
+        h2 {
+            color: #0099FF;
+            margin-top: 20px;
+        }
+        .content {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="stop-name">Stop Name</h1>
+    <div class="content">
+        <h2>If you want to catch a gig on the Number 11 tram line, they are all behind you. Cross the road and walk or tram back that way.</h2>
+    </div>
+
+    <script>
+        // Dynamically update stop name based on URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const stopName = params.get('stopName') || "Unknown Stop";
+        document.getElementById('stop-name').textContent = stopName;
+    </script>
+</body>
+</html>
