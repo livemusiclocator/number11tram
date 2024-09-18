@@ -33,11 +33,11 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
     // Check if the current stop is beyond all venue stops
-    if (currentStopSequence > highestVenueStopSequence) {
-        const stopName = encodeURIComponent(currentStop.stop_name);  // Encode stop name for URL
-        window.location.href = `stoptoofar.html?stopName=${stopName}`;
-        return;
-    }
+if (currentStopSequence > highestVenueStopSequence) {
+    const stopId = currentStop.stop_id;  // Use stop_id for URL
+    window.location.href = `stoptoofar.html?stopId=${stopId}`;
+    return;
+}
 
     // Filter gigs based on time horizon and stop sequence
     const validGigs = gigs.filter(gig => {
