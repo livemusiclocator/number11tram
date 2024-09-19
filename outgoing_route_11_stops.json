@@ -39,7 +39,7 @@
       "ticket_zones": [
         1
       ]
-      
+
     },
     "interchange": [],
     "stop_id": 2544,
@@ -1010,7 +1010,7 @@
       ]
     },
     "interchange": [],
-    "stop_id": 2483,
+    "stop_id": 2484,
     "stop_name": "St Vincents Plaza/Victoria Pde #12",
     "stop_landmark": "St Vincents Plaza"
   },
