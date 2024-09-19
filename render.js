@@ -1,15 +1,4 @@
-import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
-
-// Render gigs based on stop sequence
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
-    if (!nextTramData || !nextTramData.time) { 
-        console.error("No valid tram found.");
-        return;
-    }
-
-    console.log("Next tram found at:", nextTramData.time);
-
     const currentTime = new Date();
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
@@ -23,14 +12,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     const currentStopSequence = currentStop.stop_sequence;
     console.log(`Current Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
 
-    // Check if the current stop is a venue stop
-    const isVenueStop = Object.values(venueStopMapping).includes(currentStopId);
-    if (isVenueStop) {
-        console.log(`The current stop (${currentStop.stop_name}) is a venue stop.`);
-    } else {
-        console.log(`The current stop (${currentStop.stop_name}) is NOT a venue stop.`);
-    }
-
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
@@ -39,12 +20,21 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     }, 0);
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
-    // Check if the current stop is beyond all venue stops
+    // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
     if (currentStopSequence > highestVenueStopSequence) {
+        console.log(`Current stop is beyond all venue stops. Redirecting to stoptoofar.`);
         const stopId = currentStop.stop_id;  // Use stop_id for URL
         window.location.href = `stoptoofar.html?stopId=${stopId}`;
+        return;  // Ensure that we exit early and do not continue further
+    }
+
+    // Proceed with the rest of the logic for rendering gigs
+    if (!nextTramData || !nextTramData.time) {
+        console.error("No valid tram found.");
         return;
     }
+
+    console.log("Next tram found at:", nextTramData.time);
 
     // Filter gigs based on time horizon and stop sequence
     const validGigs = gigs.filter(gig => {
