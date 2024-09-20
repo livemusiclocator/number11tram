@@ -188,7 +188,6 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         gigDiv.appendChild(directionsLink);
 
         gigList.appendChild(gigDiv);
-    });
+    );
 }
 
-// Ensure that the script only runs when the DOM is fully loaded
