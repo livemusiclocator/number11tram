@@ -16,6 +16,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         console.error(`No stop found with stopId: ${currentStopId}`);
         return;
     }
+
     const currentStopSequence = currentStop.stop_sequence;
     let directionText = directionId == 4 ? "Outbound" : "Inbound";
     console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
@@ -23,6 +24,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     // Update Stop name with direction info
     document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
 
+    
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];

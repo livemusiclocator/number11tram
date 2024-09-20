@@ -45,6 +45,7 @@
                 const routeId = params.get('route_id'); // Get route_id from the URL
                 const directionId = params.get('direction_id'); // Get direction_id from the URL
 
+                
                 const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
                 const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
 
@@ -56,3 +57,5 @@
     </script>
 </body>
 </html>
+
+
