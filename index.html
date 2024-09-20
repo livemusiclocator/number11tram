@@ -86,12 +86,27 @@
     </div>
   </div>
   <script>
-  // Retrieve route and direction ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const routeId = urlParams.get('route_id');
-  const directionId = urlParams.get('direction_id');
+ // Determine the correct JSON file based on direction_id
+const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
 
-  
+// Fetch stop details from the correct JSON file based on stopId from URL
+fetch(jsonFile)
+    .then(response => response.json())
+    .then(stops => {
+        const params = new URLSearchParams(window.location.search);
+        const stopId = params.get('stopId');  // Get stopId from the URL
+        const routeId = params.get('route_id'); // Get route_id from the URL
+        const directionId = params.get('direction_id'); // Get direction_id from the URL
+
+        const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
+        const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
+
+        // Update the stop name in the HTML
+        let directionText = directionId == 4 ? "Outbound" : "Inbound";
+        document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
+    })
+    .catch(error => console.error("Error fetching stop data:", error));
+
 </script>
   <script type="module" src="/number11tram/app.js"></script>
 <!-- Other existing content in index.html -->
