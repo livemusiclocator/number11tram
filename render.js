@@ -1,13 +1,19 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
+import { timeConfig } from '/number11tram/config.js';
 
 // Main render function to display gigs and provide directions based on current tram location
-export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
+export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {
     const currentTime = new Date();
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
     const routeId = urlParams.get('route_id');  // Get route_id from the URL
     const directionId = urlParams.get('direction_id');  // Get direction_id from the URL
+
+    // Check if routeId and directionId are defined
+    if (!routeId || !directionId) {
+        console.error("Route ID or Direction ID is missing from URL parameters.");
+        return;
+    }
 
     // Find the current stop from the JSON file and get its stop_sequence
     const currentStop = stops.find(stop => stop.stop_id == currentStopId);
@@ -26,6 +32,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
+        if (!venueStopId) return maxSeq; // Check if venueStopId exists
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
         return venueStop ? Math.max(maxSeq, venueStop.stop_sequence) : maxSeq;
     }, 0);
@@ -50,6 +57,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     // Filter gigs based on time horizon and stop sequence
     const validGigs = gigs.filter(gig => {
         const venueStopId = venueStopMapping[gig.venue.id];
+        if (!venueStopId) return false; // Check if venueStopId exists
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
 
         // Check if the venue stop is within the current stop sequence
@@ -66,8 +74,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (validGigs.length === 0) {
         gigList.innerHTML = `
             <div style="text-align: center; margin-top: 20px;">
-                <h2>No gigs available at this stop currently.</h2>
-            </div>`;
+                <h2>No gigs available at this stop currently.</h2>`;
         return;
     }
 
@@ -93,11 +100,6 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
     const currentStop = stops.find(stop => stop.stop_id == currentStopId); // Get the current stop object
-
-    if (!currentStop) {
-        console.error(`No stop found with stopId: ${currentStopId}`);
-        return;
-    }
 
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
@@ -140,21 +142,25 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             directionsText = `You can walk from here in less than 5 minutes. Click on "Venue Directions". Enjoy Live Music!`;
         } else {
             const arrivalTime = venueArrivalTimes[gig.venue.id];
-            arrivalTime.setMinutes(arrivalTime.getMinutes() + 5);  // Account for walking time from tram stop to venue
+            if (!arrivalTime) {
+                directionsText = `No tram data available.`;
+            } else {
+                arrivalTime.setMinutes(arrivalTime.getMinutes() + 5);  // Account for walking time from tram stop to venue
 
-            let timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
-            const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
+                let timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
+                const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
 
-            // Calculate number of stops ahead
-            const venueStop = stops.find(stop => stop.stop_id == venueStopId);
-            const stopsAhead = venueStop ? venueStop.stop_sequence - currentStop.stop_sequence : 0;
+                // Calculate number of stops ahead
+                const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+                const stopsAhead = venueStop ? venueStop.stop_sequence - currentStop.stop_sequence : 0;
 
-            // Add stops ahead info to directions text
-            let stopsAheadText = stopsAhead > 0 ? `This gig is ${stopsAhead} tram stop${stopsAhead > 1 ? 's' : ''} ahead on this line.` : '';
+                // Add stops ahead info to directions text
+                let stopsAheadText = stopsAhead > 0 ? `This gig is ${stopsAhead} tram stop${stopsAhead > 1 ? 's' : ''} ahead on this line.` : '';
 
-            if (timeDiffInMinutes > 0) {
-                const hoursLate = Math.floor(timeDiffInMinutes / 60);
-                const minutesLate = Math.round(timeDiffInMinutes % 60);
+                if (timeDiffInMinutes > 0) {
+                    const hoursLate = Math.floor(timeDiffInMinutes / 60);
+                    const minutesLate = Math.round(timeDiffInMinutes % 60);
+
                 directionsText = `${stopsAheadText} You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
             } else if (timeDiffInMinutes < 0) {
                 const hoursEarly = Math.floor(-timeDiffInMinutes / 60);

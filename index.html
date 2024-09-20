@@ -1,132 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Add this script in the head section of index.html and stoptoofar.html -->
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const directionId = urlParams.get('direction_id');
-    let directionText = directionId == 4 ? "Outbound" : "Inbound";
-
-    // Update the document title with direction
-    document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
-</script>
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Route 11 OutBound Gigs</title>
+    <title>Number 11 Tram Stop QR Codes</title>
+
+    <!-- Load necessary libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
     <style>
         h1 {
             text-align: center;
             font-size: 125%;
         }
-
         body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
-
         .stop-name {
             text-align: center;
             font-size: 1.5em;
             font-weight: bold;
             color: #4EABE9;
-            margin-bottom: 10px; /* Adds a little space between the stop name and the logo */
+            margin-bottom: 10px;
         }
-
         .gig {
             padding: 15px;
             margin: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-
         h2 {
             color: rgb(78, 171, 233);
             font-size: 1.5em;
             margin-bottom: 0.5em;
         }
-
         a {
             color: #337ab7;
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
         @media screen and (max-width: 600px) {
             body {
                 font-size: 1.2em;
             }
-
             .gig {
                 margin: 5px;
                 padding: 10px;
             }
-
             h2 {
                 font-size: 1.2em;
             }
         }
     </style>
-
 </head>
 <body>
-  <div class="container">
-    <!-- Placeholder for the stop name -->
-    <div id="stop-name-placeholder" class="stop-name">Loading Stop Name...</div>
-    
-    <!-- Logo goes below the stop name -->
-    <a href="https://lml.live" target="_blank">
-        <div style="text-align: center;">
-            <img src="/number11tram/LML_Logo.png" alt="Live Music Locator Logo" style="width: 200px;" />
+    <div class="container">
+        <!-- Placeholder for the stop name -->
+        <div id="stop-name-placeholder" class="stop-name">Loading Stop Name...</div>
+        
+        <!-- Logo goes below the stop name -->
+        <a href="https://lml.live" target="_blank">
+            <div style="text-align: center;">
+                <img src="/number11tram/LML_Logo.png" alt="Live Music Locator Logo" style="width: 200px;" />
+            </div>
+        </a>
+
+        <h1>Why Not Catch Some Live Music on the Number 11 Tram line?</h1>
+
+        <div id="gig-list">
+            <!-- Gigs will be dynamically loaded here -->
         </div>
-    </a>
-
-    <h1>Why Not Catch Some Live Music on the Number 11 Tram line?</h1>
-
-    <div id="gig-list">
-      <!-- Gigs will be dynamically loaded here -->
     </div>
-  </div>
-  <script>
-    // Retrieve route and direction ID from URL
-    const routeId = urlParams.get('route_id');
-    
-    // Now, use directionId after it is declared
-    // Determine the correct JSON file based on direction_id
-    const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
-    
-    // Fetch stop details from the correct JSON file based on stopId from URL
-    fetch(jsonFile)
-        .then(response => response.json())
-        .then(stops => {
-            const stopId = urlParams.get('stopId');  // Get stopId from the URL
-            const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
-            const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
+  
+    <!-- Initialization Script -->
+    <script>
+        // Retrieve parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const stopId = urlParams.get('stopId');
+        const routeId = urlParams.get('route_id');
+        const directionId = urlParams.get('direction_id');
 
-            // Update the stop name in the HTML
-            let directionText = directionId == 4 ? "Outbound" : "Inbound";
-            document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
-        })
-        .catch(error => console.error("Error fetching stop data:", error));
-</script>
+        // Update the document title based on direction
+        const directionText = directionId == 4 ? "Outbound" : "Inbound";
+        document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
 
-  <script type="module" src="/number11tram/app.js"></script>
-<!-- Other existing content in index.html -->
+        // Call your initialization function or import it from another module
+        document.addEventListener('DOMContentLoaded', () => {
+            // This call should handle all the initialization logic
+            // Initialize all data and components, including stop name and gigs
+            initializePage(stopId, routeId, directionId);
+        });
 
-<footer style="text-align: center; margin-top: 20px;">
-    <p>
-        Live Music Data courtesy of <a href="http://lml.live" target="_blank">Live Music Locator</a>: <a href="http://lml.live" target="_blank">http://lml.live</a><br>
-        PTV Data Licensed from Public Transport Victoria under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.
-    </p>
-</footer>
+        // Function to initialize the page
+        async function initializePage(stopId, routeId, directionId) {
+            // Fetch and update the stop name
+            try {
+                const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+                const response = await fetch(jsonFile);
+                const stops = await response.json();
+                const stop = stops.find(s => s.stop_id == stopId);
+                const stopName = stop ? stop.stop_name : "Unknown Stop";
+                document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
+            } catch (error) {
+                console.error("Error fetching stop data:", error);
+            }
+
+            // Now call renderGigs or any other functions to display gigs or other data
+            try {
+                // Fetch data or initialize other components as needed
+                // renderGigs();
+            } catch (error) {
+                console.error("Error during page initialization:", error);
+            }
+        }
+    </script>
+
+    <!-- Import JavaScript modules -->
+    <script type="module" src="/number11tram/app.js"></script>
+
+    <footer style="text-align: center; margin-top: 20px;">
+        <p>
+            Live Music Data courtesy of <a href="http://lml.live" target="_blank">Live Music Locator</a>: <a href="http://lml.live" target="_blank">http://lml.live</a><br>
+            PTV Data Licensed from Public Transport Victoria under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.
+        </p>
+    </footer>
 </body>
-
 </html>
