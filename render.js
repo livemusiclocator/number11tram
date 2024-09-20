@@ -196,11 +196,11 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     // Fetch the stop data and gigs, then call renderGigs
     Promise.all([
         fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
-        fetchGigs(),
+        fetchGigs(), // This should now work correctly
         fetchNextTram(urlParams.get('stopId'), directionId, urlParams.get('route_id'))
     ])
     .then(([stops, gigs, nextTramData]) => {
-        if (!nextTramData || !nextTramData.runId) {
+      if (!nextTramData || !nextTramData.runId) {
             console.error("No valid tram data available.");
             return;
         }
