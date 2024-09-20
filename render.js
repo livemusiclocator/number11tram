@@ -145,6 +145,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             }
         }
 
+        
         // Add elements to the gigDiv in the correct order
         gigDiv.appendChild(title);
         gigDiv.appendChild(genreTagsDiv);
