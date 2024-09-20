@@ -186,6 +186,3 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
 }
 
 // Ensure that the script only runs when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Insert code here to call renderGigs or other initialization logic
-});
