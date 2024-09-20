@@ -85,6 +85,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
 
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
+    const currentStop = stops.find(stop => stop.stop_id == currentStopId); // Get the current stop object
 
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
@@ -132,20 +133,26 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             let timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
             const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
 
+            // Calculate number of stops ahead
+            const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+            const stopsAhead = venueStop ? venueStop.stop_sequence - currentStop.stop_sequence : 0;
+
+            // Add stops ahead info to directions text
+            let stopsAheadText = stopsAhead > 0 ? `This gig is ${stopsAhead} tram stop${stopsAhead > 1 ? 's' : ''} ahead on this line.` : '';
+
             if (timeDiffInMinutes > 0) {
                 const hoursLate = Math.floor(timeDiffInMinutes / 60);
                 const minutesLate = Math.round(timeDiffInMinutes % 60);
-                directionsText = `You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
+                directionsText = `${stopsAheadText} You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
             } else if (timeDiffInMinutes < 0) {
                 const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
                 const minutesEarly = Math.round(-timeDiffInMinutes % 60);
-                directionsText = `If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
+                directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
             } else {
-                directionsText = `You'll arrive just in time!`;
+                directionsText = `${stopsAheadText} You'll arrive just in time!`;
             }
         }
 
-        
         // Add elements to the gigDiv in the correct order
         gigDiv.appendChild(title);
         gigDiv.appendChild(genreTagsDiv);
