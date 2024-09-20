@@ -37,7 +37,7 @@
         }
         a {
             color: #337ab7;
-            text-decoration: none;
+            text-decoration: none.
         }
         a:hover {
             text-decoration: underline;
@@ -51,7 +51,7 @@
                 padding: 10px;
             }
             h2 {
-                font-size: 1.2em;
+                font-size: 1.2em.
             }
         }
     </style>
@@ -108,10 +108,22 @@
                 console.error("Error fetching stop data:", error);
             }
 
-            // Now call renderGigs or any other functions to display gigs or other data
+            // Fetch data and render gigs
             try {
-                // Fetch data or initialize other components as needed
-                // renderGigs();
+                const [stops, gigs, nextTramData] = await Promise.all([
+                    fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+                    fetchGigs(),
+                    fetchNextTram(stopId, directionId, routeId)
+                ]);
+
+                if (!nextTramData || !nextTramData.runId) {
+                    console.error("No valid tram data available.");
+                    return;
+                }
+
+                const venueArrivalTimes = await calculateVenueArrivalTimes(gigs, nextTramData);
+                renderGigs(gigs, stops, document.getElementById('gig-list'), venueArrivalTimes, nextTramData, venueStopMapping);
+
             } catch (error) {
                 console.error("Error during page initialization:", error);
             }

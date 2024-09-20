@@ -1,5 +1,5 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js';
+import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
 // Main render function to display gigs and provide directions based on current tram location
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {
@@ -160,14 +160,14 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
                 if (timeDiffInMinutes > 0) {
                     const hoursLate = Math.floor(timeDiffInMinutes / 60);
                     const minutesLate = Math.round(timeDiffInMinutes % 60);
-
-                directionsText = `${stopsAheadText} You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
-            } else if (timeDiffInMinutes < 0) {
-                const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
-                const minutesEarly = Math.round(-timeDiffInMinutes % 60);
-                directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
-            } else {
-                directionsText = `${stopsAheadText} You'll arrive just in time!`;
+                    directionsText = `${stopsAheadText} You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
+                } else if (timeDiffInMinutes < 0) {
+                    const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
+                    const minutesEarly = Math.round(-timeDiffInMinutes % 60);
+                    directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
+                } else {
+                    directionsText = `${stopsAheadText} You'll arrive just in time!`;
+                }
             }
         }
 
@@ -188,6 +188,30 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         gigDiv.appendChild(directionsLink);
 
         gigList.appendChild(gigDiv);
-    );
+    });
 }
 
+// Ensure that the script only runs when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the necessary elements from the page
+    const gigList = document.getElementById('gig-list');
+    const urlParams = new URLSearchParams(window.location.search);
+    const directionId = urlParams.get('direction_id');
+
+    // Fetch the stop data and gigs, then call renderGigs
+    Promise.all([
+        fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+        fetchGigs(),
+        fetchNextTram(urlParams.get('stopId'), directionId, urlParams.get('route_id'))
+    ])
+    .then(([stops, gigs, nextTramData]) => {
+        if (!nextTramData || !nextTramData.runId) {
+            console.error("No valid tram data available.");
+            return;
+        }
+        return calculateVenueArrivalTimes(gigs, nextTramData).then(venueArrivalTimes => {
+            renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping);
+        });
+    })
+    .catch(error => console.error("Error initializing the page:", error));
+});
