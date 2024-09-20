@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Add this script in the head section of index.html and stoptoofar.html -->
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const directionId = urlParams.get('direction_id');
+    let directionText = directionId == 4 ? "Outbound" : "Inbound";
+
+    // Update the document title with direction
+    document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Too Far - No More Gigs</title>
@@ -40,7 +50,6 @@
         const params = new URLSearchParams(window.location.search);
         const stopId = params.get('stopId');  // Get stopId from the URL
         const routeId = params.get('route_id'); // Get route_id from the URL
-        const directionId = params.get('direction_id'); // Get direction_id from the URL
 
         // Determine the correct JSON file based on direction_id
         const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';

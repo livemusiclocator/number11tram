@@ -74,7 +74,21 @@ export async function fetchNextTram(stopId, directionId, routeId) {
     return null;
 }
 
-
+// Fetch the appropriate tram stops based on direction ID
+export async function fetchTramStops(directionId) {
+    try {
+        const stopsFile = directionId == 5 ? 'inboundstops-11.json' : 'outgoing_route_11_stops.json';
+        const response = await fetch(`/number11tram/${stopsFile}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching tram stops: ${response.status} ${response.statusText}`);
+        }
+        const tramStops = await response.json();
+        return tramStops;
+    } catch (error) {
+        console.error("Error fetching tram stops:", error);
+        return []; // Return an empty array to avoid further errors
+    }
+}
 
 // Calculate travel time for all venues based on the next tram's route
 export async function calculateVenueArrivalTimes(gigs, nextTramData) {
@@ -88,7 +102,7 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
     console.log("Tram Route Data for Run ID", runId, ":", tramRoute);
 
     const venueArrivalTimes = {};
-    const stops = await fetchTramStops(); 
+    const stops = await fetchTramStops(nextTramData.directionId); // Fetch stops based on direction ID
 
     for (const gig of gigs) {
         const venueId = gig.venue.id;
@@ -103,6 +117,8 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
 
         if (!venueStopData) {
             console.warn(`Venue stop ${venueStopId} not found in tram route for run ID: ${runId}. Finding next closest stop...`);
+            const closestStopIndex = stops.find
+            // Continue from the last explanation
             const closestStopIndex = stops.findIndex(stop => String(stop.stop_id) === String(venueStopId));
 
             if (closestStopIndex !== -1) {
@@ -147,21 +163,6 @@ async function fetchTramRoute(runId) {
         console.error("Error fetching tram route:", error);
     }
     return null;
-}
-export async function fetchTramStops(directionId) {
-    try {
-        // Choose the correct file based on direction ID
-        const stopsFile = directionId == 5 ? 'inboundstops-11.json' : 'outgoing_route_11_stops.json';
-        const response = await fetch(`/number11tram/${stopsFile}`);
-        if (!response.ok) {
-            throw new Error(`Error fetching tram stops: ${response.status} ${response.statusText}`);
-        }
-        const tramStops = await response.json();
-        return tramStops;
-    } catch (error) {
-        console.error("Error fetching tram stops:", error);
-        return []; // Return an empty array to avoid further errors
-    }
 }
 
 export { venueStopMapping };

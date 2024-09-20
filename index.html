@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Add this script in the head section of index.html and stoptoofar.html -->
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const directionId = urlParams.get('direction_id');
+    let directionText = directionId == 4 ? "Outbound" : "Inbound";
+
+    // Update the document title with direction
+    document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
+</script>
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
@@ -86,28 +96,28 @@
     </div>
   </div>
   <script>
- // Determine the correct JSON file based on direction_id
-const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+    // Retrieve route and direction ID from URL
+    const routeId = urlParams.get('route_id');
+    
+    // Now, use directionId after it is declared
+    // Determine the correct JSON file based on direction_id
+    const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+    
+    // Fetch stop details from the correct JSON file based on stopId from URL
+    fetch(jsonFile)
+        .then(response => response.json())
+        .then(stops => {
+            const stopId = urlParams.get('stopId');  // Get stopId from the URL
+            const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
+            const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
 
-// Fetch stop details from the correct JSON file based on stopId from URL
-fetch(jsonFile)
-    .then(response => response.json())
-    .then(stops => {
-        const params = new URLSearchParams(window.location.search);
-        const stopId = params.get('stopId');  // Get stopId from the URL
-        const routeId = params.get('route_id'); // Get route_id from the URL
-        const directionId = params.get('direction_id'); // Get direction_id from the URL
-
-        const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
-        const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
-
-        // Update the stop name in the HTML
-        let directionText = directionId == 4 ? "Outbound" : "Inbound";
-        document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
-    })
-    .catch(error => console.error("Error fetching stop data:", error));
-
+            // Update the stop name in the HTML
+            let directionText = directionId == 4 ? "Outbound" : "Inbound";
+            document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
+        })
+        .catch(error => console.error("Error fetching stop data:", error));
 </script>
+
   <script type="module" src="/number11tram/app.js"></script>
 <!-- Other existing content in index.html -->
 
