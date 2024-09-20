@@ -1,6 +1,7 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
 import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
+
 // Main render function to display gigs and provide directions based on current tram location
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
     const currentTime = new Date();
@@ -20,7 +21,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
 
     // Update Stop name with direction info
-    document.getElementById('stop-name').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
+    document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
 
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
