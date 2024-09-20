@@ -2,25 +2,12 @@ import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/h
 import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
 
 // Main render function to display gigs and provide directions based on current tram location
-export async function renderGigs(gigs, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
+export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
     const currentTime = new Date();
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
     const routeId = urlParams.get('route_id');  // Get route_id from the URL
     const directionId = urlParams.get('direction_id');  // Get direction_id from the URL
-
-    // Determine the correct JSON file based on direction_id
-    const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
-
-    // Fetch the correct stops based on direction
-    let stops;
-    try {
-        const response = await fetch(jsonFile);
-        stops = await response.json();
-    } catch (error) {
-        console.error("Error loading stops:", error);
-        return;
-    }
 
     // Find the current stop from the JSON file and get its stop_sequence
     const currentStop = stops.find(stop => stop.stop_id == currentStopId);
@@ -107,6 +94,11 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
     const currentStop = stops.find(stop => stop.stop_id == currentStopId); // Get the current stop object
 
+    if (!currentStop) {
+        console.error(`No stop found with stopId: ${currentStopId}`);
+        return;
+    }
+
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
         gigDiv.classList.add("gig");
@@ -151,7 +143,6 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             arrivalTime.setMinutes(arrivalTime.getMinutes() + 5);  // Account for walking time from tram stop to venue
 
             let timeDiffInMinutes = (arrivalTime - gigStartTime) / 60000;
-
             const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
 
             // Calculate number of stops ahead
@@ -168,8 +159,9 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             } else if (timeDiffInMinutes < 0) {
                 const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
                 const minutesEarly = Math.round(-timeDiffInMinutes % 60);
-                directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} before the gig starts.`;
-
+                directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
+            } else {
+                directionsText = `${stopsAheadText} You'll arrive just in time!`;
             }
         }
 
@@ -192,3 +184,8 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         gigList.appendChild(gigDiv);
     });
 }
+
+// Ensure that the script only runs when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Insert code here to call renderGigs or other initialization logic
+});
