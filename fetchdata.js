@@ -117,7 +117,6 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
 
         if (!venueStopData) {
             console.warn(`Venue stop ${venueStopId} not found in tram route for run ID: ${runId}. Finding next closest stop...`);
-            const closestStopIndex = stops.find
             // Continue from the last explanation
             const closestStopIndex = stops.findIndex(stop => String(stop.stop_id) === String(venueStopId));
 
