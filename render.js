@@ -191,13 +191,6 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     });
 }
 
-// Ensure that the script only runs when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Get the necessary elements from the page
-    const gigList = document.getElementById('gig-list');
-    const urlParams = new URLSearchParams(window.location.search);
-    const directionId = urlParams.get('direction_id');
-
     // Fetch the stop data and gigs, then call renderGigs
     Promise.all([
         fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
@@ -214,4 +207,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     })
     .catch(error => console.error("Error initializing the page:", error));
-});
