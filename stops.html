@@ -15,29 +15,21 @@
         img {
             max-width: 150px;
         }
-        .toggle-button {
-            background-color: #0078D4;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
+        button {
             margin-bottom: 20px;
-        }
-        .toggle-button.active {
-            background-color: #FF6347;
         }
     </style>
 </head>
 
 <body>
-    <h1 id="heading">Outgoing Number 11 Tram Stop QR Codes</h1>
-    <button id="toggleButton" class="toggle-button">Switch to Inbound</button>
+    <h1 id="title">Outgoing Number 11 Tram Stop QR Codes</h1>
+    <button id="toggle-direction">Switch to Inbound</button> <!-- Toggle Button -->
     <div id="stop-list">
         <!-- QR codes and URLs will be injected here -->
     </div>
 
     <script>
-        let currentDirection = 4; // Start with 'Outbound' (4), 'Inbound' is 5
+        let isOutbound = true; // State to track whether it's Outbound or Inbound
 
         async function loadStopData() {
             try {
@@ -47,29 +39,15 @@
                 // Sort stops by stop_sequence to ensure correct outbound order
                 stops = stops.sort((a, b) => a.stop_sequence - b.stop_sequence);
 
-                // Render the stops initially in 'Outbound' state
-                renderStops(stops, currentDirection);
-
-                // Event listener for the toggle button
-                document.getElementById('toggleButton').addEventListener('click', () => {
-                    currentDirection = currentDirection === 4 ? 5 : 4; // Toggle between 4 and 5
-                    const headingText = currentDirection === 4 ? 'Outgoing Number 11 Tram Stop QR Codes' : 'Inbound Number 11 Tram Stop QR Codes';
-                    document.getElementById('heading').textContent = headingText;
-
-                    const buttonText = currentDirection === 4 ? 'Switch to Inbound' : 'Switch to Outbound';
-                    document.getElementById('toggleButton').textContent = buttonText;
-
-                    renderStops(stops, currentDirection); // Re-render the stops with the new direction
-                });
+                renderStops(stops);
             } catch (error) {
                 console.error('Error loading stop data:', error);
             }
         }
 
-        // Function to render the stops based on the direction
-        function renderStops(stops, directionId) {
+        function renderStops(stops) {
             const stopList = document.getElementById('stop-list');
-            stopList.innerHTML = ''; // Clear previous stops
+            stopList.innerHTML = ''; // Clear existing stops
 
             stops.forEach(stop => {
                 const stopDiv = document.createElement('div');
@@ -78,9 +56,10 @@
                 const stopId = stop.stop_id;
                 const stopName = stop.stop_name;
                 const stopLandmark = stop.stop_landmark || 'No Landmark';
+                const directionId = isOutbound ? 4 : 5; // Update direction based on state
 
-                // Update URL for each stop with the current direction
-                const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}&direction_id=${directionId}`;
+                // Update URL for each stop
+                const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}&route_id=3343&direction_id=${directionId}`;
                 const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
 
                 stopDiv.innerHTML = `
@@ -93,7 +72,17 @@
 
                 stopList.appendChild(stopDiv);
             });
+
+            // Update title based on direction
+            document.getElementById('title').textContent = isOutbound ? "Outgoing Number 11 Tram Stop QR Codes" : "Incoming Number 11 Tram Stop QR Codes";
+            document.getElementById('toggle-direction').textContent = isOutbound ? "Switch to Inbound" : "Switch to Outbound";
         }
+
+        // Toggle direction and re-render stops
+        document.getElementById('toggle-direction').addEventListener('click', () => {
+            isOutbound = !isOutbound;
+            loadStopData(); // Reload stops with updated direction
+        });
 
         // Load stop data when the page is ready
         document.addEventListener('DOMContentLoaded', loadStopData);
