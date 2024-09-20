@@ -1,6 +1,5 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
-
+import { timeConfig } from '/number11tram/config.js';
 
 // Main render function to display gigs and provide directions based on current tram location
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {  
@@ -24,7 +23,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     // Update Stop name with direction info
     document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
 
-    
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
@@ -68,8 +66,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (validGigs.length === 0) {
         gigList.innerHTML = `
             <div style="text-align: center; margin-top: 20px;">
-                <h2>No gigs available at this stop currently.</h2>
-            </div>`;
+                <h2>No gigs available at this stop currently.</h2>`;
         return;
     }
 
@@ -82,7 +79,6 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
-
 
 // Append gigs to the page with time categories and walking/tram directions
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {
@@ -157,9 +153,8 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             } else if (timeDiffInMinutes < 0) {
                 const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
                 const minutesEarly = Math.round(-timeDiffInMinutes % 60);
-                directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
-            } else {
-                directionsText = `${stopsAheadText} You'll arrive just in time!`;
+                directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hours
+
             }
         }
 

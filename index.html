@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
     <meta charset="UTF-8">
@@ -83,7 +85,14 @@
       <!-- Gigs will be dynamically loaded here -->
     </div>
   </div>
+  <script>
+  // Retrieve route and direction ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const routeId = urlParams.get('route_id');
+  const directionId = urlParams.get('direction_id');
 
+  
+</script>
   <script type="module" src="/number11tram/app.js"></script>
 <!-- Other existing content in index.html -->
 

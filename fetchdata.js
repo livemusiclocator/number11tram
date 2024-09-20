@@ -5,7 +5,6 @@ import { findClosestStopToVenue } from '/number11tram/helpers.js';
 let nextTramCache = null;
 let venueStopMapping = {};
 
-
 // Fetch gigs for today
 export async function fetchGigs() {
     try {
@@ -18,9 +17,8 @@ export async function fetchGigs() {
     }
 }
 
-
-// Fetch the next predicted tram arrival
-export async function fetchNextTram(stopId) {
+// Fetch the next predicted tram arrival based on direction ID
+export async function fetchNextTram(stopId, directionId, routeId) {
     const requestPath = `/v3/departures/route_type/1/stop/${stopId}?max_results=1&expand=run&expand=route`;
     const signedUrl = getSignedUrl(requestPath);
     console.log("Signed URL:", signedUrl);
@@ -31,29 +29,29 @@ export async function fetchNextTram(stopId) {
             const data = await response.json();
             console.log("API Response (Departures):", data);
 
-            let outbound11Departures = data.departures.filter(
-                (departure) => departure.route_id === 3343 && departure.direction_id === 4
+            let selectedDepartures = data.departures.filter(
+                (departure) => departure.route_id === parseInt(routeId) && departure.direction_id === parseInt(directionId)
             );
 
-            if (outbound11Departures.length === 0) {
-                console.error("No outbound number 11 tram departures found in departures:", data.departures);
+            if (selectedDepartures.length === 0) {
+                console.error(`No tram departures found for route ${routeId} and direction ${directionId} in departures:`, data.departures);
                 return null;
             }
 
             if (timeConfig.useTestTime) {
                 const testTime = new Date(timeConfig.testTime);
-                outbound11Departures = outbound11Departures.filter(
+                selectedDepartures = selectedDepartures.filter(
                     (departure) => new Date(departure.scheduled_departure_utc) >= testTime
                 );
 
-                if (outbound11Departures.length === 0) {
-                    console.error("No outbound number 11 tram departures found after test time:", testTime);
+                if (selectedDepartures.length === 0) {
+                    console.error("No tram departures found after test time:", testTime);
                     return null;
                 }
             }
 
-            outbound11Departures.sort((a, b) => new Date(a.scheduled_departure_utc) - new Date(b.scheduled_departure_utc));
-            const nextDeparture = outbound11Departures[0];
+            selectedDepartures.sort((a, b) => new Date(a.scheduled_departure_utc) - new Date(b.scheduled_departure_utc));
+            const nextDeparture = selectedDepartures[0];
             const run = data.runs[nextDeparture.run_id];
 
             if (!run) {
@@ -63,7 +61,7 @@ export async function fetchNextTram(stopId) {
 
             return {
                 time: new Date(nextDeparture.estimated_departure_utc || nextDeparture.scheduled_departure_utc),
-                routeNumber: 3343,
+                routeNumber: routeId,
                 destination: run.destination_name,
                 runId: nextDeparture.run_id,
             };
@@ -74,11 +72,24 @@ export async function fetchNextTram(stopId) {
         console.error("Error fetching tram data:", error);
     }
     return null;
-    console.log("Stop ID:", stopId);
-console.log("API Response (Departures):", data);
-console.log("Filtered Outbound Departures:", outbound11Departures);
-
 }
+
+// Fetch the appropriate tram stops based on direction ID
+export async function fetchTramStops(directionId) {
+    try {
+        const stopsFile = directionId == 5 ? 'inboundstops-11.json' : 'outgoing_route_11_stops.json';
+        const response = await fetch(`/number11tram/${stopsFile}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching tram stops: ${response.status} ${response.statusText}`);
+        }
+        const tramStops = await response.json();
+        return tramStops;
+    } catch (error) {
+        console.error("Error fetching tram stops:", error);
+        return []; // Return an empty array to avoid further errors
+    }
+}
+
 
 
 // Calculate travel time for all venues based on the next tram's route
@@ -153,10 +164,11 @@ async function fetchTramRoute(runId) {
     }
     return null;
 }
-
-export async function fetchTramStops() {
+export async function fetchTramStops(directionId) {
     try {
-        const response = await fetch('/number11tram/outgoing_route_11_stops.json');
+        // Choose the correct file based on direction ID
+        const stopsFile = directionId == 5 ? 'inboundstops-11.json' : 'outgoing_route_11_stops.json';
+        const response = await fetch(`/number11tram/${stopsFile}`);
         if (!response.ok) {
             throw new Error(`Error fetching tram stops: ${response.status} ${response.statusText}`);
         }
@@ -167,4 +179,5 @@ export async function fetchTramStops() {
         return []; // Return an empty array to avoid further errors
     }
 }
+
 export { venueStopMapping };

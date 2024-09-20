@@ -34,7 +34,15 @@
     <div class="content">
         <h2>If you want to see a gig on the Number 11 tram line, they are all behind you. Cross the road and walk or tram it back that way.</h2>
     </div>
-
+    <script>
+        // Retrieve route and direction ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const routeId = urlParams.get('route_id');
+        const directionId = urlParams.get('direction_id');
+      
+        
+      </script>
+       
     <script>
         // Fetch stop details from the JSON file based on stopId from URL
         fetch('outgoing_route_11_stops.json')
