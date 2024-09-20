@@ -1,7 +1,6 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js'; // Import timeConfig
-import { fetchGigs } from '/number11tram/fetchdata.js';
-
+import { timeConfig } from '/number11tram/config.js'; 
+import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js'; // Import all necessary functions
 
 // Main render function to display gigs and provide directions based on current tram location
 export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {
