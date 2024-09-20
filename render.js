@@ -125,7 +125,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
 
         if (venueStopId && venueStopId == currentStopId) {
             // Walking directions if venue stop matches the current stop
-            directionsText = `You can walk from here in 5 minutes or so. Click on "Venue Directions". Enjoy Live Music!`;
+            directionsText = `You can walk from here in less than 5 minutes. Click on "Venue Directions". Enjoy Live Music!`;
         } else {
             const arrivalTime = venueArrivalTimes[gig.venue.id];
             arrivalTime.setMinutes(arrivalTime.getMinutes() + 5);  // Account for walking time from tram stop to venue
