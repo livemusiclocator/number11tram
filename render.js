@@ -6,6 +6,8 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     const currentTime = new Date();
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
+    const routeId = urlParams.get('route_id');  // Get route_id from the URL
+    const directionId = urlParams.get('direction_id');  // Get direction_id from the URL
 
     // Find the current stop from the JSON file and get its stop_sequence
     const currentStop = stops.find(stop => stop.stop_id == currentStopId);
@@ -14,7 +16,11 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
         return;
     }
     const currentStopSequence = currentStop.stop_sequence;
-    console.log(`Current Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+    let directionText = directionId == 4 ? "Outbound" : "Inbound";
+    console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+
+    // Update Stop name with direction info
+    document.getElementById('stop-name').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
 
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
@@ -28,7 +34,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     if (currentStopSequence > highestVenueStopSequence) {
         console.log(`Current stop is beyond all venue stops. Redirecting to stoptoofar.`);
         const stopId = currentStop.stop_id;  // Use stop_id for URL
-        window.location.href = `stoptoofar.html?stopId=${stopId}`;
+        window.location.href = `stoptoofar.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
         return;  // Ensure that we exit early and do not continue further
     }
 
@@ -73,6 +79,7 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
 }
+
 
 // Append gigs to the page with time categories and walking/tram directions
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {

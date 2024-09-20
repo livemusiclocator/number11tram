@@ -36,27 +36,30 @@
                 const stopList = document.getElementById('stop-list');
                 
                 stops.forEach(stop => {
-                    const stopDiv = document.createElement('div');
-                    stopDiv.classList.add('stop');
-                    
-                    const stopId = stop.stop_id;
-                    const stopName = stop.stop_name;
-                    const stopLandmark = stop.stop_landmark || 'No Landmark';
+    const stopDiv = document.createElement('div');
+    stopDiv.classList.add('stop');
+    
+    const stopId = stop.stop_id;
+    const stopName = stop.stop_name;
+    const stopLandmark = stop.stop_landmark || 'No Landmark';
 
-                    // Update URL for each stop
-                    const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}`;
-                    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
+    // Adding route_id and direction_id to the stopUrl
+    const routeId = 3343; // Example route ID for Number 11 tram
+    const directionId = 4; // Example direction ID for Outbound (will be read from JSON data)
+    const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
 
-                    stopDiv.innerHTML = `
-                        <h2>Stop ${stopId} - ${stopName}</h2>
-                        <a href="${stopUrl}" target="_blank">
-                            <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
-                        </a>
-                        <p><a href="${stopUrl}" target="_blank">View Stop Details</a></p>
-                    `;
+    stopDiv.innerHTML = `
+        <h2>Stop ${stopId} - ${stopName}</h2>
+        <a href="${stopUrl}" target="_blank">
+            <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
+        </a>
+        <p><a href="${stopUrl}" target="_blank">View Stop Details</a></p>
+    `;
 
-                    stopList.appendChild(stopDiv);
-                });
+    stopList.appendChild(stopDiv);
+});
+
             } catch (error) {
                 console.error('Error loading stop data:', error);
             }

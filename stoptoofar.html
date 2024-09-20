@@ -35,9 +35,6 @@
         <h2>If you want to see a gig on the Number 11 tram line, they are all behind you. Cross the road and walk or tram it back that way.</h2>
     </div>
 
-
-
-
     <script>
         // Fetch stop details from the JSON file based on stopId from URL
         fetch('outgoing_route_11_stops.json')
@@ -45,11 +42,15 @@
             .then(stops => {
                 const params = new URLSearchParams(window.location.search);
                 const stopId = params.get('stopId');  // Get stopId from the URL
+                const routeId = params.get('route_id'); // Get route_id from the URL
+                const directionId = params.get('direction_id'); // Get direction_id from the URL
+
                 const stop = stops.find(s => s.stop_id == stopId);  // Find stop by stop_id
                 const stopName = stop ? stop.stop_name : "Unknown Stop";  // Fallback if stop not found
 
                 // Update the stop name in the HTML
-                document.getElementById('stop-name').textContent = stopName;
+                let directionText = directionId == 4 ? "Outbound" : "Inbound";
+                document.getElementById('stop-name').textContent = `${directionText} Stop: ${stopName}`;
             })
             .catch(error => console.error("Error fetching stop data:", error));
     </script>
