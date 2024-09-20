@@ -15,16 +15,30 @@
         img {
             max-width: 150px;
         }
+        .toggle-button {
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .toggle-button.active {
+            background-color: #FF6347;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Outgoing Number 11 Tram Stop QR Codes</h1>
+    <h1 id="heading">Outgoing Number 11 Tram Stop QR Codes</h1>
+    <button id="toggleButton" class="toggle-button">Switch to Inbound</button>
     <div id="stop-list">
         <!-- QR codes and URLs will be injected here -->
     </div>
 
     <script>
+        let currentDirection = 4; // Start with 'Outbound' (4), 'Inbound' is 5
+
         async function loadStopData() {
             try {
                 const response = await fetch('/number11tram/outgoing_route_11_stops.json'); // Load the tram stop data
@@ -33,36 +47,52 @@
                 // Sort stops by stop_sequence to ensure correct outbound order
                 stops = stops.sort((a, b) => a.stop_sequence - b.stop_sequence);
 
-                const stopList = document.getElementById('stop-list');
-                
-                stops.forEach(stop => {
-    const stopDiv = document.createElement('div');
-    stopDiv.classList.add('stop');
-    
-    const stopId = stop.stop_id;
-    const stopName = stop.stop_name;
-    const stopLandmark = stop.stop_landmark || 'No Landmark';
+                // Render the stops initially in 'Outbound' state
+                renderStops(stops, currentDirection);
 
-    // Adding route_id and direction_id to the stopUrl
-    const routeId = 3343; // Example route ID for Number 11 tram
-    const directionId = 4; // Example direction ID for Outbound (will be read from JSON data)
-    const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
+                // Event listener for the toggle button
+                document.getElementById('toggleButton').addEventListener('click', () => {
+                    currentDirection = currentDirection === 4 ? 5 : 4; // Toggle between 4 and 5
+                    const headingText = currentDirection === 4 ? 'Outgoing Number 11 Tram Stop QR Codes' : 'Inbound Number 11 Tram Stop QR Codes';
+                    document.getElementById('heading').textContent = headingText;
 
-    stopDiv.innerHTML = `
-        <h2>Stop ${stopId} - ${stopName}</h2>
-        <a href="${stopUrl}" target="_blank">
-            <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
-        </a>
-        <p><a href="${stopUrl}" target="_blank">View Stop Details</a></p>
-    `;
+                    const buttonText = currentDirection === 4 ? 'Switch to Inbound' : 'Switch to Outbound';
+                    document.getElementById('toggleButton').textContent = buttonText;
 
-    stopList.appendChild(stopDiv);
-});
-
+                    renderStops(stops, currentDirection); // Re-render the stops with the new direction
+                });
             } catch (error) {
                 console.error('Error loading stop data:', error);
             }
+        }
+
+        // Function to render the stops based on the direction
+        function renderStops(stops, directionId) {
+            const stopList = document.getElementById('stop-list');
+            stopList.innerHTML = ''; // Clear previous stops
+
+            stops.forEach(stop => {
+                const stopDiv = document.createElement('div');
+                stopDiv.classList.add('stop');
+                
+                const stopId = stop.stop_id;
+                const stopName = stop.stop_name;
+                const stopLandmark = stop.stop_landmark || 'No Landmark';
+
+                // Update URL for each stop with the current direction
+                const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}&direction_id=${directionId}`;
+                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
+
+                stopDiv.innerHTML = `
+                    <h2>Stop ${stopId} - ${stopName}</h2>
+                    <a href="${stopUrl}" target="_blank">
+                        <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
+                    </a>
+                    <p><a href="${stopUrl}" target="_blank">View Stop Details</a></p>
+                `;
+
+                stopList.appendChild(stopDiv);
+            });
         }
 
         // Load stop data when the page is ready
