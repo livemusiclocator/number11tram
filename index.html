@@ -37,7 +37,7 @@
         }
         a {
             color: #337ab7;
-            text-decoration: none.
+            text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
@@ -51,7 +51,7 @@
                 padding: 10px;
             }
             h2 {
-                font-size: 1.2em.
+                font-size: 1.2em;
             }
         }
     </style>
@@ -76,92 +76,95 @@
     </div>
   
     <!-- Initialization Script -->
- <!-- Initialization Script -->
-<!-- index.html -->
+    <script type="module">
+        import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
+        import { renderGigs } from '/number11tram/render.js';
+        import { findClosestStopToVenue } from '/number11tram/helpers.js';
 
-<script type="module">
-    import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
-    import { renderGigs } from '/number11tram/render.js';
+        // Retrieve parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const stopId = urlParams.get('stopId');
+        const routeId = urlParams.get('route_id');
+        const directionId = urlParams.get('direction_id');
 
-    // Retrieve parameters from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const stopId = urlParams.get('stopId');
-    const routeId = urlParams.get('route_id');
-    const directionId = urlParams.get('direction_id');
+        // Add event listener to call initializePage once the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage(stopId, routeId, directionId);
+        });
 
-    // Add event listener to call initializePage once the DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        initializePage(stopId, routeId, directionId);
-    });
+        // Function to initialize the page
+        async function initializePage(stopId, routeId, directionId) {
+            // Parse stopId, routeId, and directionId to numbers
+            const stopIdNum = parseInt(stopId, 10);
+            const routeIdNum = parseInt(routeId, 10);
+            const directionIdNum = parseInt(directionId, 10);
 
-    // Function to initialize the page
-    async function initializePage(stopId, routeId, directionId) {
-        // Parse stopId, routeId, and directionId to numbers
-        const stopIdNum = parseInt(stopId, 10);
-        const routeIdNum = parseInt(routeId, 10);
-        const directionIdNum = parseInt(directionId, 10);
+            // Update the document title based on direction
+            const directionText = directionIdNum === 4 ? "Outbound" : "Inbound";
+            document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
 
-        // Update the document title based on direction
-        const directionText = directionIdNum === 4 ? "Outbound" : "Inbound";
-        document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
+            // Fetch and update the stop name
+            try {
+                const jsonFile = directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+                const response = await fetch(`/number11tram/${jsonFile}`);
+                const stops = await response.json();
 
-        // Fetch and update the stop name
-        try {
-            const jsonFile = directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
-            const response = await fetch(jsonFile);
-            const stops = await response.json();
+                // Use stopIdNum to find the stop
+                const stop = stops.find(s => s.stop_id === stopIdNum);
+                const stopName = stop ? stop.stop_name : "Unknown Stop";
+                document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
 
-            // Use stopIdNum to find the stop
-            const stop = stops.find(s => s.stop_id === stopIdNum);
-            const stopName = stop ? stop.stop_name : "Unknown Stop";
-            document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
-
-            console.log("Stop ID:", stopIdNum);
-            console.log("Direction ID:", directionIdNum);
-            console.log("Stops Data:", stops);
-            console.log("Found Stop:", stop);
-        } catch (error) {
-            console.error("Error fetching stop data:", error);
-        }
-
-        // Fetch data and render gigs
-        try {
-            const [stops, gigs, nextTramData] = await Promise.all([
-                fetch(`/number11tram/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
-                fetchGigs(),
-                fetchNextTram(stopIdNum, directionIdNum, routeIdNum)
-            ]);
-
-            if (!nextTramData || !nextTramData.runId) {
-                console.error("No valid tram data available.");
-                return;
+                console.log("Stop ID:", stopIdNum);
+                console.log("Direction ID:", directionIdNum);
+                console.log("Stops Data:", stops);
+                console.log("Found Stop:", stop);
+            } catch (error) {
+                console.error("Error fetching stop data:", error);
             }
 
-            // Adjusted to destructure the returned object
-            const { venueArrivalTimes, venueStopMapping } = await calculateVenueArrivalTimes(gigs, nextTramData);
+            // Fetch data and render gigs
+            try {
+                const [stops, gigs, nextTramData] = await Promise.all([
+                    fetch(`/number11tram/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+                    fetchGigs(),
+                    fetchNextTram(stopIdNum, directionIdNum, routeIdNum)
+                ]);
 
-            // Call renderGigs with the additional parameters
-            renderGigs(
-                gigs,
-                stops,
-                document.getElementById('gig-list'),
-                venueArrivalTimes,
-                nextTramData,
-                venueStopMapping,
-                directionIdNum,
-                routeIdNum,
-                stopIdNum
-            );
+                if (!nextTramData || !nextTramData.runId) {
+                    console.error("No valid tram data available.");
+                    return;
+                }
 
-        } catch (error) {
-            console.error("Error during page initialization:", error);
+                // Define the maximum distance in meters
+                const MAX_DISTANCE_METERS = 400;
+
+                // Filter gigs to those within MAX_DISTANCE_METERS of any stop
+                const nearbyGigs = gigs.filter(gig => {
+                    const { shortestDistance } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
+                    return shortestDistance <= MAX_DISTANCE_METERS;
+                });
+
+                // Calculate venue arrival times for nearby gigs
+                const { venueArrivalTimes, venueStopMapping } = await calculateVenueArrivalTimes(nearbyGigs, nextTramData);
+
+                // Call renderGigs with the filtered gigs
+                renderGigs(
+                    nearbyGigs,
+                    stops,
+                    document.getElementById('gig-list'),
+                    venueArrivalTimes,
+                    nextTramData,
+                    venueStopMapping,
+                    directionIdNum,
+                    routeIdNum,
+                    stopIdNum
+                );
+
+            } catch (error) {
+                console.error("Error during page initialization:", error);
+            }
         }
-    }
-</script>
-
-
-    <!-- Import JavaScript modules -->
-    <script type="module" src="/number11tram/app.js"></script>
+    </script>
 
     <footer style="text-align: center; margin-top: 20px;">
         <p>
