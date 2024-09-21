@@ -7,7 +7,6 @@ export function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
     const routeId = urlParams.get('route_id');  // Get route_id from the URL
-    const directionId = urlParams.get('direction_id');  // Get direction_id from the URL
 
     // Check if routeId and directionId are defined
     if (!routeId || !directionId) {
