@@ -33,11 +33,10 @@ export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTr
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
-        if (!venueStopId) return maxSeq; // Check if venueStopId exists
         const venueStop = stops.find(stop => stop.stop_id == venueStopId);
         return venueStop ? Math.max(maxSeq, venueStop.stop_sequence) : maxSeq;
     }, 0);
-    console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
+       console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
     // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
     if (currentStopSequence > highestVenueStopSequence) {
