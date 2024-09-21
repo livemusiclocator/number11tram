@@ -8,6 +8,18 @@ export function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
     const routeId = urlParams.get('route_id');  // Get route_id from the URL
 
+
+    console.log("renderGigs called with:", {
+        gigs,
+        stops,
+        gigList,
+        venueArrivalTimes,
+        nextTramData,
+        venueStopMapping,
+        directionId
+    });
+    
+
     // Check if routeId and directionId are defined
     if (!routeId || !directionId) {
         console.error("Route ID or Direction ID is missing from URL parameters.");
