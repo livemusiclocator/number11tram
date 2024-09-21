@@ -2,11 +2,21 @@ import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/h
 import { timeConfig } from '/number11tram/config.js'; 
 
 // Main render function to display gigs and provide directions based on current tram location
-export function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping, directionId) {
-    const currentTime = new Date();
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
-    const routeId = urlParams.get('route_id');  // Get route_id from the URL
+export function renderGigs(
+    gigs,
+    stops,
+    gigList,
+    venueArrivalTimes,
+    nextTramData,
+    venueStopMapping,
+    directionId,
+    routeId,
+    currentStopId
+)
+
+{
+
+const currentTime = new Date();
 
 
     console.log("renderGigs called with:", {
@@ -20,24 +30,21 @@ export function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData
     });
     
 
-    // Check if routeId and directionId are defined
-    if (!routeId || !directionId) {
-        console.error("Route ID or Direction ID is missing from URL parameters.");
-        return;
-    }
-
-    // Find the current stop from the JSON file and get its stop_sequence
-    const currentStop = stops.find(stop => stop.stop_id == currentStopId);
+    // Use currentStopId to find the current stop
+    const currentStop = stops.find(stop => stop.stop_id === currentStopId);
     if (!currentStop) {
-        console.error(`No stop found with stopId: ${currentStopId}`);
-        return;
-    }
+    console.error(`No stop found with stopId: ${currentStopId}`);
+    return;
+}
 
-    const currentStopSequence = currentStop.stop_sequence;
-    let directionText = directionId == 4 ? "Outbound" : "Inbound";
-    console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+// Use directionId and routeId as needed
+const currentStopSequence = currentStop.stop_sequence;
+const directionText = directionId == 4 ? "Outbound" : "Inbound";
+console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
 
-    // Update Stop name with direction info
+
+  
+      // Update Stop name with direction info
     document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
 
     // Find the highest sequence number from venue stops
