@@ -76,47 +76,57 @@
     </div>
   
     <!-- Initialization Script -->
-    <script type="module">
+ <!-- Initialization Script -->
+<script type="module">
     import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
     import { renderGigs } from '/number11tram/render.js'; // Ensure you import renderGigs
 
+    // Retrieve parameters from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const stopId = urlParams.get('stopId');
+    const routeId = urlParams.get('route_id');
+    const directionId = urlParams.get('direction_id');
 
-        // Retrieve parameters from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const stopId = urlParams.get('stopId');
-        const routeId = urlParams.get('route_id');
-        const directionId = urlParams.get('direction_id');
+    // Add event listener to call initializePage once the DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        initializePage(stopId, routeId, directionId);
+    });
+
+    // Function to initialize the page
+    async function initializePage(stopId, routeId, directionId) {
+        // Parse stopId and directionId to numbers
+        const stopIdNum = parseInt(stopId, 10);
+        const directionIdNum = parseInt(directionId, 10);
 
         // Update the document title based on direction
-        const directionText = directionId == 4 ? "Outbound" : "Inbound";
+        const directionText = directionIdNum === 4 ? "Outbound" : "Inbound";
         document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
 
-        // Call your initialization function or import it from another module
-        document.addEventListener('DOMContentLoaded', () => {
-            // This call should handle all the initialization logic
-            // Initialize all data and components, including stop name and gigs
-            initializePage(stopId, routeId, directionId);
-        });
-
-        // Function to initialize the page
-        async function initializePage(stopId, routeId, directionId) {
-            // Fetch and update the stop name
-            try {
-            const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+        // Fetch and update the stop name
+        try {
+            const jsonFile = directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
             const response = await fetch(jsonFile);
             const stops = await response.json();
-            const stop = stops.find(s => s.stop_id == stopId);
+
+            // Use stopIdNum to find the stop
+            const stop = stops.find(s => s.stop_id === stopIdNum);
             const stopName = stop ? stop.stop_name : "Unknown Stop";
             document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
+
+            console.log("Stop ID:", stopIdNum);
+            console.log("Direction ID:", directionIdNum);
+            console.log("Stops Data:", stops);
+            console.log("Found Stop:", stop);
         } catch (error) {
             console.error("Error fetching stop data:", error);
         }
 
+        // Fetch data and render gigs
         try {
             const [stops, gigs, nextTramData] = await Promise.all([
-                fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+                fetch(`/number11tram/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
                 fetchGigs(),
-                fetchNextTram(stopId, directionId, routeId)
+                fetchNextTram(stopIdNum, directionIdNum, routeId)
             ]);
 
             if (!nextTramData || !nextTramData.runId) {
@@ -133,10 +143,8 @@
             console.error("Error during page initialization:", error);
         }
     }
+</script>
 
-        initializePage(stopId, routeId, directionId);
-    ;
-    </script>
 
     <!-- Import JavaScript modules -->
     <script type="module" src="/number11tram/app.js"></script>

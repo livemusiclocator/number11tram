@@ -1,4 +1,4 @@
-import { fetchGigs, fetchTramStops, fetchNextTram, calculateVenueArrivalTimes, venueStopMapping } from '/number11tram/fetchdata.js';
+import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
 import { renderGigs } from '/number11tram/render.js'; 
 import { findClosestStopToVenue } from '/number11tram/helpers.js'; 
 
