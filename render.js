@@ -1,9 +1,8 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
 import { timeConfig } from '/number11tram/config.js'; 
-import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js'; // Import all necessary functions
 
 // Main render function to display gigs and provide directions based on current tram location
-export async function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping) {
+export function renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping, directionId) {
     const currentTime = new Date();
     const urlParams = new URLSearchParams(window.location.search);
     const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
@@ -191,19 +190,3 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     });
 }
 
-    // Fetch the stop data and gigs, then call renderGigs
-    Promise.all([
-        fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
-        fetchGigs(), // This should now work correctly
-        fetchNextTram(urlParams.get('stopId'), directionId, urlParams.get('route_id'))
-    ])
-    .then(([stops, gigs, nextTramData]) => {
-      if (!nextTramData || !nextTramData.runId) {
-            console.error("No valid tram data available.");
-            return;
-        }
-        return calculateVenueArrivalTimes(gigs, nextTramData).then(venueArrivalTimes => {
-            renderGigs(gigs, stops, gigList, venueArrivalTimes, nextTramData, venueStopMapping);
-        });
-    })
-    .catch(error => console.error("Error initializing the page:", error));
