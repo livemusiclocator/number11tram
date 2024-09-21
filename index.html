@@ -12,7 +12,17 @@
 
   gtag('config', 'G-T8T6NBQH36', { 'debug_mode': true });
 </script>
-
+<script>
+    console.log('window.gtag in regular script is', typeof window.gtag);
+  
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'test_event_regular_script', { 'debug_mode': true });
+      console.log('Test event sent from regular script');
+    } else {
+      console.error('window.gtag is not a function in regular script');
+    }
+  </script>
+  
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,8 +104,6 @@
         import { renderGigs } from '/number11tram/render.js';
         import { findClosestStopToVenue } from '/number11tram/helpers.js';
 
-          // Send a test event to GA
-    window.gtag('event', 'test_event', { 'debug_mode': true });
 
 
         // Retrieve parameters from URL
