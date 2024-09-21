@@ -12,12 +12,8 @@ export function renderGigs(
     directionId,
     routeId,
     currentStopId
-)
-
-{
-
-const currentTime = new Date();
-
+) {
+    const currentTime = new Date();
 
     console.log("renderGigs called with:", {
         gigs,
@@ -28,32 +24,30 @@ const currentTime = new Date();
         venueStopMapping,
         directionId
     });
-    
 
     // Use currentStopId to find the current stop
     const currentStop = stops.find(stop => stop.stop_id === currentStopId);
     if (!currentStop) {
-    console.error(`No stop found with stopId: ${currentStopId}`);
-    return;
-}
+        console.error(`No stop found with stopId: ${currentStopId}`);
+        return;
+    }
 
-// Use directionId and routeId as needed
-const currentStopSequence = currentStop.stop_sequence;
-const directionText = directionId == 4 ? "Outbound" : "Inbound";
-console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+    // Use directionId and routeId as needed
+    const currentStopSequence = currentStop.stop_sequence;
+    const directionText = directionId == 4 ? "Outbound" : "Inbound";
+    console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+    const maxGigDuration = 150; // 2.5 hours
 
-
-  
-      // Update Stop name with direction info
+    // Update Stop name with direction info
     document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
 
     // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
-        const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
         return venueStop ? Math.max(maxSeq, venueStop.stop_sequence) : maxSeq;
     }, 0);
-       console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
+    console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
     // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
     if (currentStopSequence > highestVenueStopSequence) {
@@ -71,15 +65,24 @@ console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${curren
 
     console.log("Next tram found at:", nextTramData.time);
 
-    // Filter gigs based on time horizon and stop sequence
+    // Filter gigs based on time horizon, stop sequence, and duration
     const validGigs = gigs.filter(gig => {
         const venueStopId = venueStopMapping[gig.venue.id];
         if (!venueStopId) return false; // Check if venueStopId exists
-        const venueStop = stops.find(stop => stop.stop_id == venueStopId);
+        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
 
         // Check if the venue stop is within the current stop sequence
         if (!venueStop || venueStop.stop_sequence < currentStopSequence) {
             console.log(`Skipping gig: ${gig.name}, Outside Sequence`);
+            return false;
+        }
+
+        // Exclude gigs that started more than 150 minutes ago
+        const gigStartTime = new Date(gig.start_timestamp);
+        const timeSinceGigStart = (currentTime - gigStartTime) / (1000 * 60); // Time difference in minutes
+
+        if (timeSinceGigStart > maxGigDuration) {
+            console.log(`Skipping gig: ${gig.name}, Gig has been going on for ${Math.round(timeSinceGigStart)} minutes`);
             return false;
         }
 
@@ -91,7 +94,8 @@ console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${curren
     if (validGigs.length === 0) {
         gigList.innerHTML = `
             <div style="text-align: center; margin-top: 20px;">
-                <h2>No gigs available at this stop currently.</h2>`;
+                <h2>No gigs available at this stop currently.</h2>
+            </div>`;
         return;
     }
 
@@ -100,23 +104,19 @@ console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${curren
     const soon = validGigs.filter(gig => new Date(gig.start_timestamp) > currentTime && new Date(gig.start_timestamp) <= new Date(currentTime.getTime() + 60 * 60 * 1000)); // within an hour
     const later = validGigs.filter(gig => new Date(gig.start_timestamp) > new Date(currentTime.getTime() + 60 * 60 * 1000));
 
-    appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping);
-    appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping);
-    appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping);
+    appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+    appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+    appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
 }
 
-// Append gigs to the page with time categories and walking/tram directions
-function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping) {
+
+/function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
     if (gigs.length === 0) return;
 
     const header = document.createElement("h2");
     header.textContent = category;
     header.style.borderTop = "1px solid #ddd";
     gigList.appendChild(header);
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentStopId = urlParams.get('stopId');  // Get stopId from the URL
-    const currentStop = stops.find(stop => stop.stop_id == currentStopId); // Get the current stop object
 
     gigs.forEach((gig) => {
         const gigDiv = document.createElement("div");
@@ -138,10 +138,10 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             genreTagsDiv.innerHTML = `<i>${gig.genre_tags.join(', ')}</i>`;
         }
 
-        // Format the gig start time without leading zeroes
+        // Format the gig start time
         const gigStartTime = new Date(gig.start_timestamp);
         const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-        const formattedStartTime = gigStartTime.toLocaleString('en-US', options).toLowerCase(); // No leading zeroes
+        const formattedStartTime = gigStartTime.toLocaleString('en-US', options).toLowerCase();
 
         // Venue link to location URL with start time
         const venueLink = document.createElement("a");
@@ -150,14 +150,26 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         venueLink.textContent = `${gig.venue.name}, ${formattedStartTime}`;
 
         const venueStopId = venueStopMapping[gig.venue.id];  // Use the passed venueStopMapping
-        console.log(`Venue Stop ID for Venue ${gig.venue.id}: ${venueStopId}, Current Stop ID: ${currentStopId}`); // Log venue stop ID and current stop ID together
+        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
+
+        // Calculate distance between current stop and venue
+        const distance = haversine(
+            currentStop.stop_latitude,
+            currentStop.stop_longitude,
+            gig.venue.latitude,
+            gig.venue.longitude
+        );
+
+        // Set distance threshold (e.g., 500 meters)
+        const walkingDistanceThreshold = 0.5; // in kilometers
 
         let directionsText;
 
-        if (venueStopId && venueStopId == currentStopId) {
-            // Walking directions if venue stop matches the current stop
-            directionsText = `You can walk from here in less than 5 minutes. Click on "Venue Directions". Enjoy Live Music!`;
+        if (distance <= walkingDistanceThreshold) {
+            // Provide walking directions
+            directionsText = `You can walk from here in about ${Math.round(distance * 1000)} meters. Click on "Venue Directions". Enjoy Live Music!`;
         } else {
+            // Provide tram directions
             const arrivalTime = venueArrivalTimes[gig.venue.id];
             if (!arrivalTime) {
                 directionsText = `No tram data available.`;
@@ -168,22 +180,21 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
                 const roundedArrivalTime = new Date(Math.ceil(arrivalTime.getTime() / (5 * 60 * 1000)) * (5 * 60 * 1000));
 
                 // Calculate number of stops ahead
-                const venueStop = stops.find(stop => stop.stop_id == venueStopId);
                 const stopsAhead = venueStop ? venueStop.stop_sequence - currentStop.stop_sequence : 0;
 
                 // Add stops ahead info to directions text
-                let stopsAheadText = stopsAhead > 0 ? `This gig is ${stopsAhead} tram stop${stopsAhead > 1 ? 's' : ''} ahead on this line.` : '';
+                let stopsAheadText = stopsAhead > 0 ? `This gig is ${stopsAhead} tram stop${stopsAhead > 1 ? 's' : ''} ahead on this line. ` : '';
 
                 if (timeDiffInMinutes > 0) {
                     const hoursLate = Math.floor(timeDiffInMinutes / 60);
                     const minutesLate = Math.round(timeDiffInMinutes % 60);
-                    directionsText = `${stopsAheadText} You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
+                    directionsText = `${stopsAheadText}You'll arrive ${hoursLate > 0 ? `${hoursLate} hour${hoursLate > 1 ? 's' : ''} and ` : ''}${minutesLate} minute${minutesLate > 1 ? 's' : ''} after the gig starts.`;
                 } else if (timeDiffInMinutes < 0) {
                     const hoursEarly = Math.floor(-timeDiffInMinutes / 60);
                     const minutesEarly = Math.round(-timeDiffInMinutes % 60);
-                    directionsText = `${stopsAheadText} If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
+                    directionsText = `${stopsAheadText}If you get on the next tram, you'll arrive ${hoursEarly > 0 ? `${hoursEarly} hour${hoursEarly > 1 ? 's' : ''} and ` : ''}${minutesEarly} minute${minutesEarly > 1 ? 's' : ''} early.`;
                 } else {
-                    directionsText = `${stopsAheadText} You'll arrive just in time!`;
+                    directionsText = `${stopsAheadText}You'll arrive just in time!`;
                 }
             }
         }
