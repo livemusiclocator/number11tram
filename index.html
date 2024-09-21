@@ -3,17 +3,20 @@
 
 <html lang="en">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script src="https://www.googletagmanager.com/gtag/js?id=G-T8T6NBQH36"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-T8T6NBQH36', { 'debug_mode': true });
-</script>
-<script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-T8T6NBQH36"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-T8T6NBQH36', { 'debug_mode': true });
+    
+      // Set user property to identify the app
+      gtag('set', 'user_properties', {
+        app_name: 'PTV_gigs_app'
+      });
+    </script>
+    <script>
     console.log('window.gtag in regular script is', typeof window.gtag);
   
     if (typeof window.gtag === 'function') {
