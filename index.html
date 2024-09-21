@@ -94,6 +94,10 @@
         import { renderGigs } from '/number11tram/render.js';
         import { findClosestStopToVenue } from '/number11tram/helpers.js';
 
+          // Send a test event to GA
+    window.gtag('event', 'test_event', { 'debug_mode': true });
+
+
         // Retrieve parameters from URL
         const urlParams = new URLSearchParams(window.location.search);
         const stopId = urlParams.get('stopId');
