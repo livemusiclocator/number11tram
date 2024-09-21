@@ -110,7 +110,6 @@ export function renderGigs(
 }
 
 
-
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
     if (gigs.length === 0) return;
 
@@ -161,8 +160,11 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             gig.venue.longitude
         );
 
-        // Set distance threshold (e.g., 500 meters)
-        const walkingDistanceThreshold = 0.5; // in kilometers
+        // Log the calculated distance for debugging
+        console.log(`Distance from current stop to ${gig.venue.name}: ${distance} km`);
+
+        // Set distance threshold (e.g., 1 km temporarily)
+        const walkingDistanceThreshold = 1.0; // in kilometers
 
         let directionsText;
 
@@ -219,4 +221,3 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         gigList.appendChild(gigDiv);
     });
 }
-
