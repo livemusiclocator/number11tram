@@ -76,7 +76,11 @@
     </div>
   
     <!-- Initialization Script -->
-    <script>
+    <script type="module">
+    import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
+    import { renderGigs } from '/number11tram/render.js'; // Ensure you import renderGigs
+
+
         // Retrieve parameters from URL
         const urlParams = new URLSearchParams(window.location.search);
         const stopId = urlParams.get('stopId');
@@ -98,36 +102,40 @@
         async function initializePage(stopId, routeId, directionId) {
             // Fetch and update the stop name
             try {
-                const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
-                const response = await fetch(jsonFile);
-                const stops = await response.json();
-                const stop = stops.find(s => s.stop_id == stopId);
-                const stopName = stop ? stop.stop_name : "Unknown Stop";
-                document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
-            } catch (error) {
-                console.error("Error fetching stop data:", error);
-            }
-
-            // Fetch data and render gigs
-            try {
-                const [stops, gigs, nextTramData] = await Promise.all([
-                    fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
-                    fetchGigs(),
-                    fetchNextTram(stopId, directionId, routeId)
-                ]);
-
-                if (!nextTramData || !nextTramData.runId) {
-                    console.error("No valid tram data available.");
-                    return;
-                }
-
-                const venueArrivalTimes = await calculateVenueArrivalTimes(gigs, nextTramData);
-                renderGigs(gigs, stops, document.getElementById('gig-list'), venueArrivalTimes, nextTramData, venueStopMapping);
-
-            } catch (error) {
-                console.error("Error during page initialization:", error);
-            }
+            const jsonFile = directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+            const response = await fetch(jsonFile);
+            const stops = await response.json();
+            const stop = stops.find(s => s.stop_id == stopId);
+            const stopName = stop ? stop.stop_name : "Unknown Stop";
+            document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
+        } catch (error) {
+            console.error("Error fetching stop data:", error);
         }
+
+        try {
+            const [stops, gigs, nextTramData] = await Promise.all([
+                fetch(`/number11tram/${directionId == 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+                fetchGigs(),
+                fetchNextTram(stopId, directionId, routeId)
+            ]);
+
+            if (!nextTramData || !nextTramData.runId) {
+                console.error("No valid tram data available.");
+                return;
+            }
+
+            // Adjusted to destructure the returned object
+            const { venueArrivalTimes, venueStopMapping } = await calculateVenueArrivalTimes(gigs, nextTramData);
+
+            renderGigs(gigs, stops, document.getElementById('gig-list'), venueArrivalTimes, nextTramData, venueStopMapping);
+
+        } catch (error) {
+            console.error("Error during page initialization:", error);
+        }
+    }
+
+        initializePage(stopId, routeId, directionId);
+    ;
     </script>
 
     <!-- Import JavaScript modules -->

@@ -102,7 +102,8 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
     console.log("Tram Route Data for Run ID", runId, ":", tramRoute);
 
     const venueArrivalTimes = {};
-    const stops = await fetchTramStops(nextTramData.directionId); // Fetch stops based on direction ID
+    const venueStopMapping = {}; // Define locally within the function
+    const stops = await fetchTramStops(nextTramData.directionId);
 
     for (const gig of gigs) {
         const venueId = gig.venue.id;
@@ -114,6 +115,7 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
 
         const venueStopId = venueStopMapping[venueId];
         let venueStopData = tramRoute.departures.find(stop => String(stop.stop_id) === String(venueStopId));
+
 
         if (!venueStopData) {
             console.warn(`Venue stop ${venueStopId} not found in tram route for run ID: ${runId}. Finding next closest stop...`);
@@ -142,7 +144,7 @@ export async function calculateVenueArrivalTimes(gigs, nextTramData) {
         }
     }
 
-    return venueArrivalTimes;
+    return { venueArrivalTimes, venueStopMapping }; // Return both
 }
 
 // Fetch the full route pattern for a given tram run ID
@@ -163,4 +165,3 @@ async function fetchTramRoute(runId) {
     return null;
 }
 
-export { venueStopMapping };
