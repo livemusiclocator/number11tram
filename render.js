@@ -110,7 +110,7 @@ export function renderGigs(
 }
 
 
-/function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
+function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
     if (gigs.length === 0) return;
 
     const header = document.createElement("h2");
