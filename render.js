@@ -109,7 +109,6 @@ export function renderGigs(
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
 }
 
-
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
     if (gigs.length === 0) return;
 
@@ -150,30 +149,12 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         venueLink.textContent = `${gig.venue.name}, ${formattedStartTime}`;
 
         const venueStopId = venueStopMapping[gig.venue.id];  // Use the passed venueStopMapping
-        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
-
-        
-
-
-
-        // Calculate distance between current stop and venue
-        const distance = haversine(
-            currentStop.stop_latitude,
-            currentStop.stop_longitude,
-            gig.venue.latitude,
-            gig.venue.longitude
-        );
-
-        // Log the calculated distance for debugging
-        console.log(`Distance from current stop to ${gig.venue.name}: ${distance} km`);
-
-        const walkingDistanceThreshold = .250; // in kilometers
 
         let directionsText;
 
-        if (distance <= walkingDistanceThreshold) {
-            // Provide walking directions
-            directionsText = `You can walk from here in about ${Math.round(distance * 1000)} meters. Click on "Venue Directions". Enjoy Live Music!`;
+        // Check if the user is at the same stop as the venue
+        if (currentStop.stop_id === venueStopId) {
+            directionsText = `You are at the venue stop! Enjoy Live Music! Click on "Venue Directions" for more info.`;
         } else {
             // Provide tram directions
             const arrivalTime = venueArrivalTimes[gig.venue.id];
