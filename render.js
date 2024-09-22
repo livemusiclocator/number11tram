@@ -221,3 +221,5 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
     });
 }
 
+
+
