@@ -1,3 +1,115 @@
+import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
+import { timeConfig } from '/number11tram/config.js'; 
+
+// Main render function to display gigs and provide directions based on current tram location
+export function renderGigs(
+    gigs,
+    stops,
+    gigList,
+    venueArrivalTimes,
+    nextTramData,
+    venueStopMapping,
+    directionId,
+    routeId,
+    currentStopId
+) {
+    const currentTime = new Date();
+
+    console.log("renderGigs called with:", {
+        gigs,
+        stops,
+        gigList,
+        venueArrivalTimes,
+        nextTramData,
+        venueStopMapping,
+        directionId
+    });
+
+    // Use currentStopId to find the current stop
+    const currentStop = stops.find(stop => stop.stop_id === currentStopId);
+    if (!currentStop) {
+        console.error(`No stop found with stopId: ${currentStopId}`);
+        return;
+    }
+
+    // Use directionId and routeId as needed
+    const currentStopSequence = currentStop.stop_sequence;
+    const directionText = directionId == 4 ? "Outbound" : "Inbound";
+    console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+    const maxGigDuration = 150; // 2.5 hours
+
+    // Update Stop name with direction info
+    document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
+
+    // Find the highest sequence number from venue stops
+    const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
+        const venueStopId = venueStopMapping[gig.venue.id];
+        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
+        return venueStop ? Math.max(maxSeq, venueStop.stop_sequence) : maxSeq;
+    }, 0);
+    console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
+
+    // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
+    if (currentStopSequence > highestVenueStopSequence) {
+        console.log(`Current stop is beyond all venue stops. Redirecting to stoptoofar.`);
+        const stopId = currentStop.stop_id;  // Use stop_id for URL
+        window.location.href = `stoptoofar.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
+        return;  // Ensure that we exit early and do not continue further
+    }
+
+    // Proceed with the rest of the logic for rendering gigs
+    if (!nextTramData || !nextTramData.time) {
+        console.error("No valid tram found.");
+        return;
+    }
+
+    console.log("Next tram found at:", nextTramData.time);
+
+    // Filter gigs based on time horizon, stop sequence, and duration
+    const validGigs = gigs.filter(gig => {
+        const venueStopId = venueStopMapping[gig.venue.id];
+        if (!venueStopId) return false; // Check if venueStopId exists
+        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
+
+        // Check if the venue stop is within the current stop sequence
+        if (!venueStop || venueStop.stop_sequence < currentStopSequence) {
+            console.log(`Skipping gig: ${gig.name}, Outside Sequence`);
+            return false;
+        }
+
+        // Exclude gigs that started more than 150 minutes ago
+        const gigStartTime = new Date(gig.start_timestamp);
+        const timeSinceGigStart = (currentTime - gigStartTime) / (1000 * 60); // Time difference in minutes
+
+        if (timeSinceGigStart > maxGigDuration) {
+            console.log(`Skipping gig: ${gig.name}, Gig has been going on for ${Math.round(timeSinceGigStart)} minutes`);
+            return false;
+        }
+
+        console.log(`Gig: ${gig.name}, Venue Stop Sequence: ${venueStop.stop_sequence}, Within Sequence: true`);
+        return true;
+    });
+
+    // If no valid gigs are found
+    if (validGigs.length === 0) {
+        gigList.innerHTML = `
+            <div style="text-align: center; margin-top: 20px;">
+                <h2>No gigs available at this stop currently.</h2>
+            </div>`;
+        return;
+    }
+
+    // Categorize and render gigs
+    const underway = validGigs.filter(gig => new Date(gig.start_timestamp) <= currentTime);
+    const soon = validGigs.filter(gig => new Date(gig.start_timestamp) > currentTime && new Date(gig.start_timestamp) <= new Date(currentTime.getTime() + 60 * 60 * 1000)); // within an hour
+    const later = validGigs.filter(gig => new Date(gig.start_timestamp) > new Date(currentTime.getTime() + 60 * 60 * 1000));
+
+    appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+    appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+    appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+}
+
+
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
     if (gigs.length === 0) return;
 
@@ -108,3 +220,4 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         gigList.appendChild(gigDiv);
     });
 }
+
