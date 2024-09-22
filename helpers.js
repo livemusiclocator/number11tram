@@ -18,19 +18,23 @@ export function haversine(lat1, lon1, lat2, lon2) {
 export function findClosestStopToVenue(stops, venueLat, venueLon) {
     const cacheKey = `${venueLat},${venueLon}`;
     if (cachedStops[cacheKey]) {
+        console.log(`Cache hit for venue: ${cacheKey}`);
         return cachedStops[cacheKey];
     }
+    console.log(`Cache miss for venue: ${cacheKey}`);
 
     let closestStop = null;
     let shortestDistance = Infinity;
 
-    stops.forEach((stop) => {
-        const distance = haversine(venueLat, venueLon, stop.stop_latitude, stop.stop_longitude);
-        if (distance < shortestDistance) {
-            shortestDistance = distance;
-            closestStop = stop;
-        }
-    });
+ stops.forEach((stop) => {
+    const distance = haversine(venueLat, venueLon, stop.stop_latitude, stop.stop_longitude);
+    console.log(`Distance from ${venueLat}, ${venueLon} to Stop: ${stop.stop_name} (${stop.stop_latitude}, ${stop.stop_longitude}) is ${distance.toFixed(3)} km`);
+    
+    if (distance < shortestDistance) {
+        shortestDistance = distance;
+        closestStop = stop;
+    }
+});
 
     cachedStops[cacheKey] = { closestStop, shortestDistance }; // Cache the closest stop for the venue
     return { closestStop, shortestDistance };
