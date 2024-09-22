@@ -152,6 +152,51 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         const venueStopId = venueStopMapping[gig.venue.id];  // Use the passed venueStopMapping
         const venueStop = stops.find(stop => stop.stop_id === venueStopId);
 
+        // Validate the latitude and longitude values before calculating distance
+function isValidLatLong(lat, long) {
+    const isLatValid = typeof lat === 'number' && lat >= -90 && lat <= 90;
+    const isLongValid = typeof long === 'number' && long >= -180 && long <= 180;
+    return isLatValid && isLongValid;
+}
+
+// Use currentStopId to find the current stop
+const currentStop = stops.find(stop => stop.stop_id === currentStopId);
+if (!currentStop) {
+    console.error(`No stop found with stopId: ${currentStopId}`);
+    return;
+}
+
+// Validate current stop latitude and longitude
+if (!isValidLatLong(currentStop.stop_latitude, currentStop.stop_longitude)) {
+    console.error(`Invalid latitude or longitude for current stop: ${currentStop.stop_latitude}, ${currentStop.stop_longitude}`);
+    return;
+}
+
+gigs.forEach((gig) => {
+    const gigLat = gig.venue.latitude;
+    const gigLong = gig.venue.longitude;
+
+    // Validate gig venue latitude and longitude
+    if (!isValidLatLong(gigLat, gigLong)) {
+        console.error(`Invalid latitude or longitude for venue ${gig.venue.name}: ${gigLat}, ${gigLong}`);
+        return;
+    }
+
+    // Calculate distance between current stop and venue using haversine function
+    const distance = haversine(
+        currentStop.stop_latitude,
+        currentStop.stop_longitude,
+        gigLat,
+        gigLong
+    );
+
+    console.log(`Distance from current stop to ${gig.venue.name}: ${distance} km`);
+    
+});
+
+
+
+
         // Calculate distance between current stop and venue
         const distance = haversine(
             currentStop.stop_latitude,
@@ -163,8 +208,7 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
         // Log the calculated distance for debugging
         console.log(`Distance from current stop to ${gig.venue.name}: ${distance} km`);
 
-        // Set distance threshold (e.g., 1 km temporarily)
-        const walkingDistanceThreshold = 1.0; // in kilometers
+        const walkingDistanceThreshold = .250; // in kilometers
 
         let directionsText;
 
