@@ -165,11 +165,14 @@ function appendGigList(gigs, gigList, category, stops, nextTramData, venueArriva
             return;
         }
 
+        // Log venue stop name and stop sequence for each gig that has been filtered in
+        console.log(`Gig: ${gig.name}, Venue Stop: ${venueStop.stop_name}, Stop Sequence: ${venueStop.stop_sequence}`);
+
         let directionsText;
 
         // Check if the user is at the same stop as the venue
         if (currentStop.stop_id === venueStopId) {
-            directionsText = `You are at the venue stop! Enjoy Live Music! Click on "Venue Directions" for more info.`;
+            directionsText = `You are at the closest stop to the venue! Enjoy Live Music! Click on "Venue Directions" for more info.`;
         } else {
             // Provide tram directions
             const arrivalTime = venueArrivalTimes[gig.venue.id];
