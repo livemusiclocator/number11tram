@@ -1,7 +1,6 @@
 import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
 import { timeConfig } from '/number11tram/config.js'; 
 
-// Main render function to display gigs and provide directions based on current tram location
 export function renderGigs(
     gigs,
     stops,
@@ -50,7 +49,8 @@ export function renderGigs(
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
     // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
-    if (currentStopSequence > highestVenueStopSequence) {
+    if (directionId === 4 && currentStopSequence > highestVenueStopSequence || 
+        directionId === 5 && currentStopSequence < highestVenueStopSequence) {
         console.log(`Current stop is beyond all venue stops. Redirecting to stoptoofar.`);
         const stopId = currentStop.stop_id;  // Use stop_id for URL
         window.location.href = `stoptoofar.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
@@ -71,8 +71,9 @@ export function renderGigs(
         if (!venueStopId) return false; // Check if venueStopId exists
         const venueStop = stops.find(stop => stop.stop_id === venueStopId);
 
-        // Check if the venue stop is within the current stop sequence
-        if (!venueStop || venueStop.stop_sequence < currentStopSequence) {
+        // Check if the venue stop is ahead of or at the current stop sequence based on direction
+        if (directionId === 4 && (!venueStop || venueStop.stop_sequence <= currentStopSequence) || 
+            directionId === 5 && (!venueStop || venueStop.stop_sequence >= currentStopSequence)) {
             console.log(`Skipping gig: ${gig.name}, Outside Sequence`);
             return false;
         }
@@ -108,6 +109,7 @@ export function renderGigs(
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
 }
+
 
 
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
