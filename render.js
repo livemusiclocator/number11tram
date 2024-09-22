@@ -92,27 +92,15 @@ export function renderGigs(
         return;
     }
 
-    // Separate gigs into walking and tram distance categories
-    const walkingGigs = validGigs.filter(gig => {
-        const venueStopId = venueStopMapping[gig.venue.id];
-        return venueStopId && currentStop.stop_id === venueStopId;
-    });
+    // Categorize gigs based on time horizon
+    const underway = validGigs.filter(gig => new Date(gig.start_timestamp) <= currentTime);
+    const soon = validGigs.filter(gig => new Date(gig.start_timestamp) > currentTime && new Date(gig.start_timestamp) <= new Date(currentTime.getTime() + 60 * 60 * 1000)); // within an hour
+    const later = validGigs.filter(gig => new Date(gig.start_timestamp) > new Date(currentTime.getTime() + 60 * 60 * 1000));
 
-    const tramGigs = validGigs.filter(gig => {
-        const venueStopId = venueStopMapping[gig.venue.id];
-        const venueStop = stops.find(stop => stop.stop_id === venueStopId);
-        return venueStop && currentStop.stop_id !== venueStopId;
-    });
-
-    // Render walking gigs first
-    if (walkingGigs.length > 0) {
-        appendGigList(walkingGigs, gigList, "Walking Distance", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
-    }
-    
-    // Render tram gigs next
-    if (tramGigs.length > 0) {
-        appendGigList(tramGigs, gigList, "Tram Distance", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
-    }
+    // Render gigs in time horizon categories with headings
+    appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+    appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
+    appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
 }
 
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
