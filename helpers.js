@@ -1,4 +1,4 @@
-import { API_KEY, DEVELOPER_ID, BASE_URL } from '/number11tram/config.js';
+import { API_KEY, DEVELOPER_ID, BASE_URL } from '/config.js';
 
 let cachedStops = {}; // Cache for tram stops
 let cachedTravelTimes = {}; // Cache for travel times
@@ -55,7 +55,7 @@ export function getTramStops() {
     }
 
     // Fetch stops only if not cached
-    return fetch('/number11tram/outgoing_route_11_stops.json')
+    return fetch('/outgoing_route_11_stops.json')
         .then(response => response.json())
         .then(tramStops => {
             cachedStops = tramStops;

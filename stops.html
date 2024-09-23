@@ -33,7 +33,7 @@
 
         async function loadStopData() {
             try {
-                const response = await fetch('/number11tram/outgoing_route_11_stops.json'); // Load the tram stop data
+                const response = await fetch('/outgoing_route_11_stops.json'); // Load the tram stop data
                 let stops = await response.json();
 
                 // Sort stops by stop_sequence to ensure correct outbound order
@@ -59,7 +59,7 @@
                 const directionId = isOutbound ? 4 : 5; // Update direction based on state
 
                 // Update URL for each stop
-                const stopUrl = `https://lml.live/number11tram/index.html?stopId=${stopId}&route_id=3343&direction_id=${directionId}`;
+                const stopUrl = `https://lml.live/index.html?stopId=${stopId}&route_id=3343&direction_id=${directionId}`;
                 const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
 
                 stopDiv.innerHTML = `

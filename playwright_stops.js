@@ -25,7 +25,7 @@ async function getStopUrls() {
 
     logToFileAndConsole("Navigating to stops page...");
     // Load the stops.html page
-    await page.goto('http://lml.live/number11tram/stops.html', { waitUntil: 'domcontentloaded' });
+    await page.goto('http://lml.live/stops.html', { waitUntil: 'domcontentloaded' });
 
     // Introduce a delay to allow the page to fully load
     await page.waitForTimeout(3000); 

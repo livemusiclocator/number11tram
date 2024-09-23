@@ -1,6 +1,6 @@
-import { getSignedUrl } from '/number11tram/helpers.js';
-import { API_KEY, DEVELOPER_ID, BASE_URL, apiUrl, timeConfig } from '/number11tram/config.js';
-import { findClosestStopToVenue } from '/number11tram/helpers.js';
+import { getSignedUrl } from '/helpers.js';
+import { API_KEY, DEVELOPER_ID, BASE_URL, apiUrl, timeConfig } from '/config.js';
+import { findClosestStopToVenue } from '/helpers.js';
 
 let nextTramCache = null;
 let venueStopMapping = {};
@@ -78,7 +78,7 @@ export async function fetchNextTram(stopId, directionId, routeId) {
 export async function fetchTramStops(directionId) {
     try {
         const stopsFile = directionId == 5 ? 'inboundstops-11.json' : 'outgoing_route_11_stops.json';
-        const response = await fetch(`/number11tram/${stopsFile}`);
+        const response = await fetch(`/${stopsFile}`);
         if (!response.ok) {
             throw new Error(`Error fetching tram stops: ${response.status} ${response.statusText}`);
         }

@@ -1,5 +1,5 @@
-import { formatToAMPM, haversine, findClosestStopToVenue } from '/number11tram/helpers.js';
-import { timeConfig } from '/number11tram/config.js'; 
+import { formatToAMPM, haversine, findClosestStopToVenue } from '/helpers.js';
+import { timeConfig } from '/config.js'; 
 
 export function renderGigs(
     gigs,

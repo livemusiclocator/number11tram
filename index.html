@@ -93,7 +93,7 @@
         <!-- Logo goes below the stop name -->
         <a href="https://lml.live" target="_blank">
             <div style="text-align: center;">
-                <img src="/number11tram/LML_Logo.png" alt="Live Music Locator Logo" style="width: 200px;" />
+                <img src="/LML_Logo.png" alt="Live Music Locator Logo" style="width: 200px;" />
             </div>
         </a>
 
@@ -106,9 +106,9 @@
   
     <!-- Initialization Script -->
     <script type="module">
-        import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/number11tram/fetchdata.js';
-        import { renderGigs } from '/number11tram/render.js';
-        import { findClosestStopToVenue } from '/number11tram/helpers.js';
+        import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/fetchdata.js';
+        import { renderGigs } from '/render.js';
+        import { findClosestStopToVenue } from '/helpers.js';
 
 
 
@@ -123,7 +123,7 @@
             initializePage(stopId, routeId, directionId);
         });
 
-        
+
         // Function to initialize the page
         async function initializePage(stopId, routeId, directionId) {
             // Parse stopId, routeId, and directionId to numbers
@@ -138,7 +138,7 @@
             // Fetch and update the stop name
             try {
                 const jsonFile = directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
-                const response = await fetch(`/number11tram/${jsonFile}`);
+                const response = await fetch(`/${jsonFile}`);
                 const stops = await response.json();
 
                 // Use stopIdNum to find the stop
@@ -157,7 +157,7 @@
             // Fetch data and render gigs
             try {
                 const [stops, gigs, nextTramData] = await Promise.all([
-                    fetch(`/number11tram/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+                    fetch(`/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
                     fetchGigs(),
                     fetchNextTram(stopIdNum, directionIdNum, routeIdNum)
                 ]);
