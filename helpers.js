@@ -28,7 +28,7 @@ export function findClosestStopToVenue(stops, venueLat, venueLon) {
 
  stops.forEach((stop) => {
     const distance = haversine(venueLat, venueLon, stop.stop_latitude, stop.stop_longitude);
-    console.log(`Distance from ${venueLat}, ${venueLon} to Stop: ${stop.stop_name} (${stop.stop_latitude}, ${stop.stop_longitude}) is ${distance.toFixed(3)} km`);
+    console.log(`Distance from ${venueLat}, ${venueLon} to Stop: ${stop.stop_name} (${stop.stop_latitude}, ${stop.stop_longitude}) is ${distance.toFixed(3)} m`);
     
     if (distance < shortestDistance) {
         shortestDistance = distance;
