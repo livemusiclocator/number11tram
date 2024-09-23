@@ -32,7 +32,7 @@ export function renderGigs(
         return;
     }
 
-    // Use directionId and routeId as needed
+    // Use currentStopSequence from the JSON file
     const currentStopSequence = currentStop.stop_sequence;
     const directionText = directionId == 4 ? "Outbound" : "Inbound";
     console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
@@ -49,13 +49,8 @@ export function renderGigs(
     }, 0);
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
-    // Determine the correct logic based on direction and stop sequence
-    let stopTooFarCondition = false;
-    if (directionId === 4) {
-        stopTooFarCondition = currentStopSequence > highestVenueStopSequence;
-    } else if (directionId === 5) {
-        stopTooFarCondition = currentStopSequence < highestVenueStopSequence;
-    }
+    // Determine if the current stop is beyond the highest venue stop sequence
+    let stopTooFarCondition = currentStopSequence > highestVenueStopSequence;
 
     // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
     if (stopTooFarCondition) {
@@ -79,13 +74,8 @@ export function renderGigs(
         if (!venueStopId) return false; // Check if venueStopId exists
         const venueStop = stops.find(stop => stop.stop_id === venueStopId);
 
-        // Check if the venue stop is ahead of or at the current stop sequence based on direction
-        let isWithinSequence = false;
-        if (directionId === 4 && venueStop && venueStop.stop_sequence >= currentStopSequence) {
-            isWithinSequence = true;
-        } else if (directionId === 5 && venueStop && venueStop.stop_sequence <= currentStopSequence) {
-            isWithinSequence = true;
-        }
+        // Check if the venue stop is ahead of or at the current stop sequence
+        let isWithinSequence = venueStop && venueStop.stop_sequence >= currentStopSequence;
 
         if (!isWithinSequence) {
             console.log(`Skipping gig: ${gig.name}, Outside Sequence`);
@@ -123,6 +113,7 @@ export function renderGigs(
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
 }
+
 
 
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
