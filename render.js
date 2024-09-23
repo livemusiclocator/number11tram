@@ -32,10 +32,16 @@ export function renderGigs(
         return;
     }
 
-    // Log the current stop details for debugging
-    console.log(`Current Stop: ${currentStop.stop_name}, Stop ID: ${currentStop.stop_id}, Sequence: ${currentStop.stop_sequence}`);
+    // Use directionId and routeId as needed
+    const currentStopSequence = currentStop.stop_sequence;
+    const directionText = directionId == 4 ? "Outbound" : "Inbound";
+    console.log(`${directionText} Stop: ${currentStop.stop_name}, Sequence: ${currentStopSequence}`);
+    const maxGigDuration = 150; // 2.5 hours
 
-    // Check if the current stop is beyond all venue stops for the given direction
+    // Update Stop name with direction info
+    document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${currentStop.stop_name}`;
+
+    // Find the highest sequence number from venue stops
     const highestVenueStopSequence = gigs.reduce((maxSeq, gig) => {
         const venueStopId = venueStopMapping[gig.venue.id];
         const venueStop = stops.find(stop => stop.stop_id === venueStopId);
@@ -43,14 +49,23 @@ export function renderGigs(
     }, 0);
     console.log(`Highest Venue Stop Sequence: ${highestVenueStopSequence}`);
 
-    if (directionId === 4 && currentStop.stop_sequence > highestVenueStopSequence ||
-        directionId === 5 && currentStop.stop_sequence < highestVenueStopSequence) {
-        console.log(`Current stop is beyond all venue stops. Redirecting to stoptoofar.`);
-        window.location.href = `stoptoofar.html?stopId=${currentStop.stop_id}&route_id=${routeId}&direction_id=${directionId}`;
-        return;
+    // Determine the correct logic based on direction and stop sequence
+    let stopTooFarCondition = false;
+    if (directionId === 4) {
+        stopTooFarCondition = currentStopSequence > highestVenueStopSequence;
+    } else if (directionId === 5) {
+        stopTooFarCondition = currentStopSequence < highestVenueStopSequence;
     }
 
-    // Proceed if there's valid tram data
+    // Redirect to stoptoofar.html if the current stop is beyond the highest venue stop sequence
+    if (stopTooFarCondition) {
+        console.log(`Current stop is beyond all venue stops. Redirecting to stoptoofar.`);
+        const stopId = currentStop.stop_id;  // Use stop_id for URL
+        window.location.href = `stoptoofar.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
+        return;  // Ensure that we exit early and do not continue further
+    }
+
+    // Proceed with the rest of the logic for rendering gigs
     if (!nextTramData || !nextTramData.time) {
         console.error("No valid tram found.");
         return;
@@ -58,15 +73,21 @@ export function renderGigs(
 
     console.log("Next tram found at:", nextTramData.time);
 
-    // Filter valid gigs based on current stop sequence, direction, and gig duration
+    // Filter gigs based on time horizon, stop sequence, and duration
     const validGigs = gigs.filter(gig => {
         const venueStopId = venueStopMapping[gig.venue.id];
-        if (!venueStopId) return false;
+        if (!venueStopId) return false; // Check if venueStopId exists
         const venueStop = stops.find(stop => stop.stop_id === venueStopId);
 
-        // Filter out gigs that are not in the current direction or sequence
-        if ((directionId === 4 && (!venueStop || venueStop.stop_sequence < currentStop.stop_sequence)) ||
-            (directionId === 5 && (!venueStop || venueStop.stop_sequence > currentStop.stop_sequence))) {
+        // Check if the venue stop is ahead of or at the current stop sequence based on direction
+        let isWithinSequence = false;
+        if (directionId === 4 && venueStop && venueStop.stop_sequence >= currentStopSequence) {
+            isWithinSequence = true;
+        } else if (directionId === 5 && venueStop && venueStop.stop_sequence <= currentStopSequence) {
+            isWithinSequence = true;
+        }
+
+        if (!isWithinSequence) {
             console.log(`Skipping gig: ${gig.name}, Outside Sequence`);
             return false;
         }
@@ -74,7 +95,8 @@ export function renderGigs(
         // Exclude gigs that started more than 150 minutes ago
         const gigStartTime = new Date(gig.start_timestamp);
         const timeSinceGigStart = (currentTime - gigStartTime) / (1000 * 60); // Time difference in minutes
-        if (timeSinceGigStart > 150) {
+
+        if (timeSinceGigStart > maxGigDuration) {
             console.log(`Skipping gig: ${gig.name}, Gig has been going on for ${Math.round(timeSinceGigStart)} minutes`);
             return false;
         }
@@ -92,16 +114,16 @@ export function renderGigs(
         return;
     }
 
-    // Categorize gigs based on time horizon
+    // Categorize and render gigs
     const underway = validGigs.filter(gig => new Date(gig.start_timestamp) <= currentTime);
     const soon = validGigs.filter(gig => new Date(gig.start_timestamp) > currentTime && new Date(gig.start_timestamp) <= new Date(currentTime.getTime() + 60 * 60 * 1000)); // within an hour
     const later = validGigs.filter(gig => new Date(gig.start_timestamp) > new Date(currentTime.getTime() + 60 * 60 * 1000));
 
-    // Render gigs in time horizon categories with headings
     appendGigList(underway, gigList, "Underway", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
     appendGigList(soon, gigList, "Soon", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
     appendGigList(later, gigList, "Later on", stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop);
 }
+
 
 function appendGigList(gigs, gigList, category, stops, nextTramData, venueArrivalTimes, venueStopMapping, currentStop) {
     if (gigs.length === 0) return;
