@@ -59,7 +59,7 @@
                 const directionId = isOutbound ? 4 : 5; // Update direction based on state
 
                 // Update URL for each stop
-                const stopUrl = `https://lml.live/index.html?stopId=${stopId}&route_id=3343&direction_id=${directionId}`;
+                const stopUrl = `https://pt.lml.live/index.html?stopId=${stopId}&route_id=3343&direction_id=${directionId}`;
                 const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
 
                 stopDiv.innerHTML = `
