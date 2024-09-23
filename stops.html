@@ -49,7 +49,7 @@
             const stopList = document.getElementById('stop-list');
             stopList.innerHTML = ''; // Clear existing stops
 
-            
+
             stops.forEach(stop => {
                 const stopDiv = document.createElement('div');
                 stopDiv.classList.add('stop');
@@ -60,10 +60,8 @@
                 const directionId = isOutbound ? 4 : 5; // Update direction based on state
 
                 // Update URL for each stop
-                const stopUrl = `https://pt.lml.live/index.html?stopId=${stopId}&route_id=3343&direction_id=${directionId}`;
-                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${stopUrl}`; // Generate QR code
-
-                stopDiv.innerHTML = `
+                const stopUrl = `https://pt.lml.live/index.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
+                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(stopUrl)}`;               stopDiv.innerHTML = `
                     <h2>Stop ${stopId} - ${stopName}</h2>
                     <a href="${stopUrl}" target="_blank">
                         <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
