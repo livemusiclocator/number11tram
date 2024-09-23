@@ -39,16 +39,16 @@
                 // Sort stops by stop_sequence to ensure correct outbound order
                 stops = stops.sort((a, b) => a.stop_sequence - b.stop_sequence);
 
-                renderStops(stops);
+                const routeId = 3343; // Set your route ID here. This can be dynamic later.
+                renderStops(stops, routeId);
             } catch (error) {
                 console.error('Error loading stop data:', error);
             }
         }
 
-        function renderStops(stops) {
+        function renderStops(stops, routeId) { // Add routeId as a parameter
             const stopList = document.getElementById('stop-list');
             stopList.innerHTML = ''; // Clear existing stops
-
 
             stops.forEach(stop => {
                 const stopDiv = document.createElement('div');
@@ -61,7 +61,9 @@
 
                 // Update URL for each stop
                 const stopUrl = `https://pt.lml.live/index.html?stopId=${stopId}&route_id=${routeId}&direction_id=${directionId}`;
-                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(stopUrl)}`;               stopDiv.innerHTML = `
+                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(stopUrl)}`;
+
+                stopDiv.innerHTML = `
                     <h2>Stop ${stopId} - ${stopName}</h2>
                     <a href="${stopUrl}" target="_blank">
                         <img src="${qrCodeUrl}" alt="QR Code for Stop ${stopId}" />
