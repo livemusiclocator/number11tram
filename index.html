@@ -211,12 +211,12 @@
 
     // Function to track link clicks
     function trackLinkClick(stopId, routeId, directionId, linkName) {
-        gtag('event', 'link_click', {
-            'stop_id': stopId,
-            'route_id': routeId,
-            'direction_id': directionId,
-            'link_name': linkName
-        });
+        gtag('event', 'page_view', {
+  'stop_id': stopId,
+  'route_id': routeId,
+  'direction_id': directionId,
+  'debug_mode': true
+});
     }
 </script>
 
