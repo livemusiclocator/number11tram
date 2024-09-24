@@ -3,21 +3,13 @@
 
 <html lang="en">
 <head>
-    <script src="https://www.googletagmanager.com/gtag/js?id=GT-WRFXTBL7"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
     
-      gtag('config', 'GT-WRFXTBL7', { 'debug_mode': true });
-    
-      
-
-      // Set user property to identify the app
-      gtag('set', 'user_properties', {
-        app_name: 'PTV_gigs_app'
-      });
+    <!-- Google Tag Manager -->
+<script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'}); var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:''; j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-NWF3SW2Z');
     </script>
+    <!-- End Google Tag Manager -->
+    
     <script>
     console.log('window.gtag in regular script is', typeof window.gtag);
   
@@ -200,24 +192,26 @@
         } catch (error) {
             console.error("Error during page initialization:", error);
         }
-
-        // Send page view event with custom parameters
-        gtag('event', 'page_view', {
-            'stop_id': stopId,
-            'route_id': routeId,
-            'direction_id': directionId
-        });
-    }
-
-    // Function to track link clicks
-    function trackLinkClick(stopId, routeId, directionId, linkName) {
-        gtag('event', 'page_view', {
+// Send page view event with custom parameters using GTM dataLayer
+dataLayer.push({
+  'event': 'page_view',
   'stop_id': stopId,
   'route_id': routeId,
   'direction_id': directionId,
   'debug_mode': true
 });
-    }
+
+// Function to track link clicks using GTM dataLayer
+function trackLinkClick(stopId, routeId, directionId, linkName) {
+  dataLayer.push({
+    'event': 'link_click',
+    'stop_id': stopId,
+    'route_id': routeId,
+    'direction_id': directionId,
+    'link_name': linkName,
+    'debug_mode': true
+  });
+}
 </script>
 
 
