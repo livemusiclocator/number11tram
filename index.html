@@ -1,26 +1,15 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
-    
     <!-- Google Tag Manager -->
-<script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'}); var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:''; j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl; f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-NWF3SW2Z');
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': 
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NWF3SW2Z');
     </script>
     <!-- End Google Tag Manager -->
-    
-    <script>
-    console.log('window.gtag in regular script is', typeof window.gtag);
-  
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'test_event_regular_script', { 'debug_mode': true });
-      console.log('Test event sent from regular script');
-    } else {
-      console.error('window.gtag is not a function in regular script');
-    }
-  </script>
-  
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,10 +67,15 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWF3SW2Z"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div class="container">
         <!-- Placeholder for the stop name -->
         <div id="stop-name-placeholder" class="stop-name">Loading Stop Name...</div>
-        
+
         <!-- Logo goes below the stop name -->
         <a href="https://lml.live" target="_blank">
             <div style="text-align: center;">
@@ -95,132 +89,132 @@
             <!-- Gigs will be dynamically loaded here -->
         </div>
     </div>
-  
- <!-- Initialization Script -->
-<script type="module">
-    import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/fetchdata.js';
-    import { renderGigs } from '/render.js';
-    import { findClosestStopToVenue } from '/helpers.js';
 
-    // Retrieve parameters from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const stopId = urlParams.get('stopId');
-    const routeId = urlParams.get('route_id');
-    const directionId = urlParams.get('direction_id');
+    <!-- Initialization Script -->
+    <script type="module">
+        import { fetchGigs, fetchNextTram, calculateVenueArrivalTimes } from '/fetchdata.js';
+        import { renderGigs } from '/render.js';
+        import { findClosestStopToVenue } from '/helpers.js';
 
-    // Add event listener to call initializePage once the DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        initializePage(stopId, routeId, directionId);
+        // Retrieve parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const stopId = urlParams.get('stopId');
+        const routeId = urlParams.get('route_id');
+        const directionId = urlParams.get('direction_id');
 
-        // Attach click event to the gig list after it has been rendered
-        document.getElementById('gig-list').addEventListener('click', function(event) {
-            if (event.target.tagName === 'A') {
-                const linkName = event.target.textContent.trim();
-                trackLinkClick(stopId, routeId, directionId, linkName);
-            }
-        });
-    });
+        // Add event listener to call initializePage once the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage(stopId, routeId, directionId);
 
-    // Function to initialize the page
-    async function initializePage(stopId, routeId, directionId) {
-        // Parse stopId, routeId, and directionId to numbers
-        const stopIdNum = parseInt(stopId, 10);
-        const routeIdNum = parseInt(routeId, 10);
-        const directionIdNum = parseInt(directionId, 10);
-
-        // Update the document title based on direction
-        const directionText = directionIdNum === 4 ? "Outbound" : "Inbound";
-        document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
-
-        // Fetch and update the stop name
-        try {
-            const jsonFile = directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
-            const response = await fetch(`/${jsonFile}`);
-            const stops = await response.json();
-
-            // Use stopIdNum to find the stop
-            const stop = stops.find(s => s.stop_id === stopIdNum);
-            const stopName = stop ? stop.stop_name : "Unknown Stop";
-            document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
-
-            console.log("Stop ID:", stopIdNum);
-            console.log("Direction ID:", directionIdNum);
-            console.log("Stops Data:", stops);
-            console.log("Found Stop:", stop);
-        } catch (error) {
-            console.error("Error fetching stop data:", error);
-        }
-
-        // Fetch data and render gigs
-        try {
-            const [stops, gigs, nextTramData] = await Promise.all([
-                fetch(`/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
-                fetchGigs(),
-                fetchNextTram(stopIdNum, directionIdNum, routeIdNum)
-            ]);
-
-            if (!nextTramData || !nextTramData.runId) {
-                console.error("No valid tram data available.");
-                return;
-            }
-
-            // Define the maximum distance in meters
-            const MAX_DISTANCE_METERS = 400;
-
-            // Filter gigs to those within MAX_DISTANCE_METERS of any stop
-            const nearbyGigs = gigs.filter(gig => {
-                const { shortestDistance } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
-                return shortestDistance <= MAX_DISTANCE_METERS;
+            // Attach click event to the gig list after it has been rendered
+            document.getElementById('gig-list').addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                    const linkName = event.target.textContent.trim();
+                    trackLinkClick(stopId, routeId, directionId, linkName);
+                }
             });
+        });
 
-            // Calculate venue arrival times for nearby gigs
-            const { venueArrivalTimes, venueStopMapping } = await calculateVenueArrivalTimes(nearbyGigs, nextTramData);
+        // Function to initialize the page
+        async function initializePage(stopId, routeId, directionId) {
+            // Parse stopId, routeId, and directionId to numbers
+            const stopIdNum = parseInt(stopId, 10);
+            const routeIdNum = parseInt(routeId, 10);
+            const directionIdNum = parseInt(directionId, 10);
 
-            // Call renderGigs with the filtered gigs
-            renderGigs(
-                nearbyGigs,
-                stops,
-                document.getElementById('gig-list'),
-                venueArrivalTimes,
-                nextTramData,
-                venueStopMapping,
-                directionIdNum,
-                routeIdNum,
-                stopIdNum
-            );
+            // Update the document title based on direction
+            const directionText = directionIdNum === 4 ? "Outbound" : "Inbound";
+            document.title = `${directionText} - Number 11 Tram Stop QR Codes`;
 
-        } catch (error) {
-            console.error("Error during page initialization:", error);
+            // Fetch and update the stop name
+            try {
+                const jsonFile = directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json';
+                const response = await fetch(`/${jsonFile}`);
+                const stops = await response.json();
+
+                // Use stopIdNum to find the stop
+                const stop = stops.find(s => s.stop_id === stopIdNum);
+                const stopName = stop ? stop.stop_name : "Unknown Stop";
+                document.getElementById('stop-name-placeholder').textContent = `${directionText} Stop: ${stopName}`;
+
+                console.log("Stop ID:", stopIdNum);
+                console.log("Direction ID:", directionIdNum);
+                console.log("Stops Data:", stops);
+                console.log("Found Stop:", stop);
+            } catch (error) {
+                console.error("Error fetching stop data:", error);
+            }
+
+            // Fetch data and render gigs
+            try {
+                const [stops, gigs, nextTramData] = await Promise.all([
+                    fetch(`/${directionIdNum === 4 ? 'outgoing_route_11_stops.json' : 'inboundstops-11.json'}`).then(response => response.json()),
+                    fetchGigs(),
+                    fetchNextTram(stopIdNum, directionIdNum, routeIdNum)
+                ]);
+
+                if (!nextTramData || !nextTramData.runId) {
+                    console.error("No valid tram data available.");
+                    return;
+                }
+
+                // Define the maximum distance in meters
+                const MAX_DISTANCE_METERS = 400;
+
+                // Filter gigs to those within MAX_DISTANCE_METERS of any stop
+                const nearbyGigs = gigs.filter(gig => {
+                    const { shortestDistance } = findClosestStopToVenue(stops, gig.venue.latitude, gig.venue.longitude);
+                    return shortestDistance <= MAX_DISTANCE_METERS;
+                });
+
+                // Calculate venue arrival times for nearby gigs
+                const { venueArrivalTimes, venueStopMapping } = await calculateVenueArrivalTimes(nearbyGigs, nextTramData);
+
+                // Call renderGigs with the filtered gigs
+                renderGigs(
+                    nearbyGigs,
+                    stops,
+                    document.getElementById('gig-list'),
+                    venueArrivalTimes,
+                    nextTramData,
+                    venueStopMapping,
+                    directionIdNum,
+                    routeIdNum,
+                    stopIdNum
+                );
+
+            } catch (error) {
+                console.error("Error during page initialization:", error);
+            }
+
+            // Send page view event with custom parameters using GTM dataLayer
+            dataLayer.push({
+                'event': 'page_view',
+                'stop_id': stopId,
+                'route_id': routeId,
+                'direction_id': directionId,
+                'debug_mode': true
+            });
         }
-// Send page view event with custom parameters using GTM dataLayer
-dataLayer.push({
-  'event': 'page_view',
-  'stop_id': stopId,
-  'route_id': routeId,
-  'direction_id': directionId,
-  'debug_mode': true
-});
 
-// Function to track link clicks using GTM dataLayer
-function trackLinkClick(stopId, routeId, directionId, linkName) {
-  dataLayer.push({
-    'event': 'link_click',
-    'stop_id': stopId,
-    'route_id': routeId,
-    'direction_id': directionId,
-    'link_name': linkName,
-    'debug_mode': true
-  });
-}
-</script>
+        // Function to track link clicks using GTM dataLayer
+        function trackLinkClick(stopId, routeId, directionId, linkName) {
+            dataLayer.push({
+                'event': 'link_click',
+                'stop_id': stopId,
+                'route_id': routeId,
+                'direction_id': directionId,
+                'link_name': linkName,
+                'debug_mode': true
+            });
+        }
+    </script>
 
-
-
- <footer style="text-align: center; margin-top: 20px; font-size: 0.6em;">
-    <p>
-        Live Music Data courtesy of <a href="http://lml.live" target="_blank">Live Music Locator</a>: <a href="http://lml.live" target="_blank">http://lml.live</a><br>
-        PTV Data Licensed from Public Transport Victoria under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.
-    </p>
-</footer>
+    <footer style="text-align: center; margin-top: 20px; font-size: 0.6em;">
+        <p>
+            Live Music Data courtesy of <a href="http://lml.live" target="_blank">Live Music Locator</a>: <a href="http://lml.live" target="_blank">http://lml.live</a><br>
+            PTV Data Licensed from Public Transport Victoria under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.
+        </p>
+    </footer>
 </body>
 </html>
